@@ -1,0 +1,27 @@
+.wrapper{
+
+}
+.bar{
+    height: 34px;
+    width: var(--default-layout-width);
+    padding: 0 var(--default-layout-horizontal-spacer);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // margin-bottom: 5px;
+}
+.item {
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 12px;
+    margin-top: 4px;
+    margin-right: 12px;
+    display: flex;
+}
+.content{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: left;
+    color: rgba(34,34,34)
+}

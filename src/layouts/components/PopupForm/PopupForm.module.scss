@@ -1,0 +1,125 @@
+.popup-box {
+    position: fixed;
+    background: #00000050;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+.input_login {
+    flex: 1;
+    box-shadow: 0 1px 4px 0 rgb(34 34 34 / 10%) inset;
+    border-color: rgba(34, 34, 34, 0.15);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 28px;
+    height: 48px;
+    outline: 3px solid transparent;
+    padding: 9px 12px;
+    width: 100%;
+    min-width: 0;
+    display:block;
+}
+.box {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+    height: 713px;
+    margin-top: calc(100vh - 85vh - 20px);
+    background: #fff;
+    border-radius: 30px;
+    padding: 30px;
+    border: 1px solid #999;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.close_icon {
+    content: 'x';
+    cursor: pointer;
+    position: fixed;
+    right: calc(40% - 40px);
+    top: calc(100vh - 85vh - 20px);
+    background: #ededed;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    font-size: 14px;
+    align-items: center;
+}
+.content {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+    line-height: 18px;
+    margin-bottom: 6px;
+}
+.email {
+    display: flex;
+    font-size: 14px;
+    line-height: 19.6px;
+    margin-bottom: 12px;
+    flex-direction: column;
+    height: 70px;
+}
+.password {
+    display: flex;
+    font-size: 14px;
+    line-height: 19.6px;
+    margin-bottom: 12px;
+    flex-direction: column;
+    height: 70px;
+}
+.forgotorsave{
+  width: 100%;
+  height: 24px;
+  display: flex;
+  justify-content:space-between;
+}
+.forgotpass{
+    text-decoration: underline;
+}
+.sign_in{
+  display: flex;
+  justify-content:center;
+  margin-top: 12px;
+}
+.checkbox{
+  left: 3px;
+  top: 3px;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-right: 8px;
+  border-radius:6px;
+  
+}
+.check{
+    display: flex;
+    align-items: center;
+}
+.staysigned{
+    line-height: 16px;
+    font-size: 16px;
+    text-align: center;
+}
+.or{
+  display: flex;
+  justify-content:center;
+  margin-top: 12px;
+}
