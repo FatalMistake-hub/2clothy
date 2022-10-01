@@ -1,6 +1,6 @@
 const routes = {
 
-    home: '/2clothy',
+    home: '/',
     cart: '/cart',
     category: '/category',
     profile: '/@:nickname',
