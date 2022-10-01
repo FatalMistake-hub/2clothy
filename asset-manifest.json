@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/2clothy/static/css/main.0faca824.css",
+    "main.js": "/2clothy/static/js/main.3e0af5f0.js",
+    "static/js/787.4c9d15e8.chunk.js": "/2clothy/static/js/787.4c9d15e8.chunk.js",
+    "static/media/ProximaNova-Semibold.woff2": "/2clothy/static/media/ProximaNova-Semibold.db7972dbe0b808f96bae.woff2",
+    "static/media/sofiapro-bold.woff": "/2clothy/static/media/sofiapro-bold.086ed00f3060992f2938.woff",
+    "static/media/Proxima-Nova-Bold.woff": "/2clothy/static/media/Proxima-Nova-Bold.6cd7dcaa6293ecf61e80.woff",
+    "static/media/Proxima-Nova-Regular.woff2": "/2clothy/static/media/Proxima-Nova-Regular.6c83037ae28747e6d774.woff2",
+    "static/media/logo.svg": "/2clothy/static/media/logo.9b99af3ee2e0497a25db268c4d29108a.svg",
+    "index.html": "/2clothy/index.html",
+    "main.0faca824.css.map": "/2clothy/static/css/main.0faca824.css.map",
+    "main.3e0af5f0.js.map": "/2clothy/static/js/main.3e0af5f0.js.map",
+    "787.4c9d15e8.chunk.js.map": "/2clothy/static/js/787.4c9d15e8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0faca824.css",
+    "static/js/main.3e0af5f0.js"
+  ]
+}
