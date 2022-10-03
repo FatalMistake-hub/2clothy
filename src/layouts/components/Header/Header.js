@@ -81,7 +81,8 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'View profile',
-            to: '/@hoaa',
+            to: '/account/@:nhatquach',
+            // to: '/account',
         },
         {
             icon: <FontAwesomeIcon icon={faCoins} />,

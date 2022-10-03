@@ -17,16 +17,27 @@ import Home from '~/pages/Home';
 import ForgotPassword from '~/pages/ForgotPassword';
 import ResetPassword from '~/pages/ResetPassword';
 import Detail from '~/pages/Detail';
+import Account from '~/pages/Profile/Account';
+import PublicProfile from '~/pages/Profile/PublicProfile';
+import CreditCards from '~/pages/Profile/CreditCards';
+import Addresses from '~/pages/Profile/Addresses';
 
 
 
 
 // Public routes
 const publicRoutes = [
-    { path: config.routes.home, component: Home},
+    { path: config.routes.home, component:  Home},
     { path: config.routes.cart, component: Cart },
     { path: config.routes.category, component: Category },
+    // Profile
     { path: config.routes.profile, component: Profile , layout: ProfileLayout},
+    { path: config.routes.account, component: Account , layout: ProfileLayout},
+    { path: config.routes.publicprofile, component: PublicProfile , layout: ProfileLayout},
+    { path: config.routes.creditcards, component: CreditCards , layout: ProfileLayout}, 
+    { path: config.routes.addresses, component: Addresses , layout: ProfileLayout}, 
+
+    //
     { path: config.routes.shop, component: Shop },
     { path: config.routes.forgotpassword, component: ForgotPassword },
     { path: config.routes.resetpassword, component: ResetPassword },

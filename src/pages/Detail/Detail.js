@@ -4,7 +4,8 @@ import Button from '~/components/Button';
 import { HandMade, Materials } from '~/components/Icons';
 import PaginationNav from '~/components/PaginationNav/PaginationNav';
 import ProductItem from '~/components/ProductItem';
-
+import { Link } from 'react-router-dom';
+import config from '~/config'
 import styles from './Detail.module.scss';
 const cx = classNames.bind(styles);
 const dataImage = [
@@ -72,7 +73,7 @@ function Detail() {
                     <div className={cx('ordercard-listing')}>
                         <div className={cx('odercard-listing-header')}>
                             <div className={cx('follow-shop')}>
-                                <a href="/shop" className={cx('follow-shop-content')}>TheBeardedBee</a>
+                                <Link to={config.routes.shop} className={cx('follow-shop-content')}>TheBeardedBee</Link>
                                 <Button rounded outline small>
                                     Follow
                                 </Button>
@@ -228,9 +229,9 @@ function Detail() {
                                 <p className={cx('shop-detail-name')}>Sara</p>
                                 <p className={cx('shop-detail-owner')}>
                                     Owner of{' '}
-                                    <a href="/shop" className={cx('shop-detail-owner-link')}>
+                                    <Link to={config.routes.shop} className={cx('shop-detail-owner-link')}>
                                         theBeardedBee
-                                    </a>
+                                    </Link>
                                 </p>
                             </div>
                         </div>

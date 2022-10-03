@@ -8,9 +8,9 @@ export const search = async (keyword) => {
                 
             },
         });
-        console.log(res.data);
-        // return res.data;
-        return res;
+        // console.log(res.data);
+        return res.data;
+        // return res;
     } catch (error) {
         console.log(error);
     }

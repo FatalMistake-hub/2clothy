@@ -1,0 +1,101 @@
+.wrapper {
+}
+.addresses {
+}
+.addresses_add {
+    margin: -9px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.addresses_add-tittle {
+    padding: 9px;
+    flex-grow: 1;
+    flex-basis: 50%;
+    max-width: 50%;
+    text-align: left;
+}
+.addresses_add-tittle-text {
+    font-size: 32px;
+    line-height: 36px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+.addresses_add-button {
+    padding: 9px;
+    flex-grow: 1;
+    flex-basis: 50%;
+    max-width: 50%;
+}
+.addresses_content {
+    margin-top: 6px;
+    margin: -9px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.addresses_content-item {
+    padding: 9px;
+    flex-grow: 1;
+    flex-basis: 50%;
+    max-width: 50%;
+}
+.addresses_content-item-default {
+    background: #4d6bc6;
+    color: #ffffff;
+    border-radius: 15px;
+    display: inline-block;
+    word-break: break-word;
+    line-height: 1;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 6px 9px;
+    min-width: 25px;
+}
+.addresses_content-item-address {
+    font-style: normal;
+    color: #666;
+    line-height: 22px;
+    font-size: 14px;
+}
+.addresses_content-item-address-name {
+    font-weight: bold;
+}
+.addresses_content-item-address-info {
+}
+.addresses_content-item-action {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: -6px;
+}
+.addresses_content-item-button {
+    margin-right: 6px;
+    margin-bottom: 6px;
+    color: #222222;
+    font-size: 13px;
+    line-height: 1.4;
+    min-height: 36px;
+    min-width: 36px;
+    padding: 9px 15px;
+    background-color: transparent;
+    border-radius: 24px;
+    display: inline-block;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    
+}
+.addresses_content-item-button:hover {
+    background-color: #efefef;
+}
+.addresses_content-item-button-icon {
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    fill: currentColor;
+
+    vertical-align: middle;
+    margin-right: 4px;
+}
+

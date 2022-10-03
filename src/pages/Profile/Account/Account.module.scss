@@ -1,0 +1,87 @@
+.wrapper{
+
+}
+.account{
+
+}
+.account_form{
+    height: auto;    float: left;border: 1px solid #dadbd6;
+    border-radius: 5px;
+    background-color: #FFF;
+    margin-bottom: 24px;width: 100% ;
+}
+.account_form-title{
+    width: auto;    background-color: #f5f5f1;
+    border-radius: 4px 4px 0 0;
+    border-top: 1px solid #fff;
+    color: #5a5552;
+    font-size: 14px;
+    padding: 10px 16px;
+}
+.account_form-body{
+    padding: 10px 16px;
+}
+.account_form-infoGroup{
+    margin-bottom: 18px;
+}
+.account_form-inputGroup{
+
+    display: flex;
+    text-align: left;
+    margin-bottom: 0%;
+    margin-top: 10px;position: relative;
+}
+.account_form-inputGroup-box{
+    clear: left;    width: 100%;
+    max-width: 278px;
+}
+.account_form-inputtitle{
+    text-align: left;    margin-bottom: 4px;
+    width: auto;
+    display: block;
+    float: none;
+    color: #333;
+    font-size: 12px;    margin-right: 15px;
+    margin-top: 6px;
+}
+.account_form-input{
+    width: 100%;text-align: left;    color: #333;
+    background-color: #FFF;
+    font-size: 12px;
+    margin: 0 0 0.2em 0;
+    padding: 6px;
+    border: 1px solid #959595;
+    border-right: 1px solid #D3D3D3;
+    border-bottom: 1px solid #D3D3D3;
+}
+.account_form-submit{
+    padding-bottom: 18px;
+    margin-top: 24px;
+    float: left;
+    clear: left;
+}
+.account_form-submit-input{
+    font-weight: normal;
+    padding: 4px 11px;
+    border-radius: 3px;
+    font-size: 13px;    background-color: #222222;    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    color:rgba(255,255,255);
+    font-size: 13px;
+    font-weight: 400;    
+}
+.account_help{
+    display:flex;
+    flex-direction: column;
+    float: left;
+    border: 1px solid #dadbd6;
+    border-radius: 5px;
+    background-color: #FFF;
+    margin-bottom: 24px;    width: 100% ;padding: 10px 16px;
+}
+.account_help-link{
+    color: #222 !important;
+    text-decoration: underline !important;
+    font-style: 12px;
+}

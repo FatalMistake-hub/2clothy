@@ -3,7 +3,7 @@
     text-align: center;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     flex-direction: row;
 }
 .nav-item {
@@ -15,8 +15,7 @@
     z-index: 1;display: flex;
     align-items: center;    position: relative;
     font-size: 16px;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding :12px 12px 0 12px;
     &.active {
         color: var(--primary);
 
@@ -41,9 +40,9 @@
         }
     }
 
-    &:hover {
-        background-color: rgba(22, 24, 35, 0.03);
-    }
+    // &:hover {
+    //     background-color: rgba(22, 24, 35, 0.03);
+    // }
 }
 
 .title {
