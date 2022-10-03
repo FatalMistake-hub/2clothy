@@ -3,6 +3,7 @@ import config from '~/config';
 // Layouts
 import { HeaderOnly } from '~/layouts';
 import { ProfileLayout } from '~/layouts'
+import { SetupShopLayout } from '~/layouts'
 
 // Pages
 
@@ -21,6 +22,9 @@ import Account from '~/pages/Profile/Account';
 import PublicProfile from '~/pages/Profile/PublicProfile';
 import CreditCards from '~/pages/Profile/CreditCards';
 import Addresses from '~/pages/Profile/Addresses';
+import Billing from '~/pages/SetupShop/Billing';
+import Listings from '~/pages/SetupShop/Listings';
+import Reference from '~/pages/SetupShop/Reference';
 
 
 
@@ -36,6 +40,12 @@ const publicRoutes = [
     { path: config.routes.publicprofile, component: PublicProfile , layout: ProfileLayout},
     { path: config.routes.creditcards, component: CreditCards , layout: ProfileLayout}, 
     { path: config.routes.addresses, component: Addresses , layout: ProfileLayout}, 
+
+    //
+    //SetupShop
+    { path: config.routes.billing, component: Billing , layout: SetupShopLayout },
+    { path: config.routes.listings, component: Listings , layout: SetupShopLayout },
+    { path: config.routes.reference, component: Reference , layout: SetupShopLayout },
 
     //
     { path: config.routes.shop, component: Shop },

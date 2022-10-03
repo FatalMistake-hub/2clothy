@@ -244,4 +244,17 @@ export const Materials = ({ width = '1.8rem', height = '1.8rem', className }) =>
         <path d="M9.5 2C5.4 2 2 5.4 2 9.5S5.4 17 9.5 17 17 13.6 17 9.5 13.6 2 9.5 2zM7.8 15c-.6-.2-1.2-.5-1.7-.9l8-8c.4.5.7 1.1.9 1.7L7.8 15zm3.4-11c.6.2 1.2.5 1.7.9l-8 8c-.4-.5-.7-1.1-.9-1.7L11.2 4zM9 3.8L3.8 9C4 6.2 6.2 4 9 3.8zm1 11.4l5.2-5.2c-.2 2.8-2.4 5-5.2 5.2z"></path>
     </svg>
 );
+export const Cỉrcle = ({ width = '1.8rem', height = '1.8rem', className }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 18 18"
+        aria-hidden="true"
+        focusable="false"
+        className={className}
+        width={width}
+        height={height}
+    >
+       <circle cx="9" cy="9" r="3" fill="#595959"></circle>
+    </svg>
+);
 

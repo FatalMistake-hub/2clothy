@@ -1,0 +1,85 @@
+.nav{
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    flex-grow: 1;
+    flex-basis: 100%;
+    max-width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+}
+.nav-item::before{
+    content: "";
+    width: 66%;
+    position: absolute;
+    left: 17%;
+    top: 14px;
+    z-index: -1;
+    border-bottom: 2px solid #000000;
+}
+.nav-item {
+    pointer-events: auto;    color: #595959;
+    &.active {
+        color: #595959;
+        font-size: 13px;
+        .icon {
+            display: none;
+        }
+        .stop-dot{    
+            background-color: #222222;
+        }
+        .active-icon {
+            display: flex;
+        }
+        .title::after {
+            width: 100%;
+            border-bottom-color: #222222;
+            bottom: -14px;
+            content: '';
+            display: inline-block;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 200ms cubic-bezier(0.54, 0, 0.54, 1);
+        }
+    }
+    
+
+    &:hover {
+        .stop-dot{    
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+        .title{
+            text-decoration:underline;
+        }
+    }
+}
+.stop-dot{    display: block;
+    position: relative;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    margin: 0 auto 6px;
+    padding: 12px;
+    background-color: #FFFFFF;
+    border: 2px solid #222222;
+background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 24 24%22%3E%3Cpath fill%3D%22%23222222%22 d%3D%22M9.057,20.471L2.293,13.707a1,1,0,0,1,1.414-1.414l5.236,5.236,11.3-13.18a1,1,0,1,1,1.518,1.3Z%22%2F%3E%3C%2Fsvg%3E");
+}
+
+.title {
+    font-size: 13px;    display: block;line-height: 18.2px;
+}
+
+
+.icon,
+.active-icon {
+    display: flex;
+}
+
+.active-icon {
+    display: none;
+}

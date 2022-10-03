@@ -32,7 +32,7 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true);
 
-            const result = await searchServices.search(debouncedValue);
+            const result = await searchServices.searchProduct(debouncedValue);
 
             setSearchResult(result);
             setLoading(false);

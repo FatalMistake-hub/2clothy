@@ -14,6 +14,13 @@ const routes = {
     //
     upload: '/upload',
     search: '/search',
+
+    //SetupShop
+    reference: '/reference',
+    listings: '/listings',
+    billing: '/billing',
+    //
+
     shop: '/shop',
     favorites: '/favorites',
     forgotpassword: '/forgotpassword',

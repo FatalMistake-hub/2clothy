@@ -1,0 +1,72 @@
+.wrapper{
+    padding: 30px 36px 12px 36px;
+    width: 100%;
+    float: left;
+}
+.reference{
+
+}
+.reference-title{
+}
+.reference-title-text{
+    margin-bottom: 6px;    text-align: center;font-size: 32px;
+    line-height: 36px;font-weight: 300;
+    letter-spacing: 0.5px;
+
+}
+.reference-content{
+ display:flex;
+ justify-content:center;
+}
+.reference-content-box{
+    flex-wrap: wrap;    flex-grow: 1;
+    flex-basis: 50%;
+    max-width: 50%;
+
+}
+.reference-help{
+    margin-bottom: 42px;    margin-top: 12px;font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+}
+.reference-inputGroup{
+    margin-bottom: 12px;    display: table;
+    width: 100%;
+}
+.reference-input{
+    font-size: 18px;height: 48px;    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    color: #222222;    border-color: #e1e3df;
+    display: block;    line-height: 28px;    padding: 9px 12px;
+    width: 100%;
+}
+.reference-input:focus{
+    border-color: #222222;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #4d6bc6;
+}
+.reference-input:hover{
+    border-color: #222222;
+    
+}
+.reference-notice{
+    padding-bottom: 42px;
+}
+.reference-notice-item{
+    align-items: flex-start;display: flex;
+}
+.reference-notice-item-icon{
+
+}
+.reference-notice-item-text{
+    color: #595959;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    margin-left: 6px;    display: inline ;
+}
+.reference-action{
+    margin-top:20px ;
+    right:32%;
+    position: absolute;
+}

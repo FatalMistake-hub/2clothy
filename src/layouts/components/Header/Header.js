@@ -122,9 +122,9 @@ function Header() {
                                     </button>
                                 </Tippy>
                                 <Tippy delay={[0, 50]} content="Shop manager" placement="bottom">
-                                    <button className={cx('action-btn')}>
+                                    <Link className={cx('action-btn')} to={config.routes.reference}>
                                         <ShopManagerIcon />
-                                    </button>
+                                    </Link>
                                 </Tippy>
                                 <Tippy delay={[0, 50]} content="Cart" placement="bottom">
                                     <Link className={cx('action-btn')} to={config.routes.cart}>
