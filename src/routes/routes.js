@@ -53,7 +53,7 @@ const publicRoutes = [
     { path: config.routes.resetpassword, component: ResetPassword },
     { path: config.routes.detail, component: Detail },
     // { path: config.routes.upload, component: Upload, layout: HeaderOnly null },
-    { path: config.routes.search, component: Search, layout: null },
+    { path: config.routes.search, component: Search },
     { path: config.routes.favorites, component: Favorites, layout: HeaderOnly},
 ];
 

@@ -15,6 +15,25 @@ export const searchProduct = async (keyword) => {
         console.log(error);
     }
 };
+export const getAllItem = async () => {
+    try {
+        const res = await httpRequest.get('item' );
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const detailProduct = async (id) => {
+    try {
+        const res = await httpRequest.get(`item/${id}`, {
+            
+        });
+        return res.data;
+    } catch (error) {
+        console.log("http",error);
+    }
+};
 export const post = async (keyword,data={}) => {
     try {
         const res = await httpRequest.post('post', {

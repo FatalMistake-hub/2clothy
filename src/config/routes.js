@@ -13,7 +13,7 @@ const routes = {
 
     //
     upload: '/upload',
-    search: '/search',
+    search: '/search/:id',
 
     //SetupShop
     reference: '/reference',
@@ -25,7 +25,7 @@ const routes = {
     favorites: '/favorites',
     forgotpassword: '/forgotpassword',
     resetpassword: '/resetpassword',
-    detail: '/detail',
+    detail: '/detail/:id',
 };
 
 export default routes;

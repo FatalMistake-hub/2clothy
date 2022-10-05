@@ -1,6 +1,8 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
+import config from '~/config';
 import styles from './PopupForm.module.scss';
 
 const cx = classNames.bind(styles);
@@ -8,6 +10,8 @@ function PopupForm({ handleClose }) {
     const [isRegister, setIsRegister] = useState(true);
     const toggleForm = () => {
         setIsRegister(!isRegister);
+
+
     };
 
     return (
@@ -37,31 +41,22 @@ function PopupForm({ handleClose }) {
                                 <input type="checkbox" className={cx('checkbox')} />
                                 <span className={cx('staysigned')}> Stay signed in</span>
                             </div>
-                            <a href="/forgotpassword"className={cx('forgotpass')} >Forgot your password?</a>
+                            <Link to={config.routes.forgotpassword}className={cx('forgotpass')} >Forgot your password?</Link>
                         </div>
                         <div className={cx('sign_in')}>
                             <Button login rounded primary>
                                 Sign in
                             </Button>
                         </div>
-                        <div className={cx('or')}>
+                        {/* <div className={cx('or')}>
                             <span>OR</span>
                         </div>
                         <div className={cx('sign_in')}>
                             <Button login rounded>
                                 Continue with Google
                             </Button>
-                        </div>
-                        <div className={cx('sign_in')}>
-                            <Button login rounded>
-                                Continue with Facebook
-                            </Button>
-                        </div>
-                        <div className={cx('sign_in')}>
-                            <Button login rounded>
-                                Continue with Apple
-                            </Button>
-                        </div>
+                        </div> */}
+                        
                     </div>
                 </div>
             ) : (
@@ -95,24 +90,7 @@ function PopupForm({ handleClose }) {
                                 Register
                             </Button>
                         </div>
-                        <div className={cx('or')}>
-                            <span>OR</span>
-                        </div>
-                        <div className={cx('sign_in')}>
-                            <Button login rounded>
-                                Continue with Google
-                            </Button>
-                        </div>
-                        <div className={cx('sign_in')}>
-                            <Button login rounded>
-                                Continue with Facebook
-                            </Button>
-                        </div>
-                        <div className={cx('sign_in')}>
-                            <Button login rounded>
-                                Continue with Apple
-                            </Button>
-                        </div>
+                        
                     </div>
                 </div>
             )}

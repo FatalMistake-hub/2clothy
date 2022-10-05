@@ -24,7 +24,7 @@ import Image from '~/components/Image';
 import Search from '../Search';
 import Category from '../Category';
 import { useState } from 'react';
-import PopupForm from '../PopupForm';
+import PopupForm from '../../../components/PopupForm';
 
 const cx = classNames.bind(styles);
 
