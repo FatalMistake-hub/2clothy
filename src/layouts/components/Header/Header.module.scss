@@ -95,7 +95,12 @@
     cursor: pointer;
 }
 .logo {
-    fill:#F1641E ;
-    display: block;
-    line-height: 19.6px;
+    // fill:#F1641E ;
+    // display: block;
+    // line-height: 19.6px;
+    height: 200px;
+    width: 1200%;
+    z-index: -10;
+    position: relative;
+    left:-27%;
 }
