@@ -25,6 +25,7 @@ import Addresses from '~/pages/Profile/Addresses';
 import Billing from '~/pages/SetupShop/Billing';
 import Listings from '~/pages/SetupShop/Listings';
 import Reference from '~/pages/SetupShop/Reference';
+import NotFound from '~/pages/NotFound';
 
 
 
@@ -55,6 +56,7 @@ const publicRoutes = [
     // { path: config.routes.upload, component: Upload, layout: HeaderOnly null },
     { path: config.routes.search, component: Search },
     { path: config.routes.favorites, component: Favorites, layout: HeaderOnly},
+    { path: config.routes.notfound, component: NotFound, layout: null},
 ];
 
 const privateRoutes = [];

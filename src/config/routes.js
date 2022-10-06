@@ -26,6 +26,8 @@ const routes = {
     forgotpassword: '/forgotpassword',
     resetpassword: '/resetpassword',
     detail: '/detail/:id',
+
+    notfound: '*',
 };
 
 export default routes;

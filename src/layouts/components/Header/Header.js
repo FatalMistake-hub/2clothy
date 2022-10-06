@@ -109,8 +109,7 @@ function Header() {
                 <div className={cx('inner_header')}>
                     <Link to={config.routes.home} className={cx('logo-link')}>
                         <img 
-                        // src={images.logo} 
-                        src="https://o.remove.bg/downloads/ceecef4d-965f-4b02-b83d-37c5ec8399fe/logo-search-grid-1x-removebg-preview.png"
+                        src={images.logo} 
                         alt="" className={cx('logo')} 
                         
                         />
