@@ -14,13 +14,15 @@ function AccountItem({ data }) {
         // to={`/@${data.nickname}`} 
         className={cx('wrapper')}>
             {/* <Image className={cx('avatar')} src={data.avatar} alt={data.name} /> */}
-            <div className={cx('info')}>
-                <h4 className={cx('name')}>
-                    <span>{data.name}</span>
-                    {/* {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />} */}
-                </h4>
-                {/* <span className={cx('username')}>{data.nickname}</span> */}
-            </div>
+            <Link to={`/detail/${data.id}`}>
+                <div className={cx('info')}>
+                    <h4 className={cx('name')}>
+                        <span className={cx('name-text')}>{data.name}</span>
+                        {/* {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />} */}
+                    </h4>
+                    {/* <span className={cx('username')}>{data.nickname}</span> */}
+                </div>
+            </Link>
         </div>
     );
 }

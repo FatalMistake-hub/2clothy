@@ -12,8 +12,9 @@ import styles from './Home.module.scss';
 
 const cx = classNames.bind(styles);
 function Home() {
+    const { id } = useParams();
+
     const [itemResult, setItemResult] = useState([]);
-    const [categoriesResult, setCategoriesResult] = useState([]);
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -24,27 +25,30 @@ function Home() {
 
         fetchApi();
     }, []);
+    const [allCategoriesResult, setallCategoriesResult] = useState([]);
+    const [categoriesResult, setCategoriesResult] = useState([]);
 
     useEffect(() => {
         const fetchApi = async () => {
-            const result = await searchServices.allCategories();
+            const result = await searchServices.categoriesById(id);
+            const resultAllCategories = await searchServices.allCategories();
 
+            setallCategoriesResult(resultAllCategories.find((result) => result.id == id));
             setCategoriesResult(result);
         };
 
         fetchApi();
-    }, []);
+    }, [id]);
 
+    console.log(allCategoriesResult.name);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <div className={cx('category')}>
                     <div className={cx('overflow-bg')}></div>
                     <div className={cx('pathAnddecription')}>
-                        <h1 className={cx('category-father')}>All Categories</h1>
-                        <div className={cx('description')}>
-                            All things wonderful and wearable for men, women, kids, and even little bitty babies
-                        </div>
+                        <h1 className={cx('category-father')}>{allCategoriesResult.name}</h1>
+                        <div className={cx('description')}>{allCategoriesResult.description}</div>
                         <div>
                             <ul className={cx('path')}>
                                 <li className={cx('path-item')}>
@@ -52,19 +56,19 @@ function Home() {
                                         All
                                     </Link>
                                 </li>
-                                {/* <li className={cx('path-item')}>
+                                <li className={cx('path-item')}>
                                     <span> - </span>
                                 </li>
                                 <li className={cx('path-item')}>
-                                    <span>Clothing & Shoes</span>
-                                </li> */}
+                                    <span>{allCategoriesResult.name}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div className={cx('category-list')}>
                         {categoriesResult.map((result) => (
                             <div key={result.id} className={cx('category-list-item')}>
-                                <Link to={`/${result.id}`}>
+                                <Link to={`/${id}`}>
                                     <img
                                         className={cx('image')}
                                         src="https://i.etsystatic.com/6653808/c/1041/1041/243/0…/f0c934/1079655740/il_300x300.1079655740_ol02.jpg"

@@ -14,7 +14,7 @@ import Profile from '~/pages/Profile';
 import Search from '~/pages/Search';
 import Shop from '~/pages/Shop';
 import Favorites from '~/pages/Favorites';
-import Home from '~/pages/Home';
+import {Home, Homeid } from '~/pages/Home';
 import ForgotPassword from '~/pages/ForgotPassword';
 import ResetPassword from '~/pages/ResetPassword';
 import Detail from '~/pages/Detail';
@@ -33,6 +33,7 @@ import NotFound from '~/pages/NotFound';
 // Public routes
 const publicRoutes = [
     { path: config.routes.home, component:  Home},
+    { path: config.routes.homeid, component:  Homeid},
     { path: config.routes.cart, component: Cart },
     { path: config.routes.category, component: Category },
     // Profile

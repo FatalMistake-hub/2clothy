@@ -45,7 +45,7 @@
 .pathAnddecription {
     display: flex;
     flex-direction: column;
-    max-width: 25%;
+    width: 25%;
     // padding: 0 12px 18px 12px;
     margin-top: -65px;
     padding-top: 18px;
@@ -82,7 +82,7 @@
     margin-top: 30px;
     height: 180px;
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     max-width: 75%;
     justify-content: space-between;
 }
@@ -111,6 +111,7 @@
     font-size: 13px;
     font-weight: 700;
     line-height: 18px;
+    letter-spacing: 0.1px;
 }
 .body {
     margin-top: 30px;

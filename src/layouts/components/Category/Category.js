@@ -1,35 +1,52 @@
 import classNames from 'classnames/bind';
 import styles from './Category.module.scss';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import * as searchServices from '~/services/searchService';
+import CategoryMenu from './CategoryMenu';
+import { Link } from 'react-router-dom';
+
+import HeadlessTippy from '@tippyjs/react/headless';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 
 const cx = classNames.bind(styles);
 function Category() {
+    const [categoriesResult, setCategoriesResult] = useState([]);
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await searchServices.allCategories();
+
+            setCategoriesResult(result);
+        };
+
+        fetchApi();
+    }, []);
     return (
         <div className={cx('wrapper')}>
             <ul className={cx('bar')}>
-                <li className={cx('item')}>
-                    <span className={cx('content')} >Jewelry & Accessories</span>
-                </li>
-                <li className={cx('item')}>
-                    <span className={cx('content')}>Clothing & Shoe</span>
-                </li>
-                <li className={cx('item')}>
-                    <span className={cx('content')}>Home & Living</span>
-                </li>
-                <li className={cx('item')}>
-                    <span className={cx('content')}>Wedding & Party</span>
-                </li>
-                <li className={cx('item')}>
-                    <span className={cx('content')}>Toy & Entertainment</span>
-                </li>
-                <li className={cx('item')}>
-                    <span className={cx('content')}>Art & Collections</span>
-                </li>
-                <li className={cx('item')}>
-                    <span className={cx('content')}>Crafting & Tool</span>
-                </li>
-                <li className={cx('item')}>
-                    <span className={cx('content')}>Vintage</span>
-                </li>
+                {categoriesResult.map((result) => (
+                    <HeadlessTippy
+                        interactive
+                        offset={[-8, 2.5]}
+                        placement="bottom-start"
+                        // visible={showResult && searchResult.length > 0}
+                        render={(attrs) => (
+                            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                                <PopperWrapper>
+                                    <CategoryMenu id={result.id} />
+                                </PopperWrapper>
+                            </div>
+                        )}
+                        // onClickOutside={handleHideResult}
+                    >
+                        <li key={result.id} className={cx('item')}>
+                            <Link to={`/${result.id}`}>
+                                <span className={cx('content')}>{result.name}</span>
+                            </Link>
+                        </li>
+                    </HeadlessTippy>
+                ))}
             </ul>
         </div>
     );

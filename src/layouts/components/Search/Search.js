@@ -71,8 +71,8 @@ function Search() {
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Products</h4>
-                            {searchResult.map((result) => (
-                                <AccountItem key={result.id} data={result} />
+                            {searchResult.slice(0,10).map((result) => (
+                                <div className={cx('search-item')} onClick={handleHideResult}><AccountItem key={result.id} data={result }  /></div>
                             ))}
                         </PopperWrapper>
                     </div>
@@ -96,7 +96,7 @@ function Search() {
                     {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
                     <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-                        <Link to={`/search/${searchValue}`}>
+                        <Link to={`/search/${searchValue}`} >
 
                         <SearchIcon />
                         </Link>

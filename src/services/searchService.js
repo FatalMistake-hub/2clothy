@@ -34,6 +34,22 @@ export const detailProduct = async (id) => {
         console.log("http",error);
     }
 };
+export const allCategories = async () => {
+    try {
+        const res = await httpRequest.get('category');
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const categoriesById = async (id) => {
+    try {
+        const res = await httpRequest.get(`category/${id}`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 export const post = async (keyword,data={}) => {
     try {
         const res = await httpRequest.post('post', {

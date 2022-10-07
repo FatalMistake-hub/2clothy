@@ -23,13 +23,7 @@ const slideNumberStyle = {
 };
 function Detail() {
     const { id } = useParams();
-    const [detailResult, setDetailResult] = useState({
-        images: [
-            {
-                path: 'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/5232fa5d0a1e4a1c92d1aed8008f493f_9366/áo-thun-class-of-72-adidas-originals-unisex.jpg',
-            },
-        ],
-    });
+    const [detailResult, setDetailResult] = useState();
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -41,7 +35,7 @@ function Detail() {
         fetchApi();
     }, [id]);
     console.log(id);
-    
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -49,12 +43,15 @@ function Detail() {
                     <div className={cx('image-wrapper')}>
                         <div>
                             <Carousel
-                                data={[
+                                data={detailResult ? [
+                                    
                                     {
                                         image: detailResult.images[0].path,
                                     },
+                                ] :[
+                                    
                                     {
-                                        image: 'https://i.etsystatic.com/6087155/r/il/72563a/840783023/il_794xN.840783023_e1ex.jpg',
+                                        image: '',
                                     },
                                 ]}
                                 time={3000}
@@ -87,15 +84,16 @@ function Detail() {
                             <div className={cx('follow-shop')}>
                                 <Link to={config.routes.shop} className={cx('follow-shop-content')}>
                                     {/* TheBeardedBee */}
-                                    {detailResult.shopName}
+                                    {detailResult? detailResult.shopName:""}
                                 </Link>
                                 <Button rounded outline small>
                                     Follow
                                 </Button>
                             </div>
+                            
 
                             <div className={cx('rateAndsold')}>
-                                <span className={cx('sold-content')}> {detailResult.quantity}</span>
+                                <span className={cx('sold-content')}> {detailResult? (detailResult.quantity).toLocaleString("es-ES"):"" } sales</span>
                                 <span className={cx('septum')}>|</span>
                                 <span className={cx('rate')}>
                                     <a href="" className={cx('rate-page')}>
@@ -105,13 +103,13 @@ function Detail() {
                             </div>
                         </div>
                         <div className={cx('product-name')}>
-                            <h1 className={cx('product-name-content')}> {detailResult.name}</h1>
+                            <h1 className={cx('product-name-content')}> {detailResult? detailResult.name:""}</h1>
                         </div>
                         <div className={cx('buybox')}>
                             <div className={cx('buybox-info')}>
                                 <div className={cx('buybox-data')}>
                                     <div className={cx('buybox-data-price')}>
-                                        <p className={cx('buybox-data-price-content')}> {detailResult.price}₫</p>
+                                        <p className={cx('buybox-data-price-content')}> {detailResult? (detailResult.price).toLocaleString("es-ES"):"" }₫</p>
                                     </div>
                                     <div className={cx('buybox-data-caption')}>Local taxes included (where applicable)</div>
                                 </div>
@@ -123,11 +121,9 @@ function Detail() {
                                         <span className={cx('optionbox-required')}></span>
                                     </label>
                                     <div className={cx('selection-box')}>
-                                        <select defaultValue={"Default"} className={cx('selection-input')}>
-                                            <option value="Default" >
-                                                Select an option
-                                            </option>
-                                            <option value="">{detailResult.size}</option>
+                                        <select defaultValue={'Default'} className={cx('selection-input')}>
+                                            <option value="Default">Select an option</option>
+                                            <option value="">{detailResult? detailResult.size:""}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -149,8 +145,7 @@ function Detail() {
                     <div className={cx('listing-info-container')}>
                         <h2 className={cx('listing-info-item')}>
                             <button aria-expanded="true" className={cx('item-button')}>
-                                Highlights :
-                                <span className={cx('item-arrow')}></span>
+                                Highlights :<span className={cx('item-arrow')}></span>
                             </button>
                         </h2>
                         <div className={cx('highlight-detail')}>
@@ -171,13 +166,12 @@ function Detail() {
                         </div>
                         <h2 className={cx('listing-info-item')}>
                             <button className={cx('item-button')}>
-                                Description :
-                                <span className={cx('item-arrow')}></span>
+                                Description :<span className={cx('item-arrow')}></span>
                             </button>
                         </h2>
                         <div className={cx('description-detail')}>
                             <div className={cx('description-detail-box')}>
-                                <p className={cx('description-detail-text')}>{detailResult.description}</p>
+                                <p className={cx('description-detail-text')}>{detailResult? detailResult.description:""}</p>
                             </div>
                             {/* <div className={cx('description-button')}>
                                 <button className={cx('description-button-data')}>Learn more about this item</button>
@@ -185,8 +179,7 @@ function Detail() {
                         </div>
                         <h2 className={cx('listing-info-item')}>
                             <button className={cx('item-button')}>
-                                Meet your seller :
-                                <span className={cx('item-arrow')}></span>
+                                Meet your seller :<span className={cx('item-arrow')}></span>
                             </button>
                         </h2>
                         <div className={cx('shop-detail')}>
@@ -202,7 +195,7 @@ function Detail() {
                                 <p className={cx('shop-detail-owner')}>
                                     Owner of{' '}
                                     <Link to={config.routes.shop} className={cx('shop-detail-owner-link')}>
-                                        {detailResult.shopName}
+                                    {detailResult? detailResult.shopName:""}
                                     </Link>
                                 </p>
                             </div>
@@ -230,126 +223,6 @@ function Detail() {
                                 <div className={cx('review-listing-nav-underline')}></div>
                             </div>
                             <div className={cx('review-listing-container')}>
-                                <div className={cx('review-item')}>
-                                    <div className={cx('review-item-data')}>
-                                        <div className={cx('review-item-data-content')}>
-                                            <div className={cx('review-item-rate')}></div>
-                                            <p className={cx('review-item-text')}>
-                                                It came exactly how I hoped! I asked for Charcoal And black and it came out great! It’s not
-                                                cheaply made and it feels amazing!
-                                            </p>
-                                        </div>
-                                        <div className={cx('review-item-purchase')}>
-                                            <p className={cx('review-item-purchase-text')}>Purchased item: </p>
-                                            <a href="" className={cx('review-item-purchase-link')}>
-                                                {' '}
-                                                Distressed Oversize Flannel Shirt
-                                            </a>
-                                        </div>
-                                        <div className={cx('review-item-account')}>
-                                            <img
-                                                src="https://i.etsystatic.com/iusa/603882/95556902/iusa_75x75.95556902_dfi7.jpg?version=0"
-                                                alt=""
-                                                className={cx('review-item-account-image')}
-                                            />
-                                            <p className={cx('review-item-account-name')}>
-                                                <a href="" className={cx('review-item-account-link')}>
-                                                    Emily
-                                                </a>
-                                                Aug 29, 2022
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className={cx('review-item-image')}>
-                                        <button className={cx('review-item-image-button')}>
-                                            <img
-                                                src="https://i.etsystatic.com/iap/ae7c2f/4165938259/iap_300x300.4165938259_cdpll1pf.jpg?version=0"
-                                                alt=""
-                                                className={cx('review-item-image-data')}
-                                            />
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className={cx('review-item')}>
-                                    <div className={cx('review-item-data')}>
-                                        <div className={cx('review-item-data-content')}>
-                                            <div className={cx('review-item-rate')}></div>
-                                            <p className={cx('review-item-text')}>
-                                                It came exactly how I hoped! I asked for Charcoal And black and it came out great! It’s not
-                                                cheaply made and it feels amazing!
-                                            </p>
-                                        </div>
-                                        <div className={cx('review-item-purchase')}>
-                                            <p className={cx('review-item-purchase-text')}>Purchased item: </p>
-                                            <a href="" className={cx('review-item-purchase-link')}>
-                                                {' '}
-                                                Distressed Oversize Flannel Shirt
-                                            </a>
-                                        </div>
-                                        <div className={cx('review-item-account')}>
-                                            <img
-                                                src="https://i.etsystatic.com/iusa/603882/95556902/iusa_75x75.95556902_dfi7.jpg?version=0"
-                                                alt=""
-                                                className={cx('review-item-account-image')}
-                                            />
-                                            <p className={cx('review-item-account-name')}>
-                                                <a href="" className={cx('review-item-account-link')}>
-                                                    Emily
-                                                </a>
-                                                Aug 29, 2022
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className={cx('review-item-image')}>
-                                        <button className={cx('review-item-image-button')}>
-                                            <img
-                                                src="https://i.etsystatic.com/iap/ae7c2f/4165938259/iap_300x300.4165938259_cdpll1pf.jpg?version=0"
-                                                alt=""
-                                                className={cx('review-item-image-data')}
-                                            />
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className={cx('review-item')}>
-                                    <div className={cx('review-item-data')}>
-                                        <div className={cx('review-item-data-content')}>
-                                            <div className={cx('review-item-rate')}></div>
-                                            <p className={cx('review-item-text')}>
-                                                It came exactly how I hoped! I asked for Charcoal And black and it came out great! It’s not
-                                                cheaply made and it feels amazing!
-                                            </p>
-                                        </div>
-                                        <div className={cx('review-item-purchase')}>
-                                            <p className={cx('review-item-purchase-text')}>Purchased item: </p>
-                                            <a href="" className={cx('review-item-purchase-link')}>
-                                                {' '}
-                                                Distressed Oversize Flannel Shirt
-                                            </a>
-                                        </div>
-                                        <div className={cx('review-item-account')}>
-                                            <img
-                                                src="https://i.etsystatic.com/iusa/603882/95556902/iusa_75x75.95556902_dfi7.jpg?version=0"
-                                                alt=""
-                                                className={cx('review-item-account-image')}
-                                            />
-                                            <p className={cx('review-item-account-name')}>
-                                                <a href="" className={cx('review-item-account-link')}>
-                                                    Emily
-                                                </a>
-                                                Aug 29, 2022
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className={cx('review-item-image')}>
-                                        <button className={cx('review-item-image-button')}>
-                                            <img
-                                                src="https://i.etsystatic.com/iap/ae7c2f/4165938259/iap_300x300.4165938259_cdpll1pf.jpg?version=0"
-                                                alt=""
-                                                className={cx('review-item-image-data')}
-                                            />
-                                        </button>
-                                    </div>
-                                </div>
                                 <div className={cx('review-item')}>
                                     <div className={cx('review-item-data')}>
                                         <div className={cx('review-item-data-content')}>

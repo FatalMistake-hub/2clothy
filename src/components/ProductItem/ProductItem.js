@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import config from '~/config'
 const cx = classNames.bind(styles);
 function ProductItem({data}) {
+    // console.log(data);
     return (
         <div className={cx('container')}>
             <Link to={`/detail/${data.id}`} className={cx('image-link')}>
@@ -14,6 +15,7 @@ function ProductItem({data}) {
                         src={(data.images)[0].path}
                         alt=""
                         className={cx('image-content')}
+                        loading="lazy"
                     />
                 </div>
             </Link>
@@ -32,14 +34,15 @@ function ProductItem({data}) {
                         <span><StarIcon/> </span>
                     </span>
                     <span className={cx('card-sold')}>
-                        {/* (1,746) */}
-                        ({data.quantity})
+                        
+                        ({(data.quantity).toLocaleString("es-ES")})
+                        
                     </span>
                 </div>
                 <p className={cx('card-price')}>
                     <span className={cx('currency-value')}>
-                        {/* 3,423,645 */}
-                        {data.price}
+                        
+                        {(data.price).toLocaleString("es-ES")}
                         </span>
                     <span className={cx('currncy-symbol')}>₫</span>
                 </p>

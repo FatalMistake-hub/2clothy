@@ -1,6 +1,7 @@
 const routes = {
 
     home: '/',
+    homeid: '/:id',
     cart: '/cart',
     category: '/category',
     // Profile
