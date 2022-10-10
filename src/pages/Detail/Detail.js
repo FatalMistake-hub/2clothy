@@ -10,17 +10,11 @@ import styles from './Detail.module.scss';
 import * as searchServices from '~/services/searchService';
 
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import addCartSlice from '../../redux/CartSlice';
 
 const cx = classNames.bind(styles);
 
-const captionStyle = {
-    fontSize: '2em',
-    fontWeight: 'bold',
-};
-const slideNumberStyle = {
-    fontSize: '20px',
-    fontWeight: 'bold',
-};
 function Detail() {
     const { id } = useParams();
     const [detailResult, setDetailResult] = useState();
@@ -36,6 +30,28 @@ function Detail() {
     }, [id]);
     console.log(id);
 
+    const dispatch = useDispatch();
+    const handleAddtoCart = () => {
+        dispatch(
+            addCartSlice.actions.addProductItem({
+                idShop: '',
+                shopName: detailResult.shopName,
+                shopImage: '',
+                productItem: [
+                    {
+                        id: detailResult.id,
+                        itemName: detailResult.name,
+                        size: detailResult.size,
+                        productImage: '',
+                        quantity: 1,
+                        // quantity: detailResult.quantity / 100,
+                        price: detailResult.price,
+                    },
+                ],
+            }),
+        );
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -43,24 +59,26 @@ function Detail() {
                     <div className={cx('image-wrapper')}>
                         <div>
                             <Carousel
-                                data={detailResult ? [
-                                    
-                                    {
-                                        image: detailResult.images[0].path,
-                                    },
-                                ] :[
-                                    
-                                    {
-                                        image: '',
-                                    },
-                                ]}
+                                data={
+                                    detailResult
+                                        ? [
+                                              {
+                                                  path: detailResult.images[0].path,
+                                              },
+                                          ]
+                                        : [
+                                              {
+                                                  path: '',
+                                              },
+                                          ]
+                                }
                                 time={3000}
                                 width="1000px"
                                 height="700px"
-                                captionStyle={captionStyle}
+                                // captionStyle={captionStyle}
                                 radius="10px"
                                 slideNumber={false}
-                                slideNumberStyle={slideNumberStyle}
+                                // slideNumberStyle={slideNumberStyle}
                                 captionPosition="bottom"
                                 automatic={true}
                                 dots={false}
@@ -84,16 +102,17 @@ function Detail() {
                             <div className={cx('follow-shop')}>
                                 <Link to={config.routes.shop} className={cx('follow-shop-content')}>
                                     {/* TheBeardedBee */}
-                                    {detailResult? detailResult.shopName:""}
+                                    {detailResult ? detailResult.shopName : ''}
                                 </Link>
                                 <Button rounded outline small>
                                     Follow
                                 </Button>
                             </div>
-                            
-
                             <div className={cx('rateAndsold')}>
-                                <span className={cx('sold-content')}> {detailResult? (detailResult.quantity).toLocaleString("es-ES"):"" } sales</span>
+                                <span className={cx('sold-content')}>
+                                    {' '}
+                                    {detailResult ? detailResult.quantity.toLocaleString('es-ES') : ''} sales
+                                </span>
                                 <span className={cx('septum')}>|</span>
                                 <span className={cx('rate')}>
                                     <a href="" className={cx('rate-page')}>
@@ -103,13 +122,16 @@ function Detail() {
                             </div>
                         </div>
                         <div className={cx('product-name')}>
-                            <h1 className={cx('product-name-content')}> {detailResult? detailResult.name:""}</h1>
+                            <h1 className={cx('product-name-content')}> {detailResult ? detailResult.name : ''}</h1>
                         </div>
                         <div className={cx('buybox')}>
                             <div className={cx('buybox-info')}>
                                 <div className={cx('buybox-data')}>
                                     <div className={cx('buybox-data-price')}>
-                                        <p className={cx('buybox-data-price-content')}> {detailResult? (detailResult.price).toLocaleString("es-ES"):"" }₫</p>
+                                        <p className={cx('buybox-data-price-content')}>
+                                            {' '}
+                                            {detailResult ? detailResult.price.toLocaleString('es-ES') : ''}₫
+                                        </p>
                                     </div>
                                     <div className={cx('buybox-data-caption')}>Local taxes included (where applicable)</div>
                                 </div>
@@ -123,7 +145,7 @@ function Detail() {
                                     <div className={cx('selection-box')}>
                                         <select defaultValue={'Default'} className={cx('selection-input')}>
                                             <option value="Default">Select an option</option>
-                                            <option value="">{detailResult? detailResult.size:""}</option>
+                                            <option value="">{detailResult ? detailResult.size : ''}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -134,7 +156,7 @@ function Detail() {
                                 </Button>
                             </div>
                             <div className={cx('buybox-button-box')}>
-                                <Button primary rounded login className={cx('buybox-button', 'add')}>
+                                <Button onClick={handleAddtoCart} primary rounded login className={cx('buybox-button', 'add')}>
                                     Add to cart
                                 </Button>
                             </div>
@@ -171,7 +193,7 @@ function Detail() {
                         </h2>
                         <div className={cx('description-detail')}>
                             <div className={cx('description-detail-box')}>
-                                <p className={cx('description-detail-text')}>{detailResult? detailResult.description:""}</p>
+                                <p className={cx('description-detail-text')}>{detailResult ? detailResult.description : ''}</p>
                             </div>
                             {/* <div className={cx('description-button')}>
                                 <button className={cx('description-button-data')}>Learn more about this item</button>
@@ -195,7 +217,7 @@ function Detail() {
                                 <p className={cx('shop-detail-owner')}>
                                     Owner of{' '}
                                     <Link to={config.routes.shop} className={cx('shop-detail-owner-link')}>
-                                    {detailResult? detailResult.shopName:""}
+                                        {detailResult ? detailResult.shopName : ''}
                                     </Link>
                                 </p>
                             </div>
@@ -265,9 +287,7 @@ function Detail() {
                                 </div>
                             </div>
                         </div>
-                        <div className={cx('review-pagination')}>
-                            <PaginationNav />
-                        </div>
+                        <div className={cx('review-pagination')}>{/* <PaginationNav /> */}</div>
                     </div>
                 </div>
                 <div className={cx('other-info')}>

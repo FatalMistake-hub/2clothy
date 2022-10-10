@@ -25,6 +25,8 @@ import Search from '../Search';
 import Category from '../Category';
 import { useState } from 'react';
 import PopupForm from '../../../components/PopupForm';
+import { useSelector } from 'react-redux';
+import { cartsRemainingSelector } from '~/redux/selector';
 
 const cx = classNames.bind(styles);
 
@@ -103,6 +105,19 @@ function Header() {
         },
     ];
 
+    const cartList = useSelector(cartsRemainingSelector);
+
+
+    const getTotalQuantity = () => {
+        let total = 0
+        cartList.forEach(item => {
+            item.productItem.forEach(productItem => {
+
+                total += productItem.quantity
+            })
+        })
+        return total
+      }
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -133,7 +148,7 @@ function Header() {
                                 <Tippy delay={[0, 50]} content="Cart" placement="bottom">
                                     <Link className={cx('action-btn')} to={config.routes.cart}>
                                         <CartIcon />
-                                        <span className={cx('badge')}>12</span>
+                                        <span className={cx('badge')}>{getTotalQuantity() || 0}</span>
                                     </Link>
                                 </Tippy>
                             </>

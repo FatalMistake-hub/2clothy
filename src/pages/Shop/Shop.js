@@ -12,22 +12,22 @@ const cx = classNames.bind(styles);
 function Shop() {
     const dataImage = [
         {
-            image: 'https://i.etsystatic.com/isbl/b08775/36148557/isbl_3360x840.36148557_fbrujjid.jpg?version=0',
+            path: 'https://i.etsystatic.com/isbl/b08775/36148557/isbl_3360x840.36148557_fbrujjid.jpg?version=0',
         },
         {
-            image: 'https://i.etsystatic.com/6087155/r/il/a23943/840997306/il_794xN.840997306_4pn0.jpg',
+            path: 'https://i.etsystatic.com/6087155/r/il/a23943/840997306/il_794xN.840997306_4pn0.jpg',
         },
         {
-            image: 'https://i.etsystatic.com/6087155/r/il/72563a/840783023/il_794xN.840783023_e1ex.jpg',
+            path: 'https://i.etsystatic.com/6087155/r/il/72563a/840783023/il_794xN.840783023_e1ex.jpg',
         },
         {
-            image: 'https://i.etsystatic.com/6087155/c/1500/1191/0/33/il/f55f8d/840970050/il_794xN.840970050_aabq.jpg',
+            path: 'https://i.etsystatic.com/6087155/c/1500/1191/0/33/il/f55f8d/840970050/il_794xN.840970050_aabq.jpg',
         },
         {
-            image: 'https://i.etsystatic.com/6087155/r/il/ef8d7a/840988070/il_794xN.840988070_mcar.jpg',
+            path: 'https://i.etsystatic.com/6087155/r/il/ef8d7a/840988070/il_794xN.840988070_mcar.jpg',
         },
         {
-            image: 'https://i.etsystatic.com/6087155/r/il/1453d1/2735501475/il_794xN.2735501475_350q.jpg',
+            path: 'https://i.etsystatic.com/6087155/r/il/1453d1/2735501475/il_794xN.2735501475_350q.jpg',
         },
     ];
     return (
@@ -206,14 +206,14 @@ function Shop() {
                                     </div>
                                 </div>
                                 <div className={cx('shop-home-listing-container')}>
+                                    {/* <ProductItem />
                                     <ProductItem />
                                     <ProductItem />
                                     <ProductItem />
                                     <ProductItem />
                                     <ProductItem />
                                     <ProductItem />
-                                    <ProductItem />
-                                    <ProductItem />
+                                    <ProductItem /> */}
                                 </div>
                             </div>
                         </div>

@@ -161,17 +161,17 @@
     width: 100%;
     display: block;
 }
-.selection-box::after {
-    content: '';
-    background-image: url('data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 24 24%22%3E%3Cpolygon fill%3D%22%23222222%22 points%3D%2216.5 10 12 16 7.5 10 16.5 10%22%2F%3E%3C%2Fsvg%3E');
-    width: 24px;
-    height: 24px;
-    pointer-events: none;
-    position: absolute;
-    right: 300px;
-    top: 58%;
-    // transform: translateY(100%);
-}
+// .selection-box::after {
+//     content: '';
+//     background-image: url('data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 24 24%22%3E%3Cpolygon fill%3D%22%23222222%22 points%3D%2216.5 10 12 16 7.5 10 16.5 10%22%2F%3E%3C%2Fsvg%3E');
+//     width: 24px;
+//     height: 24px;
+//     pointer-events: none;
+//     position: absolute;
+//     right: 300px;
+//     top: 58%;
+//     // transform: translateY(100%);
+// }
 .selection-input {
     appearance: none;
     box-shadow: 0 1px 6px 0 rgb(34 34 34 / 15%);

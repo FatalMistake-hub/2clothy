@@ -26,13 +26,13 @@ function ProductItem({data}) {
         
                 </h2>
                 <div className={cx('card-rateAndsold')}>
-                    <span className={cx('card-rate')}>
+                    {/* <span className={cx('card-rate')}>
                         <span><StarIcon/> </span>
                         <span><StarIcon/> </span>
                         <span><StarIcon/> </span>
                         <span><StarIcon/> </span>
                         <span><StarIcon/> </span>
-                    </span>
+                    </span> */}
                     <span className={cx('card-sold')}>
                         
                         ({(data.quantity).toLocaleString("es-ES")})

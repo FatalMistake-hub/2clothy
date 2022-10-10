@@ -27,6 +27,7 @@ function Category() {
             <ul className={cx('bar')}>
                 {categoriesResult.map((result) => (
                     <HeadlessTippy
+                        key={result.id}
                         interactive
                         offset={[-8, 2.5]}
                         placement="bottom-start"
