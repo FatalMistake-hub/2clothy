@@ -73,17 +73,19 @@
 
 .badge {
     position: absolute;
-    top: -3px;
-    right: 0px;
-    padding: 0px 6px;
-    height: 2rem;
-    line-height: 2rem;
-    border-radius: 10px;
+    top: -2px;
+    right: -1.8px;
+    padding: 0px 5px;
+    height: 2.5rem;
+    line-height: 2.2rem;
+    border-radius: 50%;
     font-size: 1.4rem;
     font-weight: 600;
-    color: var(--white);
+    color: #222222;
     font-family: var(--font-family);
     background-color: #faa077;
+    border: 1.6px solid #fff;
+
 }
 
 .user-avatar {

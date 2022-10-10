@@ -120,7 +120,7 @@ function Cart() {
                                                                             'checkout-cardPayment-section-priceSummary-rowcontent-text',
                                                                         )}
                                                                     >
-                                                                        {getTotal().totalPrice}₫
+                                                                        {getTotal().totalPrice.toLocaleString('es-ES')}₫
                                                                     </span>
                                                                 </td>
                                                             </tr>
@@ -163,7 +163,7 @@ function Cart() {
                                                                             'checkout-cardPayment-section-priceSummary-sumContent-text',
                                                                         )}
                                                                     >
-                                                                        {getTotal().totalPrice}₫
+                                                                        {getTotal().totalPrice.toLocaleString('es-ES')}₫
                                                                     </h1>
                                                                 </td>
                                                             </tr>

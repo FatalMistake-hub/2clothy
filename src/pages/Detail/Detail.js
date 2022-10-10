@@ -31,6 +31,10 @@ function Detail() {
     console.log(id);
 
     const dispatch = useDispatch();
+    const [quantity, setQuantity] = useState(1);
+    const handleQuantity = (e) => {
+        setQuantity(e.target.value);
+    };
     const handleAddtoCart = () => {
         dispatch(
             addCartSlice.actions.addProductItem({
@@ -43,7 +47,7 @@ function Detail() {
                         itemName: detailResult.name,
                         size: detailResult.size,
                         productImage: '',
-                        quantity: 1,
+                        quantity: parseInt(quantity),
                         // quantity: detailResult.quantity / 100,
                         price: detailResult.price,
                     },
@@ -144,9 +148,34 @@ function Detail() {
                                     </label>
                                     <div className={cx('selection-box')}>
                                         <select defaultValue={'Default'} className={cx('selection-input')}>
-                                            <option value="Default">Select an option</option>
+                                            {/* <option value="Default">Size</option> */}
                                             <option value="">{detailResult ? detailResult.size : ''}</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div className={cx('optionbox-item')}>
+                                    <label htmlFor="selection-box" className={cx('optionbox-item-name')}>
+                                        Số lượng
+                                        <span className={cx('optionbox-required')}></span>
+                                    </label>
+                                    {/* <div className={cx('selection-box')}>
+                                        <select defaultValue={'Default'} className={cx('selection-input')}>
+                                            
+                                            {detailResult &&
+                                                [...Array(detailResult.quantity + 1).keys()].slice(1).map((result) => (
+                                                    <option key={result} value="">{result}</option>
+                                                ))}
+                                        </select>
+                                    </div> */}
+                                    <div className={cx('selection-box')}>
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            step="1"
+                                            className={cx('selection-input')}
+                                            value={quantity}
+                                            onChange={handleQuantity}
+                                        ></input>
                                     </div>
                                 </div>
                             </div>

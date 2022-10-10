@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import addCartSlice from '~/redux/CartSlice';
 import { cartsRemainingSelector } from '~/redux/selector';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
@@ -47,22 +48,22 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                     <li key={productItem.id} className={cx('checkout-item-productItem')}>
                         <div className={cx('checkout-item-productItem-box')}>
                             <div className={cx('checkout-item-productItem-image')}>
-                                <a href=" " className={cx('checkout-item-productItem-image-link')}>
+                                <Link to={`/detail/${productItem.id}`} className={cx('checkout-item-productItem-image-link')}>
                                     <img
                                         src="	https://i.etsystatic.com/14691517/c/1259/1000/737/…/f65dd2/4024893455/il_170x135.4024893455_igxo.jpg"
                                         alt=""
                                         className={cx('checkout-item-productItem-image-data')}
                                     />
-                                </a>
+                                </Link>
                             </div>
                             <div className={cx('checkout-item-productItem-content')}>
                                 <div className={cx('checkout-item-productItem-content-box')}>
                                     <div className={cx('productItem-infoAndaction')}>
                                         <div className={cx('productItem-info')}>
                                             <div className={cx('productItem-name')}>
-                                                <a href="" className={cx('productItem-name-link')}>
+                                                <Link to={`/detail/${productItem.id}`} className={cx('productItem-name-link')}>
                                                     {productItem.itemName}
-                                                </a>
+                                                </Link>
                                             </div>
                                             <div className={cx('productItem-atribute')}>
                                                 <ul className={cx('productItem-atribute-list')}>
@@ -76,10 +77,9 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                                         </div>
                                         <div className={cx('productItem-action')}>
                                             <button className={cx('productItem-action-button')}>Save for later</button>
-                                            <button className={cx('productItem-action-button')}>{productItem.quantity}</button>
 
                                             <button
-                                                onClick={() => dispatch(addCartSlice.actions.removeProductItem(shopName))}
+                                                onClick={() => dispatch(addCartSlice.actions.removeProductItem({idProduct: productItem.id,idShop:shopName}))}
                                                 className={cx('productItem-action-button')}
                                             >
                                                 Remove
@@ -89,16 +89,21 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                                 </div>
                                 <div className={cx('productItem-content-qtyAndPrice')}>
                                     <div className={cx('productItem-content-quantity')}>
-                                        <select name="" id="" className={cx('productItem-content-quantity-select')}>
+                                        {/* <select name="" id="" className={cx('productItem-content-quantity-select')}>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                             <option value="5">jack 5m</option>
-                                        </select>
+                                        </select> */}
+                                        <input type="number"
+                                            min="1"
+                                            value= {productItem.quantity}
+                                            step="1" className={cx('productItem-content-quantity-select')}>
+                                        </input>
                                     </div>
                                     <div className={cx('productItem-content-price')}>
-                                        <p className={cx('productItem-content-price-text')}>{productItem.price}₫</p>
+                                        <p className={cx('productItem-content-price-text')}>{productItem.price.toLocaleString('es-ES')}₫</p>
                                     </div>
                                 </div>
                             </div>

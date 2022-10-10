@@ -148,7 +148,9 @@ function Header() {
                                 <Tippy delay={[0, 50]} content="Cart" placement="bottom">
                                     <Link className={cx('action-btn')} to={config.routes.cart}>
                                         <CartIcon />
-                                        <span className={cx('badge')}>{getTotalQuantity() || 0}</span>
+                                        <span className={cx('badge')}>
+                                            <p>{getTotalQuantity() || 0}</p>
+                                        </span>
                                     </Link>
                                 </Tippy>
                             </>
