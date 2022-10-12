@@ -6,7 +6,7 @@ import { Visa } from '~/components/Icons';
 import { cartsRemainingSelector } from '~/redux/selector';
 
 import styles from './Cart.module.scss';
-import cartSlice from './cartSlice';
+// import cartSlice from './cartSlice';
 const cx = classNames.bind(styles);
 function Cart() {
     const cartList = useSelector(cartsRemainingSelector);
@@ -16,8 +16,8 @@ function Cart() {
         let totalPrice = 0;
         cartList.forEach((item) => {
             item.productItem.forEach((product) => {
-                totalQuantity += product.quantity;
-                totalPrice += product.price * product.quantity;
+                totalQuantity +=( product.quantity);
+                totalPrice += (product.price * product.quantity);
             });
             //   totalQuantity += item.quantity
             //   totalPrice += item.price * item.quantity
@@ -32,7 +32,7 @@ function Cart() {
                     <div className={cx('checkout')}>
                         <div className={cx('checkout-header')}>
                             <div className={cx('checkout-header-sumItem')}>
-                                <h1 className={cx('checkout-header-sumItem-text')}>{getTotal().totalQuantity} items in your cart</h1>
+                                <h1  onBlur={(e) => e.preventDefault()} className={cx('checkout-header-sumItem-text')}>{getTotal().totalQuantity} items in your cart</h1>
                             </div>
                             <div className={cx('checkout-header-gohome')}>
                                 <a href="" className={cx('checkout-header-gohome-link')}>

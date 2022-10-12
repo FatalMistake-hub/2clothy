@@ -35,7 +35,7 @@ export default createSlice({
             }
         },
         removeProductItem: (state, action) => {
-            // thieu logic remove product item
+            
             const shopItem = state.find((item) => item.shopName === action.payload.idShop);
             const productItem = shopItem.productItem.find((productItem) => productItem.id === action.payload.idProduct);
             if (productItem) {
@@ -44,7 +44,6 @@ export default createSlice({
                     1,
                 );
                 if(shopItem.productItem == 0 )
-                // else
                 {
                     state.splice(
                         state.findIndex((arrow) => arrow.shopName === action.payload.idShop),
@@ -55,6 +54,15 @@ export default createSlice({
 
             console.log('removeItem', state);
         },
+        updateQuantityItem:(state, action)=>{
+            const shopItem = state.find((item) => item.shopName === action.payload.shopName);
+            if (shopItem) {
+                const productItem = shopItem.productItem.find((productItem) => productItem.id === action.payload.productId);
+                if (productItem) {
+                    productItem.quantity = action.payload.quantity;
+                }
+            }
+        }
         // action creators
     },
 });

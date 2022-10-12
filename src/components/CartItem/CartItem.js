@@ -3,28 +3,28 @@ import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
 
 import addCartSlice from '~/redux/CartSlice';
-import { cartsRemainingSelector } from '~/redux/selector';
+
 import { Link } from 'react-router-dom';
+
+import CartSlice from '~/redux/CartSlice';
 const cx = classNames.bind(styles);
 
 function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
     const dispatch = useDispatch();
 
-    // const handelRemoveItem= (shopNamecheck)  => {
-    //     console.log("click",shopNamecheck);
-    //     dispatch(addCartSlice.actions.removeProductItem(shopNamecheck));
-    // };
-    const cartList = useSelector(cartsRemainingSelector);
-    const getTotalQuantity = () => {
-        let total = 0
-        cartList.forEach(item => {
-            item.productItem.forEach(productItem => {
+    const handleQuantity = (e, id) => {
+        console.log('blur');
 
-                total += productItem.quantity
-            })
-        })
-        return total
-      }
+        dispatch(
+            CartSlice.actions.updateQuantityItem({
+                quantity: parseInt(e.target.value),
+                shopName: shopName,
+                productId: id,
+            }),
+        );
+    };
+
+
     return (
         <div className={cx('checkout-item')}>
             <div className={cx('checkout-item-shop')}>
@@ -79,7 +79,14 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                                             <button className={cx('productItem-action-button')}>Save for later</button>
 
                                             <button
-                                                onClick={() => dispatch(addCartSlice.actions.removeProductItem({idProduct: productItem.id,idShop:shopName}))}
+                                                onClick={() =>
+                                                    dispatch(
+                                                        addCartSlice.actions.removeProductItem({
+                                                            idProduct: productItem.id,
+                                                            idShop: shopName,
+                                                        }),
+                                                    )
+                                                }
                                                 className={cx('productItem-action-button')}
                                             >
                                                 Remove
@@ -96,11 +103,15 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                                             <option value="4">4</option>
                                             <option value="5">jack 5m</option>
                                         </select> */}
-                                        <input type="number"
+                                        <input
+                                            type="number"
                                             min="1"
-                                            value= {productItem.quantity}
-                                            step="1" className={cx('productItem-content-quantity-select')}>
-                                        </input>
+                                            max="100"
+                                            value={productItem.quantity}
+                                            onChange={(e) => handleQuantity(e, productItem.id)}
+                                            step="1"
+                                            className={cx('productItem-content-quantity-select')}
+                                        />
                                     </div>
                                     <div className={cx('productItem-content-price')}>
                                         <p className={cx('productItem-content-price-text')}>{productItem.price.toLocaleString('es-ES')}₫</p>
