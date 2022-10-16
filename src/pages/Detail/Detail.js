@@ -11,7 +11,7 @@ import * as searchServices from '~/services/searchService';
 
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import addCartSlice from '../../redux/CartSlice';
+import CartSlice from '../../redux/CartSlice';
 
 const cx = classNames.bind(styles);
 
@@ -37,7 +37,7 @@ function Detail() {
     };
     const handleAddtoCart = () => {
         dispatch(
-            addCartSlice.actions.addProductItem({
+            CartSlice.actions.addProductItem({
                 idShop: '',
                 shopName: detailResult.shopName,
                 shopImage: '',
@@ -46,7 +46,7 @@ function Detail() {
                         id: detailResult.id,
                         itemName: detailResult.name,
                         size: detailResult.size,
-                        productImage: '',
+                        productImage: detailResult.images[0].path,
                         quantity: parseInt(quantity),
                         // quantity: detailResult.quantity / 100,
                         price: detailResult.price,

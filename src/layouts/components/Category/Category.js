@@ -25,7 +25,7 @@ function Category() {
     return (
         <div className={cx('wrapper')}>
             <ul className={cx('bar')}>
-                {categoriesResult.map((result) => (
+                {categoriesResult?.map((result) => (
                     <HeadlessTippy
                         key={result.id}
                         interactive

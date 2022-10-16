@@ -10,13 +10,31 @@
 // };
 
 // export default rootReducer
-import { configureStore } from '@reduxjs/toolkit';
-import CartSlice from '~/redux/CartSlice';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import AuthSlice from './AuthSlice';
+import CartSlice from './CartSlice';
 
-const store = configureStore({
-    reducer: {
-        cartList: CartSlice.reducer,
-    },
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+const persistConfig = {
+    key: 'root',
+    version: 1,
+    storage,
+};
+//bo nhung cai can giu nguyen khi f5
+const rootReducer = combineReducers({ cartList: CartSlice.reducer, auth: AuthSlice.reducer });
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }),
 });
 
-export default store;
+export let persistor = persistStore(store);
+

@@ -50,7 +50,7 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                             <div className={cx('checkout-item-productItem-image')}>
                                 <Link to={`/detail/${productItem.id}`} className={cx('checkout-item-productItem-image-link')}>
                                     <img
-                                        src="	https://i.etsystatic.com/14691517/c/1259/1000/737/…/f65dd2/4024893455/il_170x135.4024893455_igxo.jpg"
+                                        src={productItem.productImage}
                                         alt=""
                                         className={cx('checkout-item-productItem-image-data')}
                                     />

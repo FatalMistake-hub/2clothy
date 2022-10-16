@@ -1,17 +1,41 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import config from '~/config';
+import { loginUser,registerUser } from '~/services/authService';
 import styles from './PopupForm.module.scss';
 
 const cx = classNames.bind(styles);
 function PopupForm({ handleClose }) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogin = (e) => {
+        // e.preventDefault();
+        const newUser = {
+            Email: email,
+            Password: password,
+        };
+        loginUser(newUser, dispatch, navigate);
+    };
+    const handleRegister = (e) => {
+        // e.preventDefault();
+        const newUser = {
+            Email: email,
+            Password: password,
+            ConfirmPassword: confirmPassword,
+        };
+        registerUser(newUser, dispatch, navigate);
+    };
+
     const [isRegister, setIsRegister] = useState(true);
     const toggleForm = () => {
         setIsRegister(!isRegister);
-
-
     };
 
     return (
@@ -30,21 +54,28 @@ function PopupForm({ handleClose }) {
                         </div>
                         <div className={cx('email')}>
                             <span className={cx('content')}>Email address</span>
-                            <input className={cx('input_login')} type="email" />
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className={cx('input_login')} type="email" />
                         </div>
                         <div className={cx('password')}>
                             <span className={cx('content')}>Password</span>
-                            <input className={cx('input_login')} type="text" />
+                            <input
+                                value={password}
+                                className={cx('input_login')}
+                                onChange={(e) => setPassword(e.target.value)}
+                                type="password"
+                            />
                         </div>
                         <div className={cx('forgotorsave')}>
                             <div className={cx('check')}>
                                 <input type="checkbox" className={cx('checkbox')} />
                                 <span className={cx('staysigned')}> Stay signed in</span>
                             </div>
-                            <Link to={config.routes.forgotpassword}className={cx('forgotpass')} >Forgot your password?</Link>
+                            <Link to={config.routes.forgotpassword} className={cx('forgotpass')}>
+                                Forgot your password?
+                            </Link>
                         </div>
                         <div className={cx('sign_in')}>
-                            <Button login rounded primary>
+                            <Button login rounded primary onClick={handleLogin}>
                                 Sign in
                             </Button>
                         </div>
@@ -56,7 +87,6 @@ function PopupForm({ handleClose }) {
                                 Continue with Google
                             </Button>
                         </div> */}
-                        
                     </div>
                 </div>
             ) : (
@@ -74,23 +104,32 @@ function PopupForm({ handleClose }) {
 
                         <div className={cx('email')}>
                             <span className={cx('content')}>Email address</span>
-                            <input className={cx('input_login')} type="email" />
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className={cx('input_login')} type="email" />
                         </div>
                         <div className={cx('password')}>
                             <span className={cx('content')}>Password</span>
-                            <input className={cx('input_login')} type="text" />
+                            <input
+                                value={password}
+                                className={cx('input_login')}
+                                onChange={(e) => setPassword(e.target.value)}
+                                type="password"
+                            />
                         </div>
                         <div className={cx('password')}>
                             <span className={cx('content')}>Confirm password</span>
-                            <input className={cx('input_login')} type="text" />
+                            <input
+                                value={confirmPassword}
+                                className={cx('input_login')}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                type="password"
+                            />
                         </div>
 
                         <div className={cx('sign_in')}>
-                            <Button login rounded primary>
+                            <Button login rounded primary onClick={handleRegister}>
                                 Register
                             </Button>
                         </div>
-                        
                     </div>
                 </div>
             )}

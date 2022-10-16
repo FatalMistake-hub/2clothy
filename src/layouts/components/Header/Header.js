@@ -10,7 +10,7 @@ import {
     faSignOut,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
@@ -25,8 +25,12 @@ import Search from '../Search';
 import Category from '../Category';
 import { useState } from 'react';
 import PopupForm from '../../../components/PopupForm';
-import { useSelector } from 'react-redux';
-import { cartsRemainingSelector } from '~/redux/selector';
+import { useDispatch, useSelector } from 'react-redux';
+import { authRemainingSelector, cartsRemainingSelector } from '~/redux/selector';
+// import { logOutUser } from '~/services/authService';
+import { createAxios } from '~/services/createInstance';
+import AuthSlice from '~/redux/AuthSlice';
+import { logOutUser } from '~/services/authService';
 
 const cx = classNames.bind(styles);
 
@@ -62,8 +66,14 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-    const currentUser = true;
-    // Login logic
+    const dispatch = useDispatch();
+    const user = useSelector(authRemainingSelector);
+    // console.log('user', user);
+    
+    const currentUser = user?.login.currentUser;
+    const accessToken = currentUser?.accessToken;
+
+    console.log('currentUser', currentUser);
     const [isLogin, setIsLogin] = useState(false);
     const togglePopup = () => {
         setIsLogin(!isLogin);
@@ -100,37 +110,39 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Log out',
-            to: '/logout',
+            // to: '/logout',
             separate: true,
+            onClick: () => {
+                let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.logOutSuccess);
+                logOutUser(dispatch, '1', accessToken, axiosJWT);
+            },
         },
     ];
 
     const cartList = useSelector(cartsRemainingSelector);
 
-
     const getTotalQuantity = () => {
-        let total = 0
-        cartList.forEach(item => {
-            item.productItem.forEach(productItem => {
-
-                total += productItem.quantity
-            })
-        })
-        return total
-      }
+        let total = 0;
+        if (cartList) {
+            cartList.forEach((item) => {
+                item.productItem.forEach((productItem) => {
+                    total += productItem.quantity;
+                });
+            });
+        }
+        return total;
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('inner_header')}>
                     <Link to={config.routes.home} className={cx('logo-link')}>
-                        <img 
-                        src={images.logo} 
-                        alt="" className={cx('logo')} 
-                        
-                        />
+                        <img src={images.logo} alt="" className={cx('logo')} />
                     </Link>
 
-                    <div className={cx('inner-search')}><Search /></div>
+                    <div className={cx('inner-search')}>
+                        <Search />
+                    </div>
 
                     <div className={cx('actions')}>
                         {currentUser ? (
@@ -157,17 +169,23 @@ function Header() {
                         ) : (
                             <>
                                 {/* <Button text>Register</Button> */}
-                                <Button primary onClick={togglePopup}>
+                                <Tippy delay={[0, 50]} content="Cart" placement="bottom">
+                                    <Link className={cx('action-btn')} to={config.routes.cart}>
+                                        <CartIcon />
+                                        <span className={cx('badge')}>
+                                            <p>{getTotalQuantity() || 0}</p>
+                                        </span>
+                                    </Link>
+                                </Tippy>
+                                <Button primary onClick={togglePopup} className={cx('sign-btn')}>
                                     Sign In
                                 </Button>
-
-                                {isLogin && (
-                                    <PopupForm handleClose={togglePopup} />
-                                )}
+                                {isLogin && <PopupForm handleClose={togglePopup} />}
                             </>
                         )}
 
-                        <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {/* <Menu items={currentUser?.accessToken ?MENU_ITEMS  : userMenu  } onChange={handleMenuChange}> */}
+                        <Menu items={userMenu} onChange={handleMenuChange}>
                             {currentUser ? (
                                 <Image
                                     className={cx('user-avatar')}

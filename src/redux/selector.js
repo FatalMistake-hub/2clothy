@@ -11,5 +11,13 @@ export const cartsRemainingSelector = createSelector(
 
       return cartList
     });
+export const authListSelector = (state) => state.auth;
+
+export const authRemainingSelector = createSelector(
+  authListSelector,
+
+  (auth) => {
+      return auth
+    });
   // }
 // );

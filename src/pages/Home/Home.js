@@ -40,8 +40,8 @@ function Home() {
 
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    const currentRecords = itemResult.slice(indexOfFirstRecord, indexOfLastRecord);
-    const nPages = Math.ceil(itemResult.length / recordsPerPage);
+    const currentRecords = itemResult?.slice(indexOfFirstRecord, indexOfLastRecord);
+    const nPages = Math.ceil(itemResult?.length / recordsPerPage);
 
     return (
         <div className={cx('wrapper')}>
@@ -70,7 +70,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx('category-list')}>
-                        {categoriesResult.map((result) => (
+                        {categoriesResult?.map((result) => (
                             <div key={result.id} className={cx('category-list-item')}>
                                 <Link to={`/${result.id}`}>
                                     <img
@@ -92,7 +92,7 @@ function Home() {
                         <Button rounded>Sort by</Button>
                     </div>
                     <div className={cx('product-results')}>
-                        {currentRecords.map((result) => (
+                        {currentRecords?.map((result) => (
                             <ProductItem key={result.id} data={result} />
                         ))}
                     </div>
