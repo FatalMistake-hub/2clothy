@@ -18,10 +18,10 @@ function ProfileNav() {
     return (
         <div className={cx('wrapper')}>
             <Nav>
-                <NavItem title="Account" to={config.routes.account} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
-                <NavItem title="Public Profile" to={config.routes.publicprofile} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
-                <NavItem title="Addresses" to={config.routes.addresses} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
-                <NavItem title="Credit Cards" to={config.routes.creditcards} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
+                <NavItem title="Hồ sơ" to={config.routes.account} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
+                {/* <NavItem title="Public Profile" to={config.routes.publicprofile} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} /> */}
+                <NavItem title="Sổ địa chỉ" to={config.routes.addresses} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
+                <NavItem title="Tuỳ chọn thanh toán" to={config.routes.creditcards} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
                 {/* <NavItem
                     title="Following"
                     to={config.routes.following}

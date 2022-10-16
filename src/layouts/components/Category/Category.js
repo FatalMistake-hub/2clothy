@@ -26,27 +26,29 @@ function Category() {
         <div className={cx('wrapper')}>
             <ul className={cx('bar')}>
                 {categoriesResult?.map((result) => (
-                    <HeadlessTippy
-                        key={result.id}
-                        interactive
-                        offset={[-8, 2.5]}
-                        placement="bottom-start"
-                        // visible={showResult && searchResult.length > 0}
-                        render={(attrs) => (
-                            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                                <PopperWrapper>
-                                    <CategoryMenu id={result.id} />
-                                </PopperWrapper>
-                            </div>
-                        )}
-                        // onClickOutside={handleHideResult}
-                    >
-                        <li key={result.id} className={cx('item')}>
-                            <Link to={`/${result.id}`}>
-                                <span className={cx('content')}>{result.name}</span>
-                            </Link>
-                        </li>
-                    </HeadlessTippy>
+                    <>
+                        <HeadlessTippy
+                            key={result.id}
+                            interactive
+                            offset={[-8, 2.5]}
+                            placement="bottom-start"
+                            // visible={showResult && searchResult.length > 0}
+                            render={(attrs) => (
+                                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                                    <PopperWrapper>
+                                        <CategoryMenu id={result.id} />
+                                    </PopperWrapper>
+                                </div>
+                            )}
+                            // onClickOutside={handleHideResult}
+                        >
+                            <li key={result.id} className={cx('item')}>
+                                <Link to={`/${result.id}`}>
+                                    <span className={cx('content')}>{result.name}</span>
+                                </Link>
+                            </li>
+                        </HeadlessTippy>
+                    </>
                 ))}
             </ul>
         </div>

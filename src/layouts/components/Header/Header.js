@@ -27,19 +27,16 @@ import { useState } from 'react';
 import PopupForm from '../../../components/PopupForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { authRemainingSelector, cartsRemainingSelector } from '~/redux/selector';
-// import { logOutUser } from '~/services/authService';
-import { createAxios } from '~/services/createInstance';
-import AuthSlice from '~/redux/AuthSlice';
-import { logOutUser } from '~/services/authService';
+
 
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        title: 'English',
+        title: 'Ngôn ngữ',
         children: {
-            title: 'Language',
+            title: 'Ngôn ngữ',
             data: [
                 {
                     type: 'language',
@@ -56,24 +53,15 @@ const MENU_ITEMS = [
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
-        title: 'Feedback and help',
-        to: '/feedback',
-    },
-    {
-        icon: <FontAwesomeIcon icon={faKeyboard} />,
-        title: 'Keyboard shortcuts',
+        title: 'Hoá đơn',
+        to: '/purchase',
     },
 ];
 
 function Header() {
-    const dispatch = useDispatch();
     const user = useSelector(authRemainingSelector);
-    // console.log('user', user);
-    
     const currentUser = user?.login.currentUser;
-    const accessToken = currentUser?.accessToken;
 
-    console.log('currentUser', currentUser);
     const [isLogin, setIsLogin] = useState(false);
     const togglePopup = () => {
         setIsLogin(!isLogin);
@@ -92,30 +80,21 @@ function Header() {
     const userMenu = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
-            title: 'View profile',
+            title: 'Tài khoản',
             to: '/account/@:nhatquach',
             // to: '/account',
         },
         {
-            icon: <FontAwesomeIcon icon={faCoins} />,
-            title: 'Get coins',
-            to: '/coin',
-        },
-        {
             icon: <FontAwesomeIcon icon={faGear} />,
-            title: 'Settings',
+            title: 'Cài đặt',
             to: '/settings',
         },
         ...MENU_ITEMS,
         {
             icon: <FontAwesomeIcon icon={faSignOut} />,
-            title: 'Log out',
+            title: 'Đăng xuất',
             // to: '/logout',
             separate: true,
-            onClick: () => {
-                let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.logOutSuccess);
-                logOutUser(dispatch, '1', accessToken, axiosJWT);
-            },
         },
     ];
 
@@ -147,17 +126,17 @@ function Header() {
                     <div className={cx('actions')}>
                         {currentUser ? (
                             <>
-                                <Tippy delay={[0, 50]} content="Favourites" placement="bottom">
+                                <Tippy delay={[0, 50]} content="Yêu thích" placement="bottom">
                                     <button className={cx('action-btn')}>
                                         <FavoritesIcon />
                                     </button>
                                 </Tippy>
-                                <Tippy delay={[0, 50]} content="Shop manager" placement="bottom">
+                                <Tippy delay={[0, 50]} content="Bán hàng" placement="bottom">
                                     <Link className={cx('action-btn')} to={config.routes.reference}>
                                         <ShopManagerIcon />
                                     </Link>
                                 </Tippy>
-                                <Tippy delay={[0, 50]} content="Cart" placement="bottom">
+                                <Tippy delay={[0, 50]} content="Giỏ hàng" placement="bottom">
                                     <Link className={cx('action-btn')} to={config.routes.cart}>
                                         <CartIcon />
                                         <span className={cx('badge')}>
@@ -168,8 +147,7 @@ function Header() {
                             </>
                         ) : (
                             <>
-                                {/* <Button text>Register</Button> */}
-                                <Tippy delay={[0, 50]} content="Cart" placement="bottom">
+                                <Tippy delay={[0, 50]} content="Giỏ hàng" placement="bottom">
                                     <Link className={cx('action-btn')} to={config.routes.cart}>
                                         <CartIcon />
                                         <span className={cx('badge')}>
@@ -178,7 +156,7 @@ function Header() {
                                     </Link>
                                 </Tippy>
                                 <Button primary onClick={togglePopup} className={cx('sign-btn')}>
-                                    Sign In
+                                    Đăng Nhập
                                 </Button>
                                 {isLogin && <PopupForm handleClose={togglePopup} />}
                             </>

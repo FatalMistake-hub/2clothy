@@ -13,7 +13,7 @@ const routes = {
     creditcards:'/creditcards/@:nickname',
 
     //
-    upload: '/upload',
+
     search: '/search/:id',
 
     //SetupShop

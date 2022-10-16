@@ -58,7 +58,7 @@ function Home() {
                             <ul className={cx('path')}>
                                 <li className={cx('path-item')}>
                                     <Link to={config.routes.home} className={cx('path-item-all')}>
-                                        All
+                                        Trang chủ
                                     </Link>
                                 </li>
                                 <li className={cx('path-item')}>
@@ -87,7 +87,7 @@ function Home() {
                 </div>
                 <div className={cx('body')}>
                     <div className={cx('header')}>
-                        <h2 className={cx('header-text')}>Find something you love</h2>
+                        <h2 className={cx('header-text')}>Tìm thứ gì đó bạn yêu thích</h2>
                     </div>
                     <div className={cx('actions')}>
                         <Button rounded>Sort by</Button>
@@ -98,7 +98,7 @@ function Home() {
                         ))}
                     </div>
                     <div className={cx('search-pagination')}>
-                        <h2 className={cx('search-pagination-text')}>There's so much more for you to discover</h2>
+                        <h2 className={cx('search-pagination-text')}>Còn rất nhiều điều để bạn khám phá</h2>
                         {nPages && currentPage && (
                             <PaginationNav nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                         )}

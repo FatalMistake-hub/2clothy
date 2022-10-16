@@ -64,46 +64,48 @@ function Search() {
         // Using a wrapper <div> tag around the reference element solves
         // this by creating a new parentNode context.
         <div>
-            <HeadlessTippy
-                interactive
-                visible={showResult && searchResult.length > 0}
-                render={(attrs) => (
-                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                        <PopperWrapper>
-                            <h4 className={cx('search-title')}>Products</h4>
-                            {searchResult.slice(0, 10).map((result) => (
-                                <div key={result.id} className={cx('search-item')} onClick={handleHideResult}>
-                                    <AccountItem key={result.id} data={result} />
-                                </div>
-                            ))}
-                        </PopperWrapper>
-                    </div>
-                )}
-                onClickOutside={handleHideResult}
-            >
-                <div className={cx('search')}>
-                    <input
-                        ref={inputRef}
-                        value={searchValue}
-                        placeholder="Search for anything"
-                        spellCheck={false}
-                        onChange={handleChange}
-                        onFocus={() => setShowResult(true)}
-                    />
-                    {!!searchValue && !loading && (
-                        <button className={cx('clear')} onClick={handleClear}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
+            <>
+                <HeadlessTippy
+                    interactive
+                    visible={showResult && searchResult.length > 0}
+                    render={(attrs) => (
+                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                            <PopperWrapper>
+                                <h4 className={cx('search-title')}>Products</h4>
+                                {searchResult.slice(0, 10).map((result) => (
+                                    <div key={result.id} className={cx('search-item')} onClick={handleHideResult}>
+                                        <AccountItem key={result.id} data={result} />
+                                    </div>
+                                ))}
+                            </PopperWrapper>
+                        </div>
                     )}
-                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-
-                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-                        <Link to={`/search/${searchValue}`}>
-                            <SearchIcon />
-                        </Link>
-                    </button>
-                </div>
-            </HeadlessTippy>
+                    onClickOutside={handleHideResult}
+                >
+                    <div className={cx('search')}>
+                        <input
+                            ref={inputRef}
+                            value={searchValue}
+                            placeholder="Tìm kiếm trên 2Clothy"
+                            spellCheck={false}
+                            onChange={handleChange}
+                            onFocus={() => setShowResult(true)}
+                        />
+                        {!!searchValue && !loading && (
+                            <button className={cx('clear')} onClick={handleClear}>
+                                <FontAwesomeIcon icon={faCircleXmark} />
+                            </button>
+                        )}
+                        {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+    
+                        <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+                            <Link to={`/search/${searchValue}`}>
+                                <SearchIcon />
+                            </Link>
+                        </button>
+                    </div>
+                </HeadlessTippy>
+            </>
         </div>
     );
 }

@@ -57,7 +57,8 @@
     display: block;
     font-size: 14px;
     line-height: 19.6px;
-    
+    margin-left: 2px;
+    margin-top: 6px;
 }
 .path {
     display: flex;
@@ -75,6 +76,7 @@
 }
 .path-item-all {
     text-decoration: underline;
+
 }
 .category {
     display: flex;

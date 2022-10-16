@@ -76,7 +76,7 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                                             </div>
                                         </div>
                                         <div className={cx('productItem-action')}>
-                                            <button className={cx('productItem-action-button')}>Save for later</button>
+                                            {/* <button className={cx('productItem-action-button')}>Save for later</button> */}
 
                                             <button
                                                 onClick={() =>
@@ -89,7 +89,7 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                                                 }
                                                 className={cx('productItem-action-button')}
                                             >
-                                                Remove
+                                                Xoá
                                             </button>
                                         </div>
                                     </div>
@@ -124,7 +124,8 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
             </ul>
             <div className={cx('checkout-item-only')}>
                 <a href="" className={cx('checkout-item-only-link')}>
-                    Check out from only this shop
+                    {/* Check out from only this shop */}
+                    Chỉ thanh toán của cửa hàng này
                 </a>
             </div>
         </div>

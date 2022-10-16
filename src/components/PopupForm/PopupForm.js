@@ -16,7 +16,6 @@ function PopupForm({ handleClose }) {
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
-        // e.preventDefault();
         const newUser = {
             Email: email,
             Password: password,
@@ -24,7 +23,6 @@ function PopupForm({ handleClose }) {
         loginUser(newUser, dispatch, navigate);
     };
     const handleRegister = (e) => {
-        // e.preventDefault();
         const newUser = {
             Email: email,
             Password: password,
@@ -47,17 +45,17 @@ function PopupForm({ handleClose }) {
                             x
                         </span>
                         <div className={cx('header')}>
-                            <h1>Sign in</h1>
+                            <h1>Đăng nhập</h1>
                             <Button text rounded outline onClick={toggleForm}>
-                                Register
+                            Đăng ký
                             </Button>
                         </div>
                         <div className={cx('email')}>
-                            <span className={cx('content')}>Email address</span>
+                            <span className={cx('content')}>Địa chỉ email </span>
                             <input value={email} onChange={(e) => setEmail(e.target.value)} className={cx('input_login')} type="email" />
                         </div>
                         <div className={cx('password')}>
-                            <span className={cx('content')}>Password</span>
+                            <span className={cx('content')}>Mật khẩu</span>
                             <input
                                 value={password}
                                 className={cx('input_login')}
@@ -66,17 +64,17 @@ function PopupForm({ handleClose }) {
                             />
                         </div>
                         <div className={cx('forgotorsave')}>
-                            <div className={cx('check')}>
+                            {/* <div className={cx('check')}>
                                 <input type="checkbox" className={cx('checkbox')} />
                                 <span className={cx('staysigned')}> Stay signed in</span>
-                            </div>
+                            </div> */}
                             <Link to={config.routes.forgotpassword} className={cx('forgotpass')}>
-                                Forgot your password?
+                                Quên mật khẩu ?
                             </Link>
                         </div>
                         <div className={cx('sign_in')}>
                             <Button login rounded primary onClick={handleLogin}>
-                                Sign in
+                                Đăng nhập
                             </Button>
                         </div>
                         {/* <div className={cx('or')}>
@@ -96,18 +94,18 @@ function PopupForm({ handleClose }) {
                             x
                         </span>
                         <div className={cx('header')}>
-                            <h1>Create your account</h1>
+                            <h1>Tạo tài khoản</h1>
                         </div>
-                        <div className={cx('header')}>
+                        {/* <div className={cx('header')}>
                             <h2>Registration is easy.</h2>
-                        </div>
+                        </div> */}
 
                         <div className={cx('email')}>
-                            <span className={cx('content')}>Email address</span>
+                            <span className={cx('content')}>Địa chỉ email</span>
                             <input value={email} onChange={(e) => setEmail(e.target.value)} className={cx('input_login')} type="email" />
                         </div>
                         <div className={cx('password')}>
-                            <span className={cx('content')}>Password</span>
+                            <span className={cx('content')}>Mật Khẩu</span>
                             <input
                                 value={password}
                                 className={cx('input_login')}
@@ -116,7 +114,7 @@ function PopupForm({ handleClose }) {
                             />
                         </div>
                         <div className={cx('password')}>
-                            <span className={cx('content')}>Confirm password</span>
+                            <span className={cx('content')}>Nhập lại mật khẩu</span>
                             <input
                                 value={confirmPassword}
                                 className={cx('input_login')}
@@ -127,7 +125,7 @@ function PopupForm({ handleClose }) {
 
                         <div className={cx('sign_in')}>
                             <Button login rounded primary onClick={handleRegister}>
-                                Register
+                                Đăng ký
                             </Button>
                         </div>
                     </div>

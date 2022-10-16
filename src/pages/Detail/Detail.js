@@ -109,13 +109,12 @@ function Detail() {
                                     {detailResult ? detailResult.shopName : ''}
                                 </Link>
                                 <Button rounded outline small>
-                                    Follow
+                                Theo dõi
                                 </Button>
                             </div>
                             <div className={cx('rateAndsold')}>
                                 <span className={cx('sold-content')}>
-                                    {' '}
-                                    {detailResult ? detailResult.quantity.toLocaleString('es-ES') : ''} sales
+                                    Đã Bán {detailResult ? detailResult.quantity.toLocaleString('es-ES') : ''}
                                 </span>
                                 <span className={cx('septum')}>|</span>
                                 <span className={cx('rate')}>
@@ -137,7 +136,7 @@ function Detail() {
                                             {detailResult ? detailResult.price.toLocaleString('es-ES') : ''}₫
                                         </p>
                                     </div>
-                                    <div className={cx('buybox-data-caption')}>Local taxes included (where applicable)</div>
+                                    <div className={cx('buybox-data-caption')}>Đã bao gồm thuế địa phương (nếu có)</div>
                                 </div>
                             </div>
                             <div className={cx('optionbox')}>
@@ -181,12 +180,12 @@ function Detail() {
                             </div>
                             <div className={cx('buybox-button-box')}>
                                 <Button rounded login className={cx('buybox-button')}>
-                                    Buy it now
+                                    Mua Ngay
                                 </Button>
                             </div>
                             <div className={cx('buybox-button-box')}>
                                 <Button onClick={handleAddtoCart} primary rounded login className={cx('buybox-button', 'add')}>
-                                    Add to cart
+                                    Thêm Vào Giỏ Hàng
                                 </Button>
                             </div>
                         </div>
@@ -196,7 +195,7 @@ function Detail() {
                     <div className={cx('listing-info-container')}>
                         <h2 className={cx('listing-info-item')}>
                             <button aria-expanded="true" className={cx('item-button')}>
-                                Highlights :<span className={cx('item-arrow')}></span>
+                                Điểm nổi bật :<span className={cx('item-arrow')}></span>
                             </button>
                         </h2>
                         <div className={cx('highlight-detail')}>
@@ -217,7 +216,7 @@ function Detail() {
                         </div>
                         <h2 className={cx('listing-info-item')}>
                             <button className={cx('item-button')}>
-                                Description :<span className={cx('item-arrow')}></span>
+                                Mô tả :<span className={cx('item-arrow')}></span>
                             </button>
                         </h2>
                         <div className={cx('description-detail')}>
@@ -230,7 +229,7 @@ function Detail() {
                         </div>
                         <h2 className={cx('listing-info-item')}>
                             <button className={cx('item-button')}>
-                                Meet your seller :<span className={cx('item-arrow')}></span>
+                                Cửa hàng :<span className={cx('item-arrow')}></span>
                             </button>
                         </h2>
                         <div className={cx('shop-detail')}>
@@ -244,7 +243,7 @@ function Detail() {
                             <div className={cx('shop-detail-info')}>
                                 <p className={cx('shop-detail-name')}>Sara</p>
                                 <p className={cx('shop-detail-owner')}>
-                                    Owner of{' '}
+                                    Chủ sở hữu{' '}
                                     <Link to={config.routes.shop} className={cx('shop-detail-owner-link')}>
                                         {detailResult ? detailResult.shopName : ''}
                                     </Link>
@@ -256,18 +255,18 @@ function Detail() {
                 <div className={cx('review')}>
                     <div className={cx('review-container')}>
                         <div className={cx('review-header')}>
-                            <h2 className={cx('review-count')}>7,970 reviews</h2>
+                            <h2 className={cx('review-count')}>7,970 đánh giá</h2>
                             <span className={cx('review-rate')}></span>
                         </div>
 
                         <div className={cx('review-listing')}>
                             <div className={cx('review-listing-nav')}>
                                 <button className={cx('review-listing-nav-button')}>
-                                    Review for this item
+                                Đánh giá của sản phẩm
                                     <span className={cx('review-listing-nav-button-content')}>1,051</span>
                                 </button>
                                 <button className={cx('review-listing-nav-button')}>
-                                    Review for this shop
+                                Đánh giá của cửa hàng
                                     <span className={cx('review-listing-nav-button-content')}>7,973</span>
                                 </button>
 
@@ -322,12 +321,12 @@ function Detail() {
                 <div className={cx('other-info')}>
                     <div className={cx('other-info-header')}>
                         <div className={cx('other-info-header-box')}>
-                            <div className={cx('other-info-header-content')}>More from this shop</div>
-                            <Button rounded>Follow</Button>
+                            <div className={cx('other-info-header-content')}>Các sản phẩm khác của shop</div>
+                            <Button rounded>Theo dõi</Button>
                         </div>
                         <Button rounded>
                             <a href="" className={cx('other-info-more')}>
-                                See More
+                            Xem thêm
                             </a>
                         </Button>
                     </div>

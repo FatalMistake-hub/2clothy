@@ -28,28 +28,18 @@ export const registerUser = async (user, dispatch, navigate) => {
         console.log(AuthSlice.actions.registerFailed());
     }
 };
-export const logOutUser = async (dispatch,id="1", accessToken, axiosJWT) => {
+export const logOutUser = async (dispatch, navigate, id = '1', accessToken, axiosJWT) => {
     dispatch(AuthSlice.actions.logOutStart());
     try {
-        // await axiosJWT.post("user/logout", {
-        //   headers: { Authorization: `Bearer ${accessToken}` },
-        // });
-        // dispatch(AuthSlice.actions.logOutSuccess());
-        // // navigate("/login")
-        const res = await axiosJWT.post(
-            'user/logout',
-            id
-            ,
-            {
-                headers: { Authorization: `Bearer ${accessToken}` },
-            },
-        );
+        const res = await axiosJWT.post('user/logout', id, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
         dispatch(AuthSlice.actions.logOutSuccess());
         console.log('logout', res.data);
+        navigate('/');
         return res.data;
-        // navigate("/login")
     } catch (error) {
-        dispatch(AuthSlice.actions.logOutFailed())
+        dispatch(AuthSlice.actions.logOutFailed());
         console.log(error, AuthSlice.actions.logOutFailed());
     }
 };

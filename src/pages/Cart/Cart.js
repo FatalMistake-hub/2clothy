@@ -16,8 +16,8 @@ function Cart() {
         let totalPrice = 0;
         cartList.forEach((item) => {
             item.productItem.forEach((product) => {
-                totalQuantity +=( product.quantity);
-                totalPrice += (product.price * product.quantity);
+                totalQuantity += product.quantity;
+                totalPrice += product.price * product.quantity;
             });
             //   totalQuantity += item.quantity
             //   totalPrice += item.price * item.quantity
@@ -32,11 +32,13 @@ function Cart() {
                     <div className={cx('checkout')}>
                         <div className={cx('checkout-header')}>
                             <div className={cx('checkout-header-sumItem')}>
-                                <h1  onBlur={(e) => e.preventDefault()} className={cx('checkout-header-sumItem-text')}>{getTotal().totalQuantity} items in your cart</h1>
+                                <h1 onBlur={(e) => e.preventDefault()} className={cx('checkout-header-sumItem-text')}>
+                                    {getTotal().totalQuantity} sản phẩm trong giỏ hàng
+                                </h1>
                             </div>
                             <div className={cx('checkout-header-gohome')}>
                                 <a href="" className={cx('checkout-header-gohome-link')}>
-                                    Keep shopping
+                                    Tiếp tục mua sắm
                                 </a>
                             </div>
                         </div>
@@ -58,7 +60,9 @@ function Cart() {
                                         <form action="" className={cx('checkout-form')}>
                                             <div className={cx('checkout-cardPayment-section')}>
                                                 <fieldset className={cx('checkout-cardPayment-section-field')}>
-                                                    <legend className={cx('checkout-cardPayment-section-tittle')}>How you'll pay</legend>
+                                                    <legend className={cx('checkout-cardPayment-section-tittle')}>
+                                                        Hình thức thanh toán
+                                                    </legend>
                                                     <ul className={cx('checkout-cardPayment-section-chanelList')}>
                                                         <li className={cx('checkout-cardPayment-section-channelItem')}>
                                                             <input
@@ -77,13 +81,13 @@ function Cart() {
                                                                         className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                                     />
                                                                 </span>
-                                                                <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
+                                                                {/* <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                                     <img
                                                                         src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-zalo-pay.svg"
                                                                         alt=""
                                                                         className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                                     />
-                                                                </span>
+                                                                </span> */}
                                                             </label>
                                                         </li>
                                                         <li className={cx('checkout-cardPayment-section-channelItem')}>
@@ -112,7 +116,7 @@ function Cart() {
                                                         <tbody className={cx('checkout-cardPayment-section-priceSumary-tbody')}>
                                                             <tr>
                                                                 <th className={cx('checkout-cardPayment-section-priceSummary-rowName')}>
-                                                                    Item(s) total
+                                                                Tổng số mặt hàng
                                                                 </th>
                                                                 <td className={cx('checkout-cardPayment-section-priceSummary-rowcontent')}>
                                                                     <span
@@ -124,7 +128,7 @@ function Cart() {
                                                                     </span>
                                                                 </td>
                                                             </tr>
-                                                            <tr>
+                                                            {/* <tr>
                                                                 <th className={cx('checkout-cardPayment-section-priceSummary-rowName')}>
                                                                     Shipping
                                                                 </th>
@@ -137,7 +141,7 @@ function Cart() {
                                                                         674,082₫
                                                                     </span>
                                                                 </td>
-                                                            </tr>
+                                                            </tr> */}
                                                             <tr>
                                                                 <td colspan="2">
                                                                     <div
@@ -154,7 +158,7 @@ function Cart() {
                                                                             'checkout-cardPayment-section-priceSummary-sumTittle-text',
                                                                         )}
                                                                     >
-                                                                        Total ({getTotal().totalQuantity})
+                                                                        Tổng ({getTotal().totalQuantity})
                                                                     </h1>
                                                                 </th>
                                                                 <td className={cx('checkout-cardPayment-section-priceSummary-sumContent')}>
@@ -171,7 +175,7 @@ function Cart() {
                                                     </table>
                                                     <div className={cx('checkout-cardPayment-section-priceSummary-submit')}>
                                                         <Button primary login rounded>
-                                                            Proceed to checkout
+                                                            Thanh toán
                                                         </Button>
                                                     </div>
                                                 </div>
@@ -180,10 +184,10 @@ function Cart() {
                                     </div>
                                 </div>
                                 <div className={cx('checkout-body-favourite')}>
-                                    <p className={cx('checkout-body-favourite-tittle')}>Looking for more of your finds?</p>
+                                    <p className={cx('checkout-body-favourite-tittle')}>Tìm kiếm thêm từ mục yêu thích của bạn?</p>
                                     <div href="" className={cx('checkout-body-favourite-link')}>
                                         <Button rounded large>
-                                            View your favourites
+                                            Xem mục yêu thích của bạn
                                         </Button>
                                     </div>
                                 </div>
@@ -197,14 +201,14 @@ function Cart() {
                         <div className={cx('checkout-body')}>
                             <div className={cx('checkout-body-box-emtyCart')}>
                                 <div className={cx('checkout-body-emtyCart')}>
-                                    <h1 className={cx('checkout-body-emtyCart-text')}>Your cart is empty.</h1>
+                                    <h1 className={cx('checkout-body-emtyCart-text')}>Không có sản phẩm nào trong giỏ hàng của bạn.</h1>
                                 </div>
                             </div>
                             <div className={cx('checkout-body-favourite')}>
-                                <p className={cx('checkout-body-favourite-tittle')}>Looking for more of your finds?</p>
+                                <p className={cx('checkout-body-favourite-tittle')}>Tìm kiếm thêm từ mục yêu thích của bạn?</p>
                                 <div href="" className={cx('checkout-body-favourite-link')}>
                                     <Button rounded large>
-                                        View your favourites
+                                        Xem mục yêu thích của bạn
                                     </Button>
                                 </div>
                             </div>

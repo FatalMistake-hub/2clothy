@@ -107,7 +107,7 @@ function Shop() {
                     <div className={cx('shop-home-follow-box')}>
                         <div className={cx('shop-home-follow-button')}>
                             <Button rounded large>
-                                Follow shop
+                                Theo dõi 
                             </Button>
                         </div>
                     </div>
@@ -117,11 +117,10 @@ function Shop() {
                         <div className={cx('shop-home-announcement')}>
                             <div className={cx('shop-home-announcement-box')}>
                                 <div className={cx('shop-home-announcement-title')}>
-                                    <h2 className={cx('shop-home-announcement-title-text')}>Announcement</h2>
+                                    <h2 className={cx('shop-home-announcement-title-text')}>Mô tả cửa hàng</h2>
                                 </div>
                                 <div className={cx('shop-home-announcement-update')}>
-                                    Last update on
-                                    <span>Sep 14, 2022</span>
+                                    Cập nhật vào : Sep 14, 2022
                                 </div>
                             </div>
                             <div className={cx('shop-home-announcement-content')}>
@@ -130,18 +129,7 @@ function Shop() {
                                         Hey guys! If you are ordering a distressed or bleached flannel, please make sure
                                         to read the entire listing description and instructions so that your order turns
                                         out the way you want it. Order 1 size up from your normal t-shirt size to get an
-                                        oversized fit. This is our busiest time of year so please keep in mind that some
-                                        orders may ship later than expected, depending on whether or not you have color
-                                        requests. INTERNATIONAL SHIPMENTS: - International orders outside the US are
-                                        taking a MINIMUM of 4 weeks to arrive right now due to a combination of COVID
-                                        protocols and a lack of international flights. - We are no longer shipping to
-                                        Ukraine, Mexico, Germany, France or Israel - Australia is not accepting First
-                                        Class mail from the US so shipping prices to Australia unfortunately will be
-                                        higher than usual because we have to use a different service. LIKE OUR MERCH??
-                                        Sign up to receive coupon codes here: http://bit.ly/2n2FVxo **Click the
-                                        confirmation email so the codes can be sent to your inbox! (( Website ))
-                                        www.thebeardedbee.us (( Connect With Us )) FACEBOOK: thebeardedbee TUMBLR:
-                                        thebeardedbee INSTAGRAM: thebeardedbee TWITTER: beardedbee
+                                        
                                     </span>
                                 </p>
                                 <a href="" className={cx('shop-home-announcement-toggle')}>
@@ -152,7 +140,7 @@ function Shop() {
                         <div className={cx('shop-home-listing')}>
                             <div className={cx('shop-home-listing-header')}>
                                 <div className={cx('shop-home-listing-header-title')}>
-                                    <h2>Items</h2>
+                                    <h2>Sản phẩm</h2>
                                 </div>
                                 <div className={cx('shop-home-listing-header-sort')}>
                                     <Button rounded large className={cx('shop-home-listing-header-sort-button')}>
@@ -221,11 +209,11 @@ function Shop() {
                 </div>
                 <div className={cx('shop-home-review')}>
                     <div className={cx('shop-home-review-box')}>
-                        <div className={cx('shop-home-review-tittle')}>Reviews</div>
+                        <div className={cx('shop-home-review-tittle')}>Đánh giá</div>
                         <div className={cx('shop-home-review-container')}>
                             <div className={cx('review-totalAndsort')}>
                                 <div className={cx('review-total')}>
-                                    <span className={cx('review-total-tittle')}>Average item review</span>
+                                    <span className={cx('review-total-tittle')}>Tổng lượt đánh giá</span>
                                     <span className={cx('review-total-text')}>(7978)</span>
                                 </div>
                                 <div className={cx('review-sort')}>

@@ -5,14 +5,15 @@ import { Link, useParams } from 'react-router-dom';
 import Button from '~/components/Button';
 import PaginationNav from '~/components/PaginationNav/PaginationNav';
 import ProductItem from '~/components/ProductItem';
+import SelectSort from '~/components/SelectSort';
 import config from '~/config';
-import { useDebounce } from '~/hooks';
 import * as searchServices from '~/services/searchService';
 import styles from './Home.module.scss';
 
 const cx = classNames.bind(styles);
 function Home() {
     const [itemResult, setItemResult] = useState([]);
+    const [rawItem, setRawResult] = useState([]);
     const [categoriesResult, setCategoriesResult] = useState([]);
 
     useEffect(() => {
@@ -20,6 +21,7 @@ function Home() {
             const result = await searchServices.getAllItem();
 
             setItemResult(result);
+            setRawResult(result);
         };
 
         fetchApi();
@@ -49,15 +51,15 @@ function Home() {
                 <div className={cx('category')}>
                     <div className={cx('overflow-bg')}></div>
                     <div className={cx('pathAnddecription')}>
-                        <h1 className={cx('category-father')}>All Categories</h1>
+                        <h1 className={cx('category-father')}>Tất cả danh mục</h1>
                         <div className={cx('description')}>
-                            All things wonderful and wearable for men, women, kids, and even little bitty babies
+                        Những bộ quần áo dành cho nam giới, phụ nữ, trẻ em và thậm chí cả trẻ sơ sinh nhỏ bé
                         </div>
                         <div>
                             <ul className={cx('path')}>
                                 <li className={cx('path-item')}>
                                     <Link to={config.routes.home} className={cx('path-item-all')}>
-                                        All
+                                        Trang chủ
                                     </Link>
                                 </li>
                                 {/* <li className={cx('path-item')}>
@@ -86,10 +88,11 @@ function Home() {
                 </div>
                 <div className={cx('body')}>
                     <div className={cx('header')}>
-                        <h2 className={cx('header-text')}>Find something you love</h2>
+                        <h2 className={cx('header-text')}>Tìm thứ gì đó bạn yêu thích</h2>
                     </div>
                     <div className={cx('actions')}>
-                        <Button rounded>Sort by</Button>
+                        {/* <Button rounded>Sort by</Button> */}
+                        <SelectSort rawItem={rawItem} itemResult={itemResult}  setItemResult={setItemResult}/>
                     </div>
                     <div className={cx('product-results')}>
                         {currentRecords?.map((result) => (
@@ -97,7 +100,7 @@ function Home() {
                         ))}
                     </div>
                     <div className={cx('search-pagination')}>
-                        <h2 className={cx('search-pagination-text')}>There's so much more for you to discover</h2>
+                        <h2 className={cx('search-pagination-text')}>Còn rất nhiều điều để bạn khám phá</h2>
                         {nPages && currentPage && (
                             <PaginationNav nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                         )}
