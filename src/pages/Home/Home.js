@@ -53,7 +53,7 @@ function Home() {
                     <div className={cx('pathAnddecription')}>
                         <h1 className={cx('category-father')}>Tất cả danh mục</h1>
                         <div className={cx('description')}>
-                        Những bộ quần áo dành cho nam giới, phụ nữ, trẻ em và thậm chí cả trẻ sơ sinh nhỏ bé
+                        Những bộ quần áo dành cho nam giới, phụ nữ, trẻ em và cho cả trẻ sơ sinh
                         </div>
                         <div>
                             <ul className={cx('path')}>

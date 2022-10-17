@@ -10,8 +10,10 @@ export const loginUser = async (user, dispatch, navigate) => {
         });
         dispatch(AuthSlice.actions.loginSuccess(res.data));
         navigate('/');
+        return res.data;
     } catch (error) {
-        console.log(error, AuthSlice.actions.loginFailed());
+        dispatch(AuthSlice.actions.loginFailed());
+        return error.response.data;
     }
 };
 export const registerUser = async (user, dispatch, navigate) => {
@@ -23,9 +25,12 @@ export const registerUser = async (user, dispatch, navigate) => {
             ConfirmPassword: user.ConfirmPassword,
         });
         dispatch(AuthSlice.actions.registerSuccess(res.data));
-        navigate('/login');
+        navigate('/');
+        return res.data;
     } catch (error) {
-        console.log(AuthSlice.actions.registerFailed());
+        dispatch(AuthSlice.actions.registerFailed());
+        console.error("error",error.response.data);
+        return error.response.data;
     }
 };
 export const logOutUser = async (dispatch, navigate, id = '1', accessToken, axiosJWT) => {
