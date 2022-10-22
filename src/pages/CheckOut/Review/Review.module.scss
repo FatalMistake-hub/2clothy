@@ -1,0 +1,279 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+.body {
+    width: 1200px;
+    padding: 0 12px;
+}
+.checkout {
+    border-bottom: 1px solid rgba(34, 34, 34, 0.15);
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+}
+.checkout-tittle {
+    margin-bottom: 30px;
+    margin-top: 12px;
+    font-size: 44px;
+    line-height: 48px;
+    font-weight: 300;
+    font-family: 'Guardian-EgypTT';
+}
+.checkout-box {
+    display: flex;
+}
+.checkout-address {
+    flex: 2 1 0%;
+}
+
+.checkout-address-tittle {
+    padding-bottom: 6px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+}
+.checkout-address-item {
+    // padding: 9px;
+    flex-grow: 1;
+    flex-basis: 50%;
+    max-width: 50%;
+}
+.checkout-address-item-default {
+    background: #4d6bc6;
+    color: #ffffff;
+    border-radius: 15px;
+    display: inline-block;
+    word-break: break-word;
+    line-height: 1;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 6px 9px;
+    min-width: 25px;
+}
+.checkout-address-item-address {
+    font-style: normal;
+    color: #666;
+    line-height: 22px;
+    font-size: 14px;
+    margin-bottom: 6px;
+
+}
+.checkout-address-item-address-name {
+    font-weight: bold;
+}
+.checkout-address-item-address-info {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+.checkout-address-item-action {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: -6px;
+}
+.checkout-address-item-button {
+    margin-right: 6px;
+    margin-bottom: 6px;
+    color: #222222;
+    font-size: 13px;
+    line-height: 1.4;
+    min-height: 36px;
+    min-width: 36px;
+    padding: 9px 15px;
+    background-color: transparent;
+    border-radius: 24px;
+    display: inline-block;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+}
+.checkout-address-item-button:hover {
+    background-color: #efefef;
+}
+.checkout-address-item-button-icon {
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    fill: currentColor;
+
+    vertical-align: middle;
+    margin-right: 4px;
+}
+.checkout-payment{
+    margin-right: 12px;
+    flex: 2 1 0% ;
+}
+.checkout-payment-title{
+    padding-bottom: 6px ;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+}
+.checkout-payment-method{
+    margin-bottom: 6px;
+    display: flex; 
+    align-items: center;
+}
+.checkout-payment-method-icon{
+
+}
+.checkout-payment-method-content{
+
+}
+.checkout-payment-method-content-text{
+
+}
+.checkout-cardPayment {
+    box-shadow: 0 4px 20px rgb(34 34 34 / 15%);
+    border-radius: 6px;
+    padding: 24px;
+    flex: 3 1 0%;
+}
+.checkout-form {
+}
+.checkout-cardPayment-section {
+}
+.checkout-cardPayment-section-field {
+    margin-top: 6px;
+    border: 0;
+    padding: 0;
+}
+.checkout-cardPayment-section-tittle {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+}
+.checkout-cardPayment-section-chanelList {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 12px;
+}
+.checkout-cardPayment-section-channelItem {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 36px;
+    min-height: 30px;
+}
+.checkout-cardPayment-section-channelItem-radio {
+    // opacity: 0;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    min-width: 30px;
+    left: 0;
+    top: 0;
+}
+.checkout-cardPayment-section-channelItem-iconList {
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 22.4px;
+    display: inline-block;
+}
+.checkout-cardPayment-section-channelItem-iconList::before {
+    background: #222222;
+    transition: all 200ms ease-out;
+    margin-right: 6px;
+    content: '';
+    position: absolute;
+    border-radius: 100px;
+    height: 30px;
+    width: 30px;
+    min-width: 30px;
+    left: 0;
+    top: 0;
+}
+.checkout-cardPayment-section-channelItem-iconList::after {
+    opacity: 1;
+    transform: scale(1);
+    background: #ffffff;
+    left: 9px;
+    top: 9px;
+    width: 12px;
+    height: 12px;
+    content: '';
+    position: absolute;
+    border-radius: 100px;
+    transition: all 200ms ease-out;
+}
+.checkout-cardPayment-section-channelItem-icon {
+    display: inline-block;
+    width: 48px;
+    height: 32px;
+    border: 1px solid #e2e2e2;
+    background: #fdfdfc;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 0 1px 0rgba (226, 226, 226, 0.2);
+    vertical-align: middle;
+    // padding: 6px;
+    margin-right: 4px;
+}
+.checkout-cardPayment-section-channelItem-icon-data {
+    height: 30px;
+    // width: 34px;
+}
+.checkout-cardPayment-section-channelItem-icon {
+}
+
+.checkout-cardPayment-section-priceSummary {
+    margin-top: 6px;
+}
+.checkout-cardPayment-section-priceSummary-table {
+    width: 100%;
+}
+.checkout-cardPayment-section-priceSumary-tbody {
+    text-align: left;
+}
+.checkout-cardPayment-section-priceSummary-rowName {
+    font-weight: normal;
+    color: #222222;
+    font-size: 16px;
+    line-height: 28px;
+    padding: 0px;
+}
+.checkout-cardPayment-section-priceSummary-rowcontent {
+    font-weight: 400;
+    font-size: 16px;
+    color: #222222;
+    line-height: 28px;
+    text-align: right;
+}
+
+.checkout-cardPayment-section-priceSummary-linebreak {
+    border-top: 1px solid rgba(34, 34, 34, 0.15);
+    margin-bottom: 12px;
+    margin-top: 6px;
+}
+.checkout-cardPayment-section-priceSummary-sumTittle {
+}
+.checkout-cardPayment-section-priceSummary-sumTittle-text {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+}
+.checkout-cardPayment-section-priceSummary-sumContent {
+    white-space: nowrap;
+    text-align: right;
+}
+.checkout-cardPayment-section-priceSummary-sumContent-text {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+}
+.checkout-cardPayment-section-priceSummary-submit {
+    padding-bottom: 12px;
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+}
+.cartListitem {
+    max-width: 66.66667%;
+    padding-right: 18px;
+    height: 100%;
+    flex-grow: 1;
+    flex-basis: 66.66667%;
+}

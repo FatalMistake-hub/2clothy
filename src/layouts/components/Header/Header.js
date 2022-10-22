@@ -84,12 +84,12 @@ function Header() {
             to: '/account/@:nhatquach',
             // to: '/account',
         },
-        {
-            icon: <FontAwesomeIcon icon={faGear} />,
-            title: 'Cài đặt',
-            to: '/settings',
-        },
         ...MENU_ITEMS,
+        {
+            // icon: <FontAwesomeIcon icon={faGear} />,
+            // title: 'Cài đặt',
+            // to: '/settings',
+        },
         {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Đăng xuất',

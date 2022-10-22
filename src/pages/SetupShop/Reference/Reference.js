@@ -1,6 +1,8 @@
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import { Cỉrcle } from '~/components/Icons';
+import config from '~/config';
 
 import styles from './Reference.module.scss';
 
@@ -36,7 +38,7 @@ function Reference() {
                 </div>
             </div>
             <div className={cx('reference-action')}>
-                <Button primary rounded large> Save and continue</Button>
+                <Link to ={config.routes.listings}><Button primary rounded large> Save and continue</Button></Link>
             </div>
         </div>
     </div> );

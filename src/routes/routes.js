@@ -26,6 +26,10 @@ import Billing from '~/pages/SetupShop/Billing';
 import Listings from '~/pages/SetupShop/Listings';
 import Reference from '~/pages/SetupShop/Reference';
 import NotFound from '~/pages/NotFound';
+import Shipping from '~/pages/CheckOut/Shipping';
+import Payment from '~/pages/CheckOut/Payment';
+import Review from '~/pages/CheckOut/Review';
+
 
 
 
@@ -49,6 +53,11 @@ const publicRoutes = [
     { path: config.routes.listings, component: Listings , layout: SetupShopLayout },
     { path: config.routes.reference, component: Reference , layout: SetupShopLayout },
 
+    //
+    // Checkout
+    { path: config.routes.shipping, component: Shipping , layout: SetupShopLayout },
+    { path: config.routes.payment, component: Payment , layout: SetupShopLayout },
+    { path: config.routes.review, component: Review , layout: SetupShopLayout },
     //
     { path: config.routes.shop, component: Shop },
     { path: config.routes.forgotpassword, component: ForgotPassword },

@@ -21,6 +21,11 @@ const routes = {
     listings: '/listings',
     billing: '/billing',
     //
+    //Checkout
+    shipping: '/shipping',
+    payment: '/payment',
+    review: '/review',
+    //
 
     shop: '/shop',
     favorites: '/favorites',

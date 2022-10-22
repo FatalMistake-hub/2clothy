@@ -254,7 +254,20 @@ export const Cỉrcle = ({ width = '1.8rem', height = '1.8rem', className }) => 
         width={width}
         height={height}
     >
-       <circle cx="9" cy="9" r="3" fill="#595959"></circle>
+        <circle cx="9" cy="9" r="3" fill="#595959"></circle>
     </svg>
 );
-
+export const Card = ({ width = '3.6rem', height = '3.6rem', className }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        focusable="false"
+        className={className}
+        width={width}
+        height={height}
+    >
+        <path d="M3,10v8a1,1,0,0,0,1,1H20a1,1,0,0,0,1-1V10H3Z"></path>
+        <path d="M21,8V6a1,1,0,0,0-1-1H4A1,1,0,0,0,3,6V8H21Z"></path>
+    </svg>
+);
