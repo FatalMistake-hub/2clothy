@@ -23,7 +23,6 @@ function App() {
                             return (
                                 <Route
                                     key={index}
-                                    exact
                                     path={route.path}
                                     element={
                                         <Layout>

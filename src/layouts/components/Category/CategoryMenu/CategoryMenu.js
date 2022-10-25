@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { useState, useEffect } from 'react';
 import styles from './CategoryMenu.module.scss';
-import * as searchServices from '~/services/searchService';
+import * as searchServices from '~/services/apiService';
 import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
@@ -23,7 +23,7 @@ function CategoryMenu({ id }) {
             {categoriesResult.map((result) => (
                 <div key={result.id} className={cx('menu-item')}>
                     {/* <Link to={`/${id}`}></Link> */}
-                    <Link to={`/`}>
+                    <Link to={`/${result.id}`}>
                         <p className={cx('menu-item-content')}>&#62; {result.name}</p>
                     </Link>
                 </div>

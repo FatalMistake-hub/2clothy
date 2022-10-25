@@ -50,6 +50,32 @@ export const categoriesById = async (id) => {
         console.log(error);
     }
 };
+export const productByCategory = async (id) => {
+    try {
+        const res = await httpRequest.get(`category/${id}/item`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const categoriesShop = async (id) => {
+    try {
+        const res = await httpRequest.get(`shop/${id}/category`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const allShopProducts = async (id) => {
+    try {
+        const res = await httpRequest.get(`shop/${id}/item`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
 export const post = async (keyword,data={}) => {
     try {
         const res = await httpRequest.post('post', {

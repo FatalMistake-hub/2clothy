@@ -198,6 +198,10 @@
     flex-direction: column;
 
 }
+.shop-home-listing-pagination{
+    margin-left: 274px;
+    padding-bottom:40px;
+}
 .shop-home-listing-header {
     display: flex;
     align-items: baseline;
@@ -212,6 +216,8 @@
     line-height: 32px;
 }
 .shop-home-listing-header-sort {
+    display: flex;
+    width: 25%;
 }
 .shop-home-listing-header-sort-button {
 }

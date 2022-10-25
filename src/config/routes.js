@@ -27,7 +27,7 @@ const routes = {
     review: '/review',
     //
 
-    shop: '/shop',
+    shop: '/shop/:id',
     favorites: '/favorites',
     forgotpassword: '/forgotpassword',
     resetpassword: '/resetpassword',

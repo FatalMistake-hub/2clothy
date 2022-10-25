@@ -115,9 +115,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('inner_header')}>
-                    <Link to={config.routes.home} className={cx('logo-link')}>
+                    <a href={config.routes.home} className={cx('logo-link')}>
                         <img src={images.logo} alt="" className={cx('logo')} />
-                    </Link>
+                    </a>
 
                     <div className={cx('inner-search')}>
                         <Search />

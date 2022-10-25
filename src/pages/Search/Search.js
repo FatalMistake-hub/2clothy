@@ -6,7 +6,7 @@ import Button from '~/components/Button';
 import PaginationNav from '~/components/PaginationNav/PaginationNav';
 import ProductItem from '~/components/ProductItem';
 
-import * as searchServices from '~/services/searchService';
+import * as searchServices from '~/services/apiService';
 import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);

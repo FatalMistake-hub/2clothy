@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Category.module.scss';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import * as searchServices from '~/services/searchService';
+import * as searchServices from '~/services/apiService';
 import CategoryMenu from './CategoryMenu';
 import { Link } from 'react-router-dom';
 

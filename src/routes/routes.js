@@ -37,7 +37,7 @@ import Review from '~/pages/CheckOut/Review';
 // Public routes
 const publicRoutes = [
     { path: config.routes.home, component:  Home},
-    { path: config.routes.homeid, component:  Homeid},
+    { path: config.routes.homeid, component:  Home},
     { path: config.routes.cart, component: Cart },
     { path: config.routes.category, component: Category },
     // Profile

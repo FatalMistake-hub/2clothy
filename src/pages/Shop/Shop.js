@@ -1,9 +1,14 @@
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 import { Carousel } from 'react-carousel-minimal';
+import { useParams } from 'react-router-dom';
 import Button from '~/components/Button';
 import { SearchIcon } from '~/components/Icons';
+import PaginationNav from '~/components/PaginationNav/PaginationNav';
 import ProductItem from '~/components/ProductItem';
+import SelectSort from '~/components/SelectSort';
 import Search from '~/layouts/components/Search';
+import * as searchServices from '~/services/apiService';
 
 import styles from './Shop.module.scss';
 
@@ -30,6 +35,32 @@ function Shop() {
             path: 'https://i.etsystatic.com/6087155/r/il/1453d1/2735501475/il_794xN.2735501475_350q.jpg',
         },
     ];
+
+    const { id } = useParams();
+    const [categoryResult, setCategoryResult] = useState();
+    const [itemResult, setItemResult] = useState();
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const dataItem = await searchServices.allShopProducts(id);
+            const dataCategory = await searchServices.categoriesShop(id);
+            setItemResult(dataItem[0].items);
+            setRawResult(dataItem[0].items);
+            setCategoryResult(dataCategory[0].categories);
+        };
+
+        fetchApi();
+    }, [id]);
+
+    const [rawItem, setRawResult] = useState([]);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(18);
+
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = itemResult?.slice(indexOfFirstRecord, indexOfLastRecord);
+    const nPages = Math.ceil(itemResult?.length / recordsPerPage);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('shop-panel')}>
@@ -72,9 +103,7 @@ function Shop() {
                                     </div>
                                     <div className={cx('shop-home-info-more')}>
                                         <div className={cx('shop-home-placement')}>
-                                            <span className={cx('shop-home-placement-text')}>
-                                                Georgia, United States
-                                            </span>
+                                            <span className={cx('shop-home-placement-text')}>Georgia, United States</span>
                                         </div>
                                         <div className={cx('shop-home-soldAndrate')}>
                                             <span className={cx('sold-content')}>51,592 sales</span>
@@ -107,7 +136,7 @@ function Shop() {
                     <div className={cx('shop-home-follow-box')}>
                         <div className={cx('shop-home-follow-button')}>
                             <Button rounded large>
-                                Theo dõi 
+                                Theo dõi
                             </Button>
                         </div>
                     </div>
@@ -119,17 +148,14 @@ function Shop() {
                                 <div className={cx('shop-home-announcement-title')}>
                                     <h2 className={cx('shop-home-announcement-title-text')}>Mô tả cửa hàng</h2>
                                 </div>
-                                <div className={cx('shop-home-announcement-update')}>
-                                    Cập nhật vào : Sep 14, 2022
-                                </div>
+                                <div className={cx('shop-home-announcement-update')}>Cập nhật vào : Sep 14, 2022</div>
                             </div>
                             <div className={cx('shop-home-announcement-content')}>
                                 <p className={cx('announcement-content-short')}>
                                     <span className={cx('announcement-content-full')}>
-                                        Hey guys! If you are ordering a distressed or bleached flannel, please make sure
-                                        to read the entire listing description and instructions so that your order turns
-                                        out the way you want it. Order 1 size up from your normal t-shirt size to get an
-                                        
+                                        Hey guys! If you are ordering a distressed or bleached flannel, please make sure to read the entire
+                                        listing description and instructions so that your order turns out the way you want it. Order 1 size
+                                        up from your normal t-shirt size to get an
                                     </span>
                                 </p>
                                 <a href="" className={cx('shop-home-announcement-toggle')}>
@@ -142,11 +168,13 @@ function Shop() {
                                 <div className={cx('shop-home-listing-header-title')}>
                                     <h2>Sản phẩm</h2>
                                 </div>
-                                <div className={cx('shop-home-listing-header-sort')}>
-                                    <Button rounded large className={cx('shop-home-listing-header-sort-button')}>
+                                {/* <div className={cx('shop-home-listing-header-sort')}> */}
+                                {/* <Button rounded large className={cx('shop-home-listing-header-sort-button')}>
                                         Sort Custom
-                                    </Button>
-                                </div>
+                                    </Button> */}
+                                <SelectSort rawItem={rawItem} itemResult={itemResult} setItemResult={setItemResult} />
+
+                                {/* </div> */}
                             </div>
                             <div className={cx('shop-home-listing-body')}>
                                 <div className={cx('shop-home-listing-category')}>
@@ -164,46 +192,28 @@ function Shop() {
                                                 <span className={cx('category-container-list-item-text')}>ALL</span>
                                                 <span className={cx('category-container-list-item-text')}>70</span>
                                             </button>
-                                            <button className={cx('category-container-list-item')}>
-                                                <span className={cx('category-container-list-item-text')}>
-                                                    SWEATERS
-                                                </span>
-                                                <span className={cx('category-container-list-item-text')}>15</span>
-                                            </button>
-                                            <button className={cx('category-container-list-item')}>
-                                                <span className={cx('category-container-list-item-text')}>ALL</span>
-                                                <span className={cx('category-container-list-item-text')}>70</span>
-                                            </button>
-                                            <button className={cx('category-container-list-item')}>
-                                                <span className={cx('category-container-list-item-text')}>
-                                                    SWEATERS
-                                                </span>
-                                                <span className={cx('category-container-list-item-text')}>15</span>
-                                            </button>
-                                            <button className={cx('category-container-list-item')}>
-                                                <span className={cx('category-container-list-item-text')}>ALL</span>
-                                                <span className={cx('category-container-list-item-text')}>70</span>
-                                            </button>
-                                            <button className={cx('category-container-list-item')}>
-                                                <span className={cx('category-container-list-item-text')}>
-                                                    SWEATERS
-                                                </span>
-                                                <span className={cx('category-container-list-item-text')}>15</span>
-                                            </button>
+                                            {categoryResult?.map((categoryResult) => (
+                                                <button key={categoryResult.id} className={cx('category-container-list-item')}>
+                                                    <span className={cx('category-container-list-item-text')}>{categoryResult.name}</span>
+                                                    <span className={cx('category-container-list-item-text')}>
+                                                        {categoryResult.quantity}
+                                                    </span>
+                                                </button>
+                                            ))}
                                         </ul>
                                     </div>
                                 </div>
                                 <div className={cx('shop-home-listing-container')}>
-                                    {/* <ProductItem />
-                                    <ProductItem />
-                                    <ProductItem />
-                                    <ProductItem />
-                                    <ProductItem />
-                                    <ProductItem />
-                                    <ProductItem />
-                                    <ProductItem /> */}
+                                    {currentRecords?.map((result) => (
+                                        <ProductItem key={result.id} data={result} />
+                                    ))}
                                 </div>
                             </div>
+                                    <div className={cx('shop-home-listing-pagination')}>
+                                        {nPages && currentPage && (
+                                            <PaginationNav nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                                        )}
+                                    </div>
                         </div>
                     </div>
                 </div>
@@ -236,25 +246,27 @@ function Shop() {
                                             <a href="" className={cx('review-item-info-link')}>
                                                 Susan
                                             </a>
-                                             on Sep 26, 2022
+                                            on Sep 26, 2022
                                         </p>
                                     </div>
                                     <div className={cx('review-item-rate')}></div>
                                     <div className={cx('review-item-comment')}>
                                         <p className={cx('review-item-comment-text')}>
-                                            I ordered 2 shirts and absolutely Love the shirts I received. I ordered a
-                                            sun bleach shirt, in a size medium with paint and distressing/holes. So, so
-                                            cute and soft, has that worn feel to it, cozy!! The medium fits like and
-                                            oversized shirt without being too big and baggy. I also got an ombré shirt,
-                                            in a size small again so soft, has that worn feel to it and cozy!! The small
-                                            fits, fitted. More than met my expectations. Will be purchasing again
-                                            soon!!!
+                                            I ordered 2 shirts and absolutely Love the shirts I received. I ordered a sun bleach shirt, in a
+                                            size medium with paint and distressing/holes. So, so cute and soft, has that worn feel to it,
+                                            cozy!! The medium fits like and oversized shirt without being too big and baggy. I also got an
+                                            ombré shirt, in a size small again so soft, has that worn feel to it and cozy!! The small fits,
+                                            fitted. More than met my expectations. Will be purchasing again soon!!!
                                         </p>
                                     </div>
                                     <div className={cx('review-item-product')}>
                                         <div className={cx('review-item-product-box')}>
                                             <a href="" className={cx('review-item-product-link')}>
-                                                <img src="https://i.etsystatic.com/1457967763/r/il/cb1066/1457967763/il_170x135.1457967763_nl2u.jpg" alt=""className={cx('review-item-product-image')} />
+                                                <img
+                                                    src="https://i.etsystatic.com/1457967763/r/il/cb1066/1457967763/il_170x135.1457967763_nl2u.jpg"
+                                                    alt=""
+                                                    className={cx('review-item-product-image')}
+                                                />
                                                 <div className={cx('review-item-product-name')}>
                                                     <p>Half Bleached Flannel Shirt Custom Hand Dyed Flannels</p>
                                                 </div>
@@ -277,25 +289,27 @@ function Shop() {
                                             <a href="" className={cx('review-item-info-link')}>
                                                 Susan
                                             </a>
-                                             on Sep 26, 2022
+                                            on Sep 26, 2022
                                         </p>
                                     </div>
                                     <div className={cx('review-item-rate')}></div>
                                     <div className={cx('review-item-comment')}>
                                         <p className={cx('review-item-comment-text')}>
-                                            I ordered 2 shirts and absolutely Love the shirts I received. I ordered a
-                                            sun bleach shirt, in a size medium with paint and distressing/holes. So, so
-                                            cute and soft, has that worn feel to it, cozy!! The medium fits like and
-                                            oversized shirt without being too big and baggy. I also got an ombré shirt,
-                                            in a size small again so soft, has that worn feel to it and cozy!! The small
-                                            fits, fitted. More than met my expectations. Will be purchasing again
-                                            soon!!!
+                                            I ordered 2 shirts and absolutely Love the shirts I received. I ordered a sun bleach shirt, in a
+                                            size medium with paint and distressing/holes. So, so cute and soft, has that worn feel to it,
+                                            cozy!! The medium fits like and oversized shirt without being too big and baggy. I also got an
+                                            ombré shirt, in a size small again so soft, has that worn feel to it and cozy!! The small fits,
+                                            fitted. More than met my expectations. Will be purchasing again soon!!!
                                         </p>
                                     </div>
                                     <div className={cx('review-item-product')}>
                                         <div className={cx('review-item-product-box')}>
                                             <a href="" className={cx('review-item-product-link')}>
-                                                <img src="https://i.etsystatic.com/1457967763/r/il/cb1066/1457967763/il_170x135.1457967763_nl2u.jpg" alt=""className={cx('review-item-product-image')} />
+                                                <img
+                                                    src="https://i.etsystatic.com/1457967763/r/il/cb1066/1457967763/il_170x135.1457967763_nl2u.jpg"
+                                                    alt=""
+                                                    className={cx('review-item-product-image')}
+                                                />
                                                 <div className={cx('review-item-product-name')}>
                                                     <p>Half Bleached Flannel Shirt Custom Hand Dyed Flannels</p>
                                                 </div>

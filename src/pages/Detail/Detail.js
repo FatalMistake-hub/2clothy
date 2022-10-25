@@ -7,7 +7,7 @@ import ProductItem from '~/components/ProductItem';
 import { Link, useParams } from 'react-router-dom';
 import config from '~/config';
 import styles from './Detail.module.scss';
-import * as searchServices from '~/services/searchService';
+import * as searchServices from '~/services/apiService';
 
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -104,12 +104,11 @@ function Detail() {
                     <div className={cx('ordercard-listing')}>
                         <div className={cx('odercard-listing-header')}>
                             <div className={cx('follow-shop')}>
-                                <Link to={config.routes.shop} className={cx('follow-shop-content')}>
-                                    {/* TheBeardedBee */}
+                                <Link to={`/shop/${detailResult?.shopId}`} className={cx('follow-shop-content')}>
                                     {detailResult ? detailResult.shopName : ''}
                                 </Link>
                                 <Button rounded outline small>
-                                Theo dõi
+                                    Theo dõi
                                 </Button>
                             </div>
                             <div className={cx('rateAndsold')}>
@@ -132,7 +131,6 @@ function Detail() {
                                 <div className={cx('buybox-data')}>
                                     <div className={cx('buybox-data-price')}>
                                         <p className={cx('buybox-data-price-content')}>
-                                            {' '}
                                             {detailResult ? detailResult.price.toLocaleString('es-ES') : ''}₫
                                         </p>
                                     </div>
@@ -244,7 +242,7 @@ function Detail() {
                                 <p className={cx('shop-detail-name')}>Sara</p>
                                 <p className={cx('shop-detail-owner')}>
                                     Chủ sở hữu{' '}
-                                    <Link to={config.routes.shop} className={cx('shop-detail-owner-link')}>
+                                    <Link to={`/shop/${detailResult?.shopId}`} className={cx('shop-detail-owner-link')}>
                                         {detailResult ? detailResult.shopName : ''}
                                     </Link>
                                 </p>
@@ -262,11 +260,11 @@ function Detail() {
                         <div className={cx('review-listing')}>
                             <div className={cx('review-listing-nav')}>
                                 <button className={cx('review-listing-nav-button')}>
-                                Đánh giá của sản phẩm
+                                    Đánh giá của sản phẩm
                                     <span className={cx('review-listing-nav-button-content')}>1,051</span>
                                 </button>
                                 <button className={cx('review-listing-nav-button')}>
-                                Đánh giá của cửa hàng
+                                    Đánh giá của cửa hàng
                                     <span className={cx('review-listing-nav-button-content')}>7,973</span>
                                 </button>
 
@@ -326,7 +324,7 @@ function Detail() {
                         </div>
                         <Button rounded>
                             <a href="" className={cx('other-info-more')}>
-                            Xem thêm
+                                Xem thêm
                             </a>
                         </Button>
                     </div>

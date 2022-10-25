@@ -13,9 +13,8 @@
     flex-direction: column;
 }
 .category {
-
     min-height: 100px;
-    
+
     padding-bottom: 18px;
     padding-left: 12px;
     padding-right: 12px;
@@ -30,7 +29,7 @@
     width: 100%;
     position: absolute;
     transform: scale(10000, 2);
-    transform-origin:bottom;
+    transform-origin: bottom;
     z-index: -1;
 }
 .category-father {
@@ -41,13 +40,11 @@
     line-height: 36px;
     margin-bottom: 2px;
     // font-family: "Guardian-EgypTT";
-
-    
 }
 .pathAnddecription {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 30%;
     // padding: 0 12px 18px 12px;
     margin-top: -65px;
     padding-top: 18px;
@@ -67,16 +64,27 @@
     line-height: 19.6px;
     margin: 0 6px 0 0;
     list-style-type: none;
+
 }
 .path-item {
     font-size: 14px;
     line-height: 19.6px;
     text-align: left;
     margin-right: 4px;
+    text-decoration: underline;
+
+    
+}
+.path-item-text {
+    text-align: center;
+    flex-wrap: nowrap;
+    
+}
+.path-breadcrumb {
+    margin-right: 4px;
 }
 .path-item-all {
     text-decoration: underline;
-
 }
 .category {
     display: flex;
@@ -107,8 +115,9 @@
     text-align: center;
     box-sizing: inherit;
     border-radius: 50%;
-    // margin-bottom: 6px;
+    height: 120px;
     width: 120px;
+    object-fit:cover;
 }
 .name {
     padding-top: 6px;
@@ -116,7 +125,6 @@
     font-weight: 700;
     line-height: 18px;
     letter-spacing: 0.1px;
-    
 }
 .body {
     margin-top: 30px;

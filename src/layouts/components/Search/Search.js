@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 
-import * as searchServices from '~/services/searchService';
+import * as searchServices from '~/services/apiService';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
@@ -97,7 +97,7 @@ function Search() {
                             </button>
                         )}
                         {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-    
+
                         <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                             <Link to={`/search/${searchValue}`}>
                                 <SearchIcon />
