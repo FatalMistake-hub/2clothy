@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useEffect, useState ,useRef} from 'react';
 import { Carousel } from 'react-carousel-minimal';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import Button from '~/components/Button';
 import { SearchIcon } from '~/components/Icons';
 import PaginationNav from '~/components/PaginationNav/PaginationNav';
@@ -39,18 +39,37 @@ function Shop() {
     const { id } = useParams();
     const [categoryResult, setCategoryResult] = useState();
     const [itemResult, setItemResult] = useState();
+    const [isactive,setIsActive] = useState();
+    const ref = useRef()
 
+    const fetchApi = async () => {
+        const dataItem = await searchServices.allShopProducts(id);
+        const dataCategory = await searchServices.categoriesShop(id);
+        ref.current=dataItem[0].items
+        setItemResult(dataItem[0].items);
+        setRawResult(dataItem[0].items);
+        setCategoryResult(dataCategory[0].categories);
+    };
     useEffect(() => {
-        const fetchApi = async () => {
-            const dataItem = await searchServices.allShopProducts(id);
-            const dataCategory = await searchServices.categoriesShop(id);
-            setItemResult(dataItem[0].items);
-            setRawResult(dataItem[0].items);
-            setCategoryResult(dataCategory[0].categories);
-        };
 
         fetchApi();
     }, [id]);
+
+
+    const handleCategory =  async (id, i) => {
+        const itemCategory = await searchServices.productByCategory(id);
+        setItemResult(itemCategory.items)
+        setRawResult(itemCategory.items)
+        setIsActive(i)
+        }
+    const handleAll =   () => {
+        console.log(ref)
+        setItemResult(ref.current)
+        setRawResult(itemResult)
+        setIsActive('all')
+        }
+    //     fetchApi()
+    // }
 
     const [rawItem, setRawResult] = useState([]);
 
@@ -68,7 +87,7 @@ function Shop() {
                     data={dataImage}
                     time={3000}
                     width="100%"
-                    height="475px"
+                    height="45vh"
                     // radius="10px"
                     slideNumber={false}
                     captionPosition="bottom"
@@ -158,15 +177,15 @@ function Shop() {
                                         up from your normal t-shirt size to get an
                                     </span>
                                 </p>
-                                <a href="" className={cx('shop-home-announcement-toggle')}>
+                                {/* <a href="" className={cx('shop-home-announcement-toggle')}>
                                     Read more
-                                </a>
+                                </a> */}
                             </div>
                         </div>
                         <div className={cx('shop-home-listing')}>
                             <div className={cx('shop-home-listing-header')}>
                                 <div className={cx('shop-home-listing-header-title')}>
-                                    <h2>Sản phẩm</h2>
+                                    <h2>Danh mục cửa hàng</h2>
                                 </div>
                                 {/* <div className={cx('shop-home-listing-header-sort')}> */}
                                 {/* <Button rounded large className={cx('shop-home-listing-header-sort-button')}>
@@ -178,25 +197,25 @@ function Shop() {
                             </div>
                             <div className={cx('shop-home-listing-body')}>
                                 <div className={cx('shop-home-listing-category')}>
-                                    <div className={cx('shop-home-listing-category-search')}>
+                                    {/* <div className={cx('shop-home-listing-category-search')}>
                                         <input type="text" className={cx('shop-home-search-input')} />
                                         <button className={cx('shop-home-search-button')}>
                                             <span className={cx('shop-home-search-button-icon')}>
                                                 <SearchIcon />
                                             </span>
                                         </button>
-                                    </div>
+                                    </div> */}
                                     <div className={cx('shop-home-listing-category-container')}>
                                         <ul className={cx('category-container-list')}>
-                                            <button className={cx('category-container-list-item')}>
+                                            <button className={cx('category-container-list-item',`${ 'all'==isactive ?"active":""}`)} onClick={handleAll}>
                                                 <span className={cx('category-container-list-item-text')}>ALL</span>
-                                                <span className={cx('category-container-list-item-text')}>70</span>
+                                                <span className={cx('category-container-list-item-text')}>{ref.current?.length}</span>
                                             </button>
-                                            {categoryResult?.map((categoryResult) => (
-                                                <button key={categoryResult.id} className={cx('category-container-list-item')}>
+                                            {categoryResult?.map((categoryResult,i) => (
+                                                <button  key={categoryResult.id} className={cx('category-container-list-item',`${ i==isactive ?"active":""}`)} onClick={()=>handleCategory(categoryResult.id,i)}>
                                                     <span className={cx('category-container-list-item-text')}>{categoryResult.name}</span>
                                                     <span className={cx('category-container-list-item-text')}>
-                                                        {categoryResult.quantity}
+                                                        {categoryResult.items.length}
                                                     </span>
                                                 </button>
                                             ))}

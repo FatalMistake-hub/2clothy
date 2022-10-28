@@ -5,6 +5,7 @@ import {
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
+    faFileInvoice,
     faGear,
     faKeyboard,
     faSignOut,
@@ -33,6 +34,11 @@ const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
     {
+        icon: <FontAwesomeIcon icon={faFileInvoice}  />,
+        title: 'Hoá đơn',
+        to: '/purchase',
+    },
+    {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'Ngôn ngữ',
         children: {
@@ -50,11 +56,6 @@ const MENU_ITEMS = [
                 },
             ],
         },
-    },
-    {
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
-        title: 'Hoá đơn',
-        to: '/purchase',
     },
 ];
 

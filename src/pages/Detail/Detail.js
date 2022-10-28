@@ -38,7 +38,7 @@ function Detail() {
     const handleAddtoCart = () => {
         dispatch(
             CartSlice.actions.addProductItem({
-                idShop: '',
+                idShop: detailResult.shopId,
                 shopName: detailResult.shopName,
                 shopImage: '',
                 productItem: [

@@ -22,7 +22,7 @@ export default createSlice({
     reducers: {
         // IMMER
         addProductItem: (state, action) => {
-            const shopItem = state.find((item) => item.shopName === action.payload.shopName);
+            const shopItem = state.find((item) => item.idShop === action.payload.idShop);
             if (shopItem) {
                 const productItem = shopItem.productItem.find((productItem) => productItem.id === action.payload.productItem[0].id);
                 if (productItem) {
@@ -36,7 +36,7 @@ export default createSlice({
         },
         removeProductItem: (state, action) => {
             
-            const shopItem = state.find((item) => item.shopName === action.payload.idShop);
+            const shopItem = state.find((item) => item.idShop === action.payload.idShop);
             const productItem = shopItem.productItem.find((productItem) => productItem.id === action.payload.idProduct);
             if (productItem) {
                 shopItem.productItem.splice(
@@ -46,7 +46,7 @@ export default createSlice({
                 if(shopItem.productItem == 0 )
                 {
                     state.splice(
-                        state.findIndex((arrow) => arrow.shopName === action.payload.idShop),
+                        state.findIndex((arrow) => arrow.idShop === action.payload.idShop),
                         1,
                     );
                 }
@@ -55,7 +55,7 @@ export default createSlice({
             console.log('removeItem', state);
         },
         updateQuantityItem:(state, action)=>{
-            const shopItem = state.find((item) => item.shopName === action.payload.shopName);
+            const shopItem = state.find((item) => item.idShop === action.payload.idShop);
             if (shopItem) {
                 const productItem = shopItem.productItem.find((productItem) => productItem.id === action.payload.productId);
                 if (productItem) {

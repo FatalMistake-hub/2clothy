@@ -18,7 +18,7 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
         dispatch(
             CartSlice.actions.updateQuantityItem({
                 quantity: parseInt(e.target.value),
-                shopName: shopName,
+                idShop: idShop,
                 productId: id,
             }),
         );
@@ -38,9 +38,9 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                     </a>
                 </div>
                 <div className={cx('checkout-item-shop-name')}>
-                    <a href="" className={cx('checkout-item-shop-linkName')}>
+                    <Link to={`/shop/${idShop}`} className={cx('checkout-item-shop-linkName')}>
                         {shopName}
-                    </a>
+                    </Link>
                 </div>
             </div>
             <ul className={cx('checkout-item-productList')}>
@@ -83,7 +83,7 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                                                     dispatch(
                                                         addCartSlice.actions.removeProductItem({
                                                             idProduct: productItem.id,
-                                                            idShop: shopName,
+                                                            idShop: idShop,
                                                         }),
                                                     )
                                                 }
