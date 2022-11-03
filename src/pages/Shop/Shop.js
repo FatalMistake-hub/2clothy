@@ -39,7 +39,7 @@ function Shop() {
     const { id } = useParams();
     const [categoryResult, setCategoryResult] = useState();
     const [itemResult, setItemResult] = useState();
-    const [isactive,setIsActive] = useState();
+    const [isactive,setIsActive] = useState('all');
     const ref = useRef()
 
     const fetchApi = async () => {

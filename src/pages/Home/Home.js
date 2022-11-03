@@ -12,7 +12,13 @@ import styles from './Home.module.scss';
 const cx = classNames.bind(styles);
 function Home() {
     const { id } = useParams();
-
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
     const [itemResult, setItemResult] = useState([]);
     const [categoriesResult, setCategoriesResult] = useState([]);
     const [breadcrumb, setBreadcrumb] = useState([]);
@@ -32,8 +38,9 @@ function Home() {
     useEffect(() => {
         const fetchApi = async () => {
             const result = await searchServices.getAllItem();
-            setItemResult(result);
-            setRawResult(result);
+            const data= await shuffleArray(result)
+            setItemResult(data);
+            setRawResult(data);
             const resultCategory = await searchServices.allCategories();
             setCategoriesResult(resultCategory);
         };

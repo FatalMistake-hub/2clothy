@@ -21,7 +21,7 @@ function MenuItem({ data, onClick }) {
     const navigate = useNavigate();
     const currentUser = user?.login.currentUser;
     const accessToken = currentUser?.accessToken;
-
+    
     const handleLogOut = () => {
         let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.logOutSuccess);
         logOutUser(dispatch, navigate, '1', accessToken, axiosJWT);

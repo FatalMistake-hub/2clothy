@@ -1,10 +1,15 @@
 import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRoutes } from '~/routes';
+import { privateRoutes, publicRoutes } from '~/routes';
 import DefaultLayout from '~/layouts';
 import ScrollToTop from './ScrollToTop';
+import { useSelector } from 'react-redux';
+import { authRemainingSelector } from './redux/selector';
 
 function App() {
+    const user = useSelector(authRemainingSelector);
+    const currentUser = user?.login.currentUser;
+
     return (
         <Router>
             <div className="App">
@@ -13,13 +18,13 @@ function App() {
                         {publicRoutes.map((route, index) => {
                             const Page = route.component;
                             let Layout = DefaultLayout;
-    
+
                             if (route.layout) {
                                 Layout = route.layout;
                             } else if (route.layout === null) {
                                 Layout = Fragment;
                             }
-    
+
                             return (
                                 <Route
                                     key={index}
@@ -32,6 +37,29 @@ function App() {
                                 />
                             );
                         })}
+                        {currentUser &&
+                            privateRoutes.map((route, index) => {
+                                const Page = route.component;
+                                let Layout = DefaultLayout;
+
+                                if (route.layout) {
+                                    Layout = route.layout;
+                                } else if (route.layout === null) {
+                                    Layout = Fragment;
+                                }
+
+                                return (
+                                    <Route
+                                        key={index}
+                                        path={route.path}
+                                        element={
+                                            <Layout>
+                                                <Page />
+                                            </Layout>
+                                        }
+                                    />
+                                );
+                            })}
                     </Routes>
                 </ScrollToTop>
             </div>

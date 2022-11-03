@@ -29,12 +29,11 @@ import PopupForm from '../../../components/PopupForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { authRemainingSelector, cartsRemainingSelector } from '~/redux/selector';
 
-
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
     {
-        icon: <FontAwesomeIcon icon={faFileInvoice}  />,
+        icon: <FontAwesomeIcon icon={faFileInvoice} />,
         title: 'Hoá đơn',
         to: '/purchase',
     },
@@ -145,17 +144,24 @@ function Header() {
                                         </span>
                                     </Link>
                                 </Tippy>
+                                <Menu items={userMenu} onChange={handleMenuChange}>
+                                    <Image
+                                        className={cx('user-avatar')}
+                                        src="https://img2.etsystatic.com/site-assets/images/global-nav/no-user-avatar.svg"
+                                        alt="Nguyen Van A"
+                                    />
+                                </Menu>
                             </>
                         ) : (
                             <>
-                                <Tippy delay={[0, 50]} content="Giỏ hàng" placement="bottom">
+                                {/* <Tippy delay={[0, 50]} content="Giỏ hàng" placement="bottom">
                                     <Link className={cx('action-btn')} to={config.routes.cart}>
                                         <CartIcon />
                                         <span className={cx('badge')}>
                                             <p>{getTotalQuantity() || 0}</p>
                                         </span>
                                     </Link>
-                                </Tippy>
+                                </Tippy> */}
                                 <Button primary onClick={togglePopup} className={cx('sign-btn')}>
                                     Đăng Nhập
                                 </Button>
@@ -164,7 +170,7 @@ function Header() {
                         )}
 
                         {/* <Menu items={currentUser?.accessToken ?MENU_ITEMS  : userMenu  } onChange={handleMenuChange}> */}
-                        <Menu items={userMenu} onChange={handleMenuChange}>
+                        {/* <Menu items={userMenu} onChange={handleMenuChange}>
                             {currentUser ? (
                                 <Image
                                     className={cx('user-avatar')}
@@ -175,8 +181,9 @@ function Header() {
                                 <button className={cx('more-btn')}>
                                     <FontAwesomeIcon icon={faEllipsisVertical} />
                                 </button>
-                            )}
-                        </Menu>
+                            )
+                            }
+                        </Menu> */}
                     </div>
                 </div>
                 <div className={cx('inner_category')}>
