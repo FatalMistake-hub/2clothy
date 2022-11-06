@@ -32,18 +32,18 @@ function CreditCards() {
                                 <li className={cx('card-item-content-infoItem')}>
                                     <label className={cx('card-item-content-infoItem-porperties')}>Địa chỉ thanh toán</label>
                                     <div className={cx('card-item-content-infoItem-address')}>
-                                        <span class="first-line" className={cx('card-item-content-infoItem-address-info')}>
+                                        <span  className={cx('card-item-content-infoItem-address-info')}>
                                             64 Ong Ich Duong, Cam Le
                                         </span>
 
-                                        <span class="city" className={cx('card-item-content-infoItem-address-info')}>
+                                        <span  className={cx('card-item-content-infoItem-address-info')}>
                                             DA NANG
                                         </span>
 
-                                        <span class="state" className={cx('card-item-content-infoItem-address-info')}>
+                                        <span  className={cx('card-item-content-infoItem-address-info')}>
                                             Da Nang 550000
                                         </span>
-                                        <span class="zip" className={cx('card-item-content-infoItem-address-info')}>
+                                        <span  className={cx('card-item-content-infoItem-address-info')}>
                                              Vietnam
                                         </span>
 

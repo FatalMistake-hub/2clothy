@@ -55,7 +55,7 @@ function Billing() {
                             </div>
                             <div className={cx('billing-notice-body')}>
                                 <p className={cx('billing-notice-body-content')}>
-                                    We will add <strong class="text-green">4,762₫</strong>* to your Payment account for the listing in your
+                                    We will add <strong >4,762₫</strong>* to your Payment account for the listing in your
                                     shop, which will be due on the first day of the next calendar month.
                                 </p>
                             </div>

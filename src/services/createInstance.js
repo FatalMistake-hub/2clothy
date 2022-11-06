@@ -11,11 +11,12 @@ const refreshToken = async (token) => {
         console.log('Refresh');
         return res.data;
     } catch (err) {
-        console.log(err);
+        console.log('refresh', err);
     }
 };
 
 export const createAxios = (user, dispatch, stateSuccess) => {
+    console.log('createÍntanee');
     const newInstance = axios.create({ baseURL: process.env.REACT_APP_BASE_URL });
     newInstance.interceptors.request.use(
         async (config) => {
@@ -30,7 +31,9 @@ export const createAxios = (user, dispatch, stateSuccess) => {
                     accessToken: data.accessToken,
                     refreshToken: data.refreshToken,
                 };
+
                 dispatch(stateSuccess(refreshUser));
+
                 config.headers['Authorization'] = 'Bearer ' + data.accessToken;
             }
             return config;

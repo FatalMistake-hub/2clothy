@@ -28,7 +28,7 @@ function Detail() {
 
         fetchApi();
     }, [id]);
-    console.log(id);
+
 
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(1);
@@ -38,15 +38,15 @@ function Detail() {
     const handleAddtoCart = () => {
         dispatch(
             CartSlice.actions.addProductItem({
-                idShop: detailResult.shopId,
+                shopId: detailResult.shopId,
                 shopName: detailResult.shopName,
                 shopImage: '',
-                productItem: [
+                orderDetails: [
                     {
-                        id: detailResult.id,
+                        itemId: detailResult.id,
                         itemName: detailResult.name,
                         size: detailResult.size,
-                        productImage: detailResult.images[0].path,
+                        itemImg: detailResult.images[0].path,
                         quantity: parseInt(quantity),
                         // quantity: detailResult.quantity / 100,
                         price: detailResult.price,

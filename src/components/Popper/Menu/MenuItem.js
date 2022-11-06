@@ -7,7 +7,7 @@ import { authRemainingSelector, cartsRemainingSelector } from '~/redux/selector'
 // import { logOutUser } from '~/services/authService';
 import { createAxios } from '~/services/createInstance';
 import AuthSlice from '~/redux/AuthSlice';
-import { logOutUser } from '~/services/authService';
+import { addCart, logOutUser, updateCart } from '~/services/authService';
 import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
@@ -18,13 +18,27 @@ function MenuItem({ data, onClick }) {
     });
     const dispatch = useDispatch();
     const user = useSelector(authRemainingSelector);
+    const cartList = useSelector(cartsRemainingSelector);
     const navigate = useNavigate();
     const currentUser = user?.login.currentUser;
     const accessToken = currentUser?.accessToken;
-    
+
+    const dataUpdate = { OrderDetails: [] };
+    cartList.map((item) => {
+        let orderDetails = {};
+        item.orderDetails.map((product) => {
+            orderDetails = {
+                ItemId: product.itemId,
+                Quantity: product.quantity,
+            };
+            dataUpdate.OrderDetails.push(orderDetails);
+        });
+    });
+
     const handleLogOut = () => {
         let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.logOutSuccess);
-        logOutUser(dispatch, navigate, '1', accessToken, axiosJWT);
+        updateCart(dataUpdate, accessToken, axiosJWT);
+        logOutUser(dataUpdate, dispatch, navigate, '1', accessToken, axiosJWT);
     };
     return (
         <>

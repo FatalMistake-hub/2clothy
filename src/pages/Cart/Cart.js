@@ -1,9 +1,11 @@
 import classNames from 'classnames/bind';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '~/components/Button';
 import CartItem from '~/components/CartItem/CartItem';
-import { Visa } from '~/components/Icons';
-import { cartsRemainingSelector } from '~/redux/selector';
+
+import { authRemainingSelector, cartsRemainingSelector } from '~/redux/selector';
+
 
 import styles from './Cart.module.scss';
 // import cartSlice from './cartSlice';
@@ -15,7 +17,7 @@ function Cart() {
         let totalQuantity = 0;
         let totalPrice = 0;
         cartList.forEach((item) => {
-            item.productItem.forEach((product) => {
+            item.orderDetails.forEach((product) => {
                 totalQuantity += product.quantity;
                 totalPrice += product.price * product.quantity;
             });
@@ -24,7 +26,10 @@ function Cart() {
         });
         return { totalPrice, totalQuantity };
     };
-    // console.log(cartList);
+    
+    const handlePaymnet = () => {
+        // dispatch(CartSlice.actions.handleCart([]));
+    };
     return (
         <>
             {cartList.length ? (
@@ -45,90 +50,88 @@ function Cart() {
                         <div className={cx('checkout-body')}>
                             <div className={cx('checkout-body-box')}>
                                 <div className={cx('checkout-body-cartListitem')}>
-                                    {cartList.map((item) => (
+                                    {cartList.map((item, i) => (
                                         <CartItem
-                                            key={item.id}
-                                            idShop={item.idShop}
+                                            key={i}
+                                            shopId={item.shopId}
                                             shopName={item.shopName}
                                             shopImage={item.shopImage}
-                                            productItem={item.productItem}
+                                            orderDetails={item.orderDetails}
                                         />
                                     ))}
                                 </div>
                                 <div className={cx('checkout-body-cartPayment')}>
                                     <div className={cx('checkout-body-cartPayment-box')}>
-                                        <form action="" className={cx('checkout-form')}>
-                                            <div className={cx('checkout-cardPayment-section')}>
-                                                <fieldset className={cx('checkout-cardPayment-section-field')}>
-                                                    <legend className={cx('checkout-cardPayment-section-tittle')}>
-                                                        Hình thức thanh toán
-                                                    </legend>
-                                                    <ul className={cx('checkout-cardPayment-section-chanelList')}>
-                                                        <li className={cx('checkout-cardPayment-section-channelItem')}>
-                                                            <input
-                                                                type="radio"
-                                                                id="radio"
-                                                                className={cx('checkout-cardPayment-section-channelItem-radio')}
-                                                            />
-                                                            <label
-                                                                htmlFor="radio"
-                                                                className={cx('checkout-cardPayment-section-channelItem-iconList')}
-                                                            >
-                                                                <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
-                                                                    <img
-                                                                        src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
-                                                                        alt=""
-                                                                        className={cx('checkout-cardPayment-section-channelItem-icon-data')}
-                                                                    />
-                                                                </span>
-                                                                {/* <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
+                                        {/* <form action="" className={cx('checkout-form')}> */}
+                                        <div className={cx('checkout-cardPayment-section')}>
+                                            <fieldset className={cx('checkout-cardPayment-section-field')}>
+                                                <legend className={cx('checkout-cardPayment-section-tittle')}>Hình thức thanh toán</legend>
+                                                <ul className={cx('checkout-cardPayment-section-chanelList')}>
+                                                    <li className={cx('checkout-cardPayment-section-channelItem')}>
+                                                        <input
+                                                            type="radio"
+                                                            id="radio"
+                                                            className={cx('checkout-cardPayment-section-channelItem-radio')}
+                                                        />
+                                                        <label
+                                                            htmlFor="radio"
+                                                            className={cx('checkout-cardPayment-section-channelItem-iconList')}
+                                                        >
+                                                            <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
+                                                                <img
+                                                                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
+                                                                    alt=""
+                                                                    className={cx('checkout-cardPayment-section-channelItem-icon-data')}
+                                                                />
+                                                            </span>
+                                                            {/* <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                                     <img
                                                                         src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-zalo-pay.svg"
                                                                         alt=""
                                                                         className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                                     />
                                                                 </span> */}
-                                                            </label>
-                                                        </li>
-                                                        <li className={cx('checkout-cardPayment-section-channelItem')}>
-                                                            <input
-                                                                type="radio"
-                                                                id="radio"
-                                                                className={cx('checkout-cardPayment-section-channelItem-radio')}
-                                                            />
-                                                            <label
-                                                                htmlFor="radio"
-                                                                className={cx('checkout-cardPayment-section-channelItem-iconList')}
-                                                            >
-                                                                <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
-                                                                    <img
-                                                                        src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-credit.svg"
-                                                                        alt=""
-                                                                        className={cx('checkout-cardPayment-section-channelItem-icon-data')}
-                                                                    />
-                                                                </span>
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                </fieldset>
-                                                <div className={cx('checkout-cardPayment-section-priceSummary')}>
-                                                    <table className={cx('checkout-cardPayment-section-priceSummary-table')}>
-                                                        <tbody className={cx('checkout-cardPayment-section-priceSumary-tbody')}>
-                                                            <tr>
-                                                                <th className={cx('checkout-cardPayment-section-priceSummary-rowName')}>
+                                                        </label>
+                                                    </li>
+                                                    <li className={cx('checkout-cardPayment-section-channelItem')}>
+                                                        <input
+                                                            type="radio"
+                                                            id="radio"
+                                                            className={cx('checkout-cardPayment-section-channelItem-radio')}
+                                                        />
+                                                        <label
+                                                            htmlFor="radio"
+                                                            className={cx('checkout-cardPayment-section-channelItem-iconList')}
+                                                        >
+                                                            <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
+                                                                <img
+                                                                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-credit.svg"
+                                                                    alt=""
+                                                                    className={cx('checkout-cardPayment-section-channelItem-icon-data')}
+                                                                />
+                                                            </span>
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </fieldset>
+                                            <div className={cx('checkout-cardPayment-section-priceSummary')}>
+                                                <table className={cx('checkout-cardPayment-section-priceSummary-table')}>
+                                                    <tbody className={cx('checkout-cardPayment-section-priceSumary-tbody')}>
+                                                        <tr>
+                                                            <th className={cx('checkout-cardPayment-section-priceSummary-rowName')}>
                                                                 Tổng số mặt hàng
-                                                                </th>
-                                                                <td className={cx('checkout-cardPayment-section-priceSummary-rowcontent')}>
-                                                                    <span
-                                                                        className={cx(
-                                                                            'checkout-cardPayment-section-priceSummary-rowcontent-text',
-                                                                        )}
-                                                                    >
-                                                                        {getTotal().totalPrice.toLocaleString('es-ES')}₫
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            {/* <tr>
+                                                            </th>
+                                                            <td className={cx('checkout-cardPayment-section-priceSummary-rowcontent')}>
+                                                                <span
+                                                                    className={cx(
+                                                                        'checkout-cardPayment-section-priceSummary-rowcontent-text',
+                                                                    )}
+                                                                >
+                                                                    {getTotal().totalPrice.toLocaleString('es-ES')}₫
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        {/* <tr>
                                                                 <th className={cx('checkout-cardPayment-section-priceSummary-rowName')}>
                                                                     Shipping
                                                                 </th>
@@ -142,45 +145,43 @@ function Cart() {
                                                                     </span>
                                                                 </td>
                                                             </tr> */}
-                                                            <tr>
-                                                                <td colspan="2">
-                                                                    <div
-                                                                        className={cx(
-                                                                            'checkout-cardPayment-section-priceSummary-linebreak',
-                                                                        )}
-                                                                    ></div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th className={cx('checkout-cardPayment-section-priceSummary-sumTittle')}>
-                                                                    <h1
-                                                                        className={cx(
-                                                                            'checkout-cardPayment-section-priceSummary-sumTittle-text',
-                                                                        )}
-                                                                    >
-                                                                        Tổng ({getTotal().totalQuantity})
-                                                                    </h1>
-                                                                </th>
-                                                                <td className={cx('checkout-cardPayment-section-priceSummary-sumContent')}>
-                                                                    <h1
-                                                                        className={cx(
-                                                                            'checkout-cardPayment-section-priceSummary-sumContent-text',
-                                                                        )}
-                                                                    >
-                                                                        {getTotal().totalPrice.toLocaleString('es-ES')}₫
-                                                                    </h1>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <div className={cx('checkout-cardPayment-section-priceSummary-submit')}>
-                                                        <Button primary login rounded>
-                                                            Thanh toán
-                                                        </Button>
-                                                    </div>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <div
+                                                                    className={cx('checkout-cardPayment-section-priceSummary-linebreak')}
+                                                                ></div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th className={cx('checkout-cardPayment-section-priceSummary-sumTittle')}>
+                                                                <h1
+                                                                    className={cx(
+                                                                        'checkout-cardPayment-section-priceSummary-sumTittle-text',
+                                                                    )}
+                                                                >
+                                                                    Tổng ({getTotal().totalQuantity})
+                                                                </h1>
+                                                            </th>
+                                                            <td className={cx('checkout-cardPayment-section-priceSummary-sumContent')}>
+                                                                <h1
+                                                                    className={cx(
+                                                                        'checkout-cardPayment-section-priceSummary-sumContent-text',
+                                                                    )}
+                                                                >
+                                                                    {getTotal().totalPrice.toLocaleString('es-ES')}₫
+                                                                </h1>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div className={cx('checkout-cardPayment-section-priceSummary-submit')}>
+                                                    <Button onClick={handlePaymnet} primary login rounded>
+                                                        Thanh toán
+                                                    </Button>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
+                                        {/* </form> */}
                                     </div>
                                 </div>
                                 <div className={cx('checkout-body-favourite')}>

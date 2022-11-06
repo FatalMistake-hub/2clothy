@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import config from '~/config'
 const cx = classNames.bind(styles);
 function ProductItem({data}) {
-    // console.log(data);
+
     return (
         <div className={cx('container')}>
             <Link to={`/detail/${data.id}`} className={cx('image-link')}>

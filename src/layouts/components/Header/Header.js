@@ -104,8 +104,8 @@ function Header() {
         let total = 0;
         if (cartList) {
             cartList.forEach((item) => {
-                item.productItem.forEach((productItem) => {
-                    total += productItem.quantity;
+                item.orderDetails.forEach((orderDetails) => {
+                    total += orderDetails.quantity;
                 });
             });
         }
@@ -117,6 +117,7 @@ function Header() {
                 <div className={cx('inner_header')}>
                     <a href={config.routes.home} className={cx('logo-link')}>
                         <img src={images.logo} alt="" className={cx('logo')} />
+                        {/* <span className={cx('logo-text')}>2Clothy</span> */}
                     </a>
 
                     <div className={cx('inner-search')}>

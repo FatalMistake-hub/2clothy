@@ -9,21 +9,18 @@ import { Link } from 'react-router-dom';
 import CartSlice from '~/redux/CartSlice';
 const cx = classNames.bind(styles);
 
-function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
+function CartItem({ shopId, shopName, shopImage, orderDetails = [] }) {
     const dispatch = useDispatch();
 
     const handleQuantity = (e, id) => {
-        console.log('blur');
-
         dispatch(
             CartSlice.actions.updateQuantityItem({
                 quantity: parseInt(e.target.value),
-                idShop: idShop,
-                productId: id,
+                shopId: shopId,
+                itemId: id,
             }),
         );
     };
-
 
     return (
         <div className={cx('checkout-item')}>
@@ -38,22 +35,18 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                     </a>
                 </div>
                 <div className={cx('checkout-item-shop-name')}>
-                    <Link to={`/shop/${idShop}`} className={cx('checkout-item-shop-linkName')}>
+                    <Link to={`/shop/${shopId}`} className={cx('checkout-item-shop-linkName')}>
                         {shopName}
                     </Link>
                 </div>
             </div>
             <ul className={cx('checkout-item-productList')}>
-                {productItem.map((productItem) => (
-                    <li key={productItem.id} className={cx('checkout-item-productItem')}>
+                {orderDetails.map((productItem) => (
+                    <li key={productItem.itemId} className={cx('checkout-item-productItem')}>
                         <div className={cx('checkout-item-productItem-box')}>
                             <div className={cx('checkout-item-productItem-image')}>
-                                <Link to={`/detail/${productItem.id}`} className={cx('checkout-item-productItem-image-link')}>
-                                    <img
-                                        src={productItem.productImage}
-                                        alt=""
-                                        className={cx('checkout-item-productItem-image-data')}
-                                    />
+                                <Link to={`/detail/${productItem.itemId}`} className={cx('checkout-item-productItem-image-link')}>
+                                    <img src={productItem.itemImg} alt="" className={cx('checkout-item-productItem-image-data')} />
                                 </Link>
                             </div>
                             <div className={cx('checkout-item-productItem-content')}>
@@ -61,7 +54,7 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                                     <div className={cx('productItem-infoAndaction')}>
                                         <div className={cx('productItem-info')}>
                                             <div className={cx('productItem-name')}>
-                                                <Link to={`/detail/${productItem.id}`} className={cx('productItem-name-link')}>
+                                                <Link to={`/detail/${productItem.itemId}`} className={cx('productItem-name-link')}>
                                                     {productItem.itemName}
                                                 </Link>
                                             </div>
@@ -82,8 +75,8 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                                                 onClick={() =>
                                                     dispatch(
                                                         addCartSlice.actions.removeProductItem({
-                                                            idProduct: productItem.id,
-                                                            idShop: idShop,
+                                                            itemId: productItem.itemId,
+                                                            shopId: shopId,
                                                         }),
                                                     )
                                                 }
@@ -108,7 +101,7 @@ function CartItem({ idShop, shopName, shopImage, productItem = [] }) {
                                             min="1"
                                             max="100"
                                             value={productItem.quantity}
-                                            onChange={(e) => handleQuantity(e, productItem.id)}
+                                            onChange={(e) => handleQuantity(e, productItem.itemId)}
                                             step="1"
                                             className={cx('productItem-content-quantity-select')}
                                         />

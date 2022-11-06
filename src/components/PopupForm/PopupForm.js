@@ -1,17 +1,24 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState ,useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import config from '~/config';
-import { loginUser, registerUser } from '~/services/authService';
+import { getCart, loginUser, registerUser } from '~/services/authService';
 import styles from './PopupForm.module.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { authRemainingSelector } from '~/redux/selector';
+import { createAxios } from '~/services/createInstance';
+import AuthSlice from '~/redux/AuthSlice';
+import CartSlice from '~/redux/CartSlice';
 const cx = classNames.bind(styles);
 function PopupForm({ handleClose }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const user = useSelector(authRemainingSelector);
+    const currentUser = user?.login.currentUser;
+    const accessToken = currentUser?.accessToken;
     const [errorResponse, setErrorResponse] = useState('');
     const Login = useFormik({
         initialValues: {
@@ -34,11 +41,24 @@ function PopupForm({ handleClose }) {
                 Email: values.email,
                 Password: values.password,
             };
+
             const fetchApi = async () => {
                 const res = await loginUser(newUser, dispatch, navigate);
-                setErrorResponse(res)
+                setErrorResponse(res);
             };
+            // const fetchApiCart = async () => {
+                
+            //     console.log('do get cart', user);
+            //     let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.loginSuccess);
+            //     const result = await getCart(accessToken, axiosJWT);
+            //     dispatch(CartSlice.actions.handleCart(result));
+            // };
+            // fetchApiCart();
             fetchApi();
+
+            // fetchApiCart();
+            
+
         },
     });
     const Register = useFormik({
@@ -62,7 +82,6 @@ function PopupForm({ handleClose }) {
                 .oneOf([Yup.ref('password'), null], 'Mật khẩu nhập lại không trùng khớp!'),
         }),
         onSubmit: (values) => {
-            console.log(values)
             const newUser = {
                 Email: values.email,
                 Password: values.password,
@@ -70,7 +89,7 @@ function PopupForm({ handleClose }) {
             };
             const fetchApi = async () => {
                 const res = await registerUser(newUser, dispatch, navigate);
-                setErrorResponse(res)
+                setErrorResponse(res);
             };
             fetchApi();
         },
@@ -78,7 +97,7 @@ function PopupForm({ handleClose }) {
     const [isRegister, setIsRegister] = useState(true);
     const toggleForm = () => {
         setIsRegister(!isRegister);
-        setErrorResponse()
+        setErrorResponse();
     };
 
     return (
@@ -138,7 +157,7 @@ function PopupForm({ handleClose }) {
                                 </Link>
                             </div>
                             <div className={cx('sign_in')}>
-                                <Button type="submit" login rounded primary >
+                                <Button type="submit" login rounded primary>
                                     Đăng nhập
                                 </Button>
                             </div>
@@ -146,7 +165,9 @@ function PopupForm({ handleClose }) {
                                 <div className={cx('errorResponse-box')}>
                                     <p className={cx('errorResponse-alert')}>{errorResponse}</p>
                                 </div>
-                            ):""}
+                            ) : (
+                                ''
+                            )}
                         </form>
                         {/* <div className={cx('or')}>
                             <span>OR</span>
@@ -167,8 +188,8 @@ function PopupForm({ handleClose }) {
                         <div className={cx('header')}>
                             <h1>Tạo tài khoản</h1>
                             <Button text rounded outline onClick={toggleForm}>
-                                    Đăng nhập
-                                </Button>
+                                Đăng nhập
+                            </Button>
                         </div>
                         {/* <div className={cx('header')}>
                             <h2>Registration is easy.</h2>
@@ -217,15 +238,17 @@ function PopupForm({ handleClose }) {
                                     className={cx('input_login')}
                                     type="password"
                                 />
-                                {Register.errors.confirmPassword ?(
+                                {Register.errors.confirmPassword ? (
                                     <div className={cx('errorBox')}>
                                         <p className={cx('errorMsg')}>* {Register.errors.confirmPassword} </p>
                                     </div>
-                                ):""}
+                                ) : (
+                                    ''
+                                )}
                             </div>
 
                             <div className={cx('sign_in')}>
-                                <Button type="submit" login rounded primary >
+                                <Button type="submit" login rounded primary>
                                     Đăng ký
                                 </Button>
                             </div>
@@ -233,7 +256,9 @@ function PopupForm({ handleClose }) {
                                 <div className={cx('errorResponse-box')}>
                                     <p className={cx('errorResponse-alert')}>{errorResponse}</p>
                                 </div>
-                            ):""}
+                            ) : (
+                                ''
+                            )}
                         </form>
                     </div>
                 </div>

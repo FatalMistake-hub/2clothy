@@ -22,26 +22,26 @@ function Review() {
                                 <div className={cx('checkout-address-item-address')}>
                                     <span className={cx('checkout-address-item-address-name')}>Quach Nhat</span>
                                     <br></br>
-                                    <span class="first-line" className={cx('checkout-address-item-address-info')}>
+                                    <span  className={cx('checkout-address-item-address-info')}>
                                         64 ong ich khiem
                                     </span>
                                     <br></br>
-                                    <span class="city" className={cx('checkout-address-item-address-info')}>
+                                    <span  className={cx('checkout-address-item-address-info')}>
                                         HCM
                                     </span>
                                     <br></br>
-                                    <span class="state" className={cx('checkout-address-item-address-info')}>
+                                    <span  className={cx('checkout-address-item-address-info')}>
                                         Da Nang
                                     </span>
-                                    <span class="zip" className={cx('checkout-address-item-address-info')}>
+                                    <span  className={cx('checkout-address-item-address-info')}>
                                         550000
                                     </span>
                                     <br></br>
-                                    <span class="country-name" className={cx('checkout-address-item-address-info')}>
+                                    <span  className={cx('checkout-address-item-address-info')}>
                                         Vietnam
                                     </span>
                                     <br></br>
-                                    <span class="phone" className={cx('checkout-address-item-address-info')}>
+                                    <span  className={cx('checkout-address-item-address-info')}>
                                         0123456
                                     </span>
                                 </div>

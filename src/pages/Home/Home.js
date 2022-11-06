@@ -25,20 +25,23 @@ function Home() {
 
     useEffect(() => {
         const fetchApiCategory = async (id) => {
-            const dataCategory = await searchServices.categoriesById(id);
-            const itemCategory = await searchServices.productByCategory(id);
-            setItemResult(itemCategory.items);
-            setRawResult(itemCategory.items)
-            setCategoriesResult(dataCategory);
-            setBreadcrumb([itemCategory]);
-            // console.log(breadcrumb);
+            let dataCategory;
+            let itemCategory;
+            if (id) {
+                 dataCategory = await searchServices.categoriesById(id);
+                 itemCategory = await searchServices.productByCategory(id);
+                 setItemResult(itemCategory?.items);
+                 setRawResult(itemCategory?.items);
+                 setCategoriesResult(dataCategory);
+                 setBreadcrumb([itemCategory]);
+            }
         };
         fetchApiCategory(id);
     }, [id]);
     useEffect(() => {
         const fetchApi = async () => {
             const result = await searchServices.getAllItem();
-            const data= await shuffleArray(result)
+            const data = await shuffleArray(result);
             setItemResult(data);
             setRawResult(data);
             const resultCategory = await searchServices.allCategories();
@@ -51,7 +54,7 @@ function Home() {
         const result = await searchServices.allCategories();
         const resultItem = await searchServices.getAllItem();
         setItemResult(resultItem);
-        setRawResult(resultItem)
+        setRawResult(resultItem);
         setCategoriesResult(result);
         setBreadcrumb([]);
     };
@@ -59,7 +62,7 @@ function Home() {
         const dataCategory = await searchServices.categoriesById(category.id);
         const itemCategory = await searchServices.productByCategory(category.id);
         setItemResult(itemCategory.items);
-        setRawResult(itemCategory.items)
+        setRawResult(itemCategory.items);
         setCategoriesResult(dataCategory);
         breadcrumb.push(category);
     };
@@ -67,7 +70,7 @@ function Home() {
         const dataCategory = await searchServices.categoriesById(category.id);
         const itemCategory = await searchServices.productByCategory(category.id);
         setItemResult(itemCategory.items);
-        setRawResult(itemCategory.items)
+        setRawResult(itemCategory.items);
         setCategoriesResult(dataCategory);
         const a = breadcrumb.slice(0, breadcrumb.indexOf(category) + 1);
         setBreadcrumb(a);
