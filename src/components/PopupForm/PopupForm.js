@@ -1,17 +1,15 @@
 import classNames from 'classnames/bind';
-import { useState ,useEffect} from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import config from '~/config';
-import { getCart, loginUser, registerUser } from '~/services/authService';
+import {  loginUser, registerUser } from '~/services/authService';
 import styles from './PopupForm.module.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { authRemainingSelector } from '~/redux/selector';
-import { createAxios } from '~/services/createInstance';
-import AuthSlice from '~/redux/AuthSlice';
-import CartSlice from '~/redux/CartSlice';
+
 const cx = classNames.bind(styles);
 function PopupForm({ handleClose }) {
     const dispatch = useDispatch();
@@ -46,19 +44,8 @@ function PopupForm({ handleClose }) {
                 const res = await loginUser(newUser, dispatch, navigate);
                 setErrorResponse(res);
             };
-            // const fetchApiCart = async () => {
-                
-            //     console.log('do get cart', user);
-            //     let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.loginSuccess);
-            //     const result = await getCart(accessToken, axiosJWT);
-            //     dispatch(CartSlice.actions.handleCart(result));
-            // };
-            // fetchApiCart();
             fetchApi();
-
-            // fetchApiCart();
             
-
         },
     });
     const Register = useFormik({

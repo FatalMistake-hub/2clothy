@@ -10,10 +10,9 @@ export const loginUser = async (user, dispatch, navigate) => {
             Password: user.Password,
         });
         dispatch(AuthSlice.actions.loginSuccess(res.data));
-        const result= await httpRequest.get('cart', {
+        const result = await httpRequest.get('cart', {
             headers: { Authorization: `Bearer ${res.data.accessToken}` },
         });
-        console.log(result)
         dispatch(CartSlice.actions.handleCart(result.data));
 
         navigate('/');

@@ -26,9 +26,9 @@ function Category() {
         <div className={cx('wrapper')}>
             <ul className={cx('bar')}>
                 {categoriesResult?.map((result) => (
-                    <>
+                    <div key={result.id}>
                         <HeadlessTippy
-                            key={result.id}
+                            // key={result.id}
                             interactive
                             offset={[-8, 2.5]}
                             placement="bottom-start"
@@ -48,9 +48,11 @@ function Category() {
                                 </Link>
                             </li>
                         </HeadlessTippy>
-                    </>
+                    </div>
+                    
                 ))}
             </ul>
+            
         </div>
     );
 }

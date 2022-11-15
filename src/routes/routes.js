@@ -29,6 +29,7 @@ import NotFound from '~/pages/NotFound';
 import Shipping from '~/pages/CheckOut/Shipping';
 import Payment from '~/pages/CheckOut/Payment';
 import Review from '~/pages/CheckOut/Review';
+import Purchases from '~/pages/Purchases';
 
 // Public routes
 const publicRoutes = [
@@ -70,6 +71,9 @@ const privateRoutes = [
     { path: config.routes.payment, component: Payment, layout: SetupShopLayout },
     { path: config.routes.review, component: Review, layout: SetupShopLayout },
     //
+    { path: config.routes.purchases, component: Purchases },
+
+
 ];
 
 export { publicRoutes, privateRoutes };

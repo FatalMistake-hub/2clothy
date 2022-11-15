@@ -10,6 +10,8 @@ import { createAxios } from '~/services/createInstance';
 import { Field, Form, useField, useFormik } from 'formik';
 import * as Yup from 'yup';
 import AuthSlice from '~/redux/AuthSlice';
+import ErrorBox from '~/components/ErrorBox';
+import ErrorMsg from '~/components/ErrorMsg';
 
 const cx = classNames.bind(styles);
 function PublicProfile() {
@@ -24,9 +26,9 @@ function PublicProfile() {
             let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.loginSuccess);
             const result = await getUser(accessToken, axiosJWT);
             setDataUser(result);
-            User.values.name=result.name;
-            User.values.addrress=result.addrress;
-            User.values.phoneNumber=result.phoneNumber;
+            User.values.name = result.name;
+            User.values.addrress = result.address;
+            User.values.phoneNumber = result.phoneNumber;
         };
         fetchApi();
     }, []);
@@ -38,13 +40,9 @@ function PublicProfile() {
             phoneNumber: dataUser?.phoneNumber,
         },
         validationSchema: Yup.object({
-            name: Yup.string()
-                .required('Bắt buộc!'),
-                addrress: Yup.string()
-                .required('Bắt buộc!'),
-                phoneNumber: Yup.string()
-                .required('Bắt buộc!')
-                
+            name: Yup.string().required('Bắt buộc!'),
+            addrress: Yup.string().required('Bắt buộc!'),
+            phoneNumber: Yup.string().required('Bắt buộc!'),
         }),
         onSubmit: (values) => {
             console.log(values);
@@ -70,7 +68,7 @@ function PublicProfile() {
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <p className={cx('header-text')}>Mọi thứ ghi trên trang này đều có thể được nhìn thấy bởi bất kỳ ai</p>
-                <p className={cx('header-text')}>{errorResponse}</p>
+                {errorResponse ? <ErrorBox data={errorResponse} status={'success'} /> : ''}
             </div>
             <form onSubmit={User.handleSubmit}>
                 <div className={cx('profile')}>
@@ -88,7 +86,7 @@ function PublicProfile() {
                                 </div>
                             </div>
                             <p className={cx('profile-section-notice')}>
-                                Start typing and choose from a suggested city to help others find you.
+                                {/* Start typing and choose from a suggested city to help others find you. */}
                             </p>
                         </div>
                         <div className={cx('profile-section-break')} />
@@ -109,7 +107,7 @@ function PublicProfile() {
                                 type="text"
                                 className={cx('profile-section-input')}
                             />
-                            <p className={cx('profile-section-notice')}></p>
+                            <p className={cx('profile-section-notice')}>{User.errors.name && <ErrorMsg data={User.errors.name} />}</p>
                         </div>
                         <div className={cx('profile-section-break')} />
                         <div className={cx('profile-section')}>
@@ -122,6 +120,7 @@ function PublicProfile() {
                                 type="number"
                                 className={cx('profile-section-input')}
                             />
+                            <p className={cx('profile-section-notice')}>{User.errors.phoneNumber && <ErrorMsg data={User.errors.phoneNumber} />}</p>
                         </div>
                         <div className={cx('profile-section-break')} />
                         <div className={cx('profile-section')}>
@@ -134,7 +133,9 @@ function PublicProfile() {
                                 cols="33"
                                 value={User.values.addrress}
                                 onChange={User.handleChange}
+                                className={cx('profile-section-address')}
                             />
+                            <p className={cx('profile-section-notice')}>{User.errors.addrress && <ErrorMsg data={User.errors.addrress} />}</p>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,40 @@
+.errorResponse-box.success {
+    // position: absolute;
+    width: 100%;
+    background-color: #d0f4c0;
+    border-color: rgba(34, 34, 34, 0.15);
+    color: #fff;
+    border-radius: 6px;
+    padding: 18px;
+    border: 1px transparent solid;
+    margin-top: 10px;
+    // bottom: -30%;
+}
+.errorResponse-box.failed {
+    // position: absolute;
+    width: 100%;
+    background-color: #c13c27;
+    border-color: rgba(34, 34, 34, 0.15);
+    color: #fff;
+    border-radius: 6px;
+    padding: 18px;
+    border: 1px transparent solid;
+    margin-top: 10px;
+    // bottom: -30%;
+}
+.errorResponse-alert.success {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    background-color: transparent;
+    color:black
+
+}
+.errorResponse-alert.failed {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    background-color: transparent;
+    color:white;
+
+}

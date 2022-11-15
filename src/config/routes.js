@@ -1,16 +1,15 @@
 const routes = {
-
     home: '/',
     homeid: '/:id',
     cart: '/cart',
     category: '/category',
     // Profile
-    profile: '/@:nickname',
-    profile: '/account',
-    account:'/account/@:nickname',
-    publicprofile:'/publicprofile/@:nickname',
-    addresses:'/addresses/@:nickname',
-    creditcards:'/creditcards/@:nickname',
+    profile: '',
+    // profile: '/account',
+    account: '/account',
+    publicprofile: '/publicprofile',
+    addresses: '/addresses',
+    creditcards: '/creditcards',
 
     //
 
@@ -33,6 +32,7 @@ const routes = {
     resetpassword: '/resetpassword',
     detail: '/detail/:id',
 
+    purchases: '/purchases',
     notfound: '*',
 };
 

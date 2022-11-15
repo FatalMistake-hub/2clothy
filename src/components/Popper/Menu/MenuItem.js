@@ -23,21 +23,25 @@ function MenuItem({ data, onClick }) {
     const currentUser = user?.login.currentUser;
     const accessToken = currentUser?.accessToken;
 
-    const dataUpdate = { OrderDetails: [] };
+    const dataUpdate =  [] ;
     cartList.map((item) => {
-        let orderDetails = {};
+        let orderDetails = {
+            shopId: item.shopId,
+            OrderDetails: []
+        };
         item.orderDetails.map((product) => {
-            orderDetails = {
+            orderDetails.OrderDetails.push( {
                 ItemId: product.itemId,
                 Quantity: product.quantity,
-            };
-            dataUpdate.OrderDetails.push(orderDetails);
+        })
+            dataUpdate.push(orderDetails);
         });
     });
 
     const handleLogOut = () => {
         let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.logOutSuccess);
-        updateCart(dataUpdate, accessToken, axiosJWT);
+        // updateCart(dataUpdate, accessToken, axiosJWT);
+        console.log(JSON.stringify(dataUpdate))
         logOutUser(dataUpdate, dispatch, navigate, '1', accessToken, axiosJWT);
     };
     return (

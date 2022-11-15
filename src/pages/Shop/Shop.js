@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState ,useRef} from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Carousel } from 'react-carousel-minimal';
 import { NavLink, useParams } from 'react-router-dom';
 import Button from '~/components/Button';
@@ -13,7 +13,6 @@ import * as searchServices from '~/services/apiService';
 import styles from './Shop.module.scss';
 
 const cx = classNames.bind(styles);
-
 function Shop() {
     const dataImage = [
         {
@@ -39,35 +38,38 @@ function Shop() {
     const { id } = useParams();
     const [categoryResult, setCategoryResult] = useState();
     const [itemResult, setItemResult] = useState();
-    const [isactive,setIsActive] = useState('all');
-    const ref = useRef()
+    const [detailShop, setDetailShop] = useState();
+
+    const [isactive, setIsActive] = useState('all');
+    const ref = useRef();
 
     const fetchApi = async () => {
         const dataItem = await searchServices.allShopProducts(id);
         const dataCategory = await searchServices.categoriesShop(id);
-        ref.current=dataItem[0].items
+        const dataDetailShop = await searchServices.detailShop(id);
+
+        setDetailShop(dataDetailShop);
+        ref.current = dataItem[0].items;
         setItemResult(dataItem[0].items);
         setRawResult(dataItem[0].items);
         setCategoryResult(dataCategory[0].categories);
     };
     useEffect(() => {
-
         fetchApi();
     }, [id]);
 
-
-    const handleCategory =  async (id, i) => {
+    const handleCategory = async (id, i) => {
         const itemCategory = await searchServices.productByCategory(id);
-        setItemResult(itemCategory.items)
-        setRawResult(itemCategory.items)
-        setIsActive(i)
-        }
-    const handleAll =   () => {
-        console.log(ref)
-        setItemResult(ref.current)
-        setRawResult(itemResult)
-        setIsActive('all')
-        }
+        setItemResult(itemCategory.items);
+        setRawResult(itemCategory.items);
+        setIsActive(i);
+    };
+    const handleAll = () => {
+        console.log(ref);
+        setItemResult(ref.current);
+        setRawResult(itemResult);
+        setIsActive('all');
+    };
     //     fetchApi()
     // }
 
@@ -84,7 +86,19 @@ function Shop() {
         <div className={cx('wrapper')}>
             <div className={cx('shop-panel')}>
                 <Carousel
-                    data={dataImage}
+                    data={
+                        detailShop
+                            ? [
+                                  {
+                                      path: detailShop.images[0].path,
+                                  },
+                              ]
+                            : [
+                                  {
+                                      path: '',
+                                  },
+                              ]
+                    }
                     time={3000}
                     width="100%"
                     height="45vh"
@@ -117,15 +131,16 @@ function Shop() {
                                 </div>
                                 <div className={cx('shop-home-info')}>
                                     <div className={cx('shop-home-info-title')}>
-                                        <h1 className={cx('shop-home-name')}>TheBeardedBee</h1>
+                                        <h1 className={cx('shop-home-name')}>{detailShop?.name}</h1>
                                         <p className={cx('shop-home-category')}>Vintage + Recycled Clothing</p>
                                     </div>
                                     <div className={cx('shop-home-info-more')}>
                                         <div className={cx('shop-home-placement')}>
-                                            <span className={cx('shop-home-placement-text')}>Georgia, United States</span>
+                                            <span className={cx('shop-home-placement-text')}>{detailShop?.address}</span>
                                         </div>
                                         <div className={cx('shop-home-soldAndrate')}>
-                                            <span className={cx('sold-content')}>51,592 sales</span>
+                                            {/* <span className={cx('sold-content')}>51,592 sales</span> */}
+                                            <span className={cx('sold-content')}>{detailShop?.phoneNumber}</span>
                                             <span className={cx('septum')}>|</span>
                                             <span className={cx('rate')}>
                                                 <a href="" className={cx('rate-page')}>
@@ -144,7 +159,7 @@ function Shop() {
                                             alt=""
                                             className={cx('shop-home-owner-image')}
                                         />
-                                        <p>Sara</p>
+                                        <p>{detailShop?.nameAccount}</p>
                                     </a>
                                 </div>
                             </div>
@@ -171,11 +186,7 @@ function Shop() {
                             </div>
                             <div className={cx('shop-home-announcement-content')}>
                                 <p className={cx('announcement-content-short')}>
-                                    <span className={cx('announcement-content-full')}>
-                                        Hey guys! If you are ordering a distressed or bleached flannel, please make sure to read the entire
-                                        listing description and instructions so that your order turns out the way you want it. Order 1 size
-                                        up from your normal t-shirt size to get an
-                                    </span>
+                                    <span className={cx('announcement-content-full')}>{detailShop?.description}</span>
                                 </p>
                                 {/* <a href="" className={cx('shop-home-announcement-toggle')}>
                                     Read more
@@ -207,12 +218,19 @@ function Shop() {
                                     </div> */}
                                     <div className={cx('shop-home-listing-category-container')}>
                                         <ul className={cx('category-container-list')}>
-                                            <button className={cx('category-container-list-item',`${ 'all'==isactive ?"active":""}`)} onClick={handleAll}>
+                                            <button
+                                                className={cx('category-container-list-item', `${'all' == isactive ? 'active' : ''}`)}
+                                                onClick={handleAll}
+                                            >
                                                 <span className={cx('category-container-list-item-text')}>ALL</span>
                                                 <span className={cx('category-container-list-item-text')}>{ref.current?.length}</span>
                                             </button>
-                                            {categoryResult?.map((categoryResult,i) => (
-                                                <button  key={categoryResult.id} className={cx('category-container-list-item',`${ i==isactive ?"active":""}`)} onClick={()=>handleCategory(categoryResult.id,i)}>
+                                            {categoryResult?.map((categoryResult, i) => (
+                                                <button
+                                                    key={categoryResult.id}
+                                                    className={cx('category-container-list-item', `${i == isactive ? 'active' : ''}`)}
+                                                    onClick={() => handleCategory(categoryResult.id, i)}
+                                                >
                                                     <span className={cx('category-container-list-item-text')}>{categoryResult.name}</span>
                                                     <span className={cx('category-container-list-item-text')}>
                                                         {categoryResult.items.length}
@@ -228,11 +246,11 @@ function Shop() {
                                     ))}
                                 </div>
                             </div>
-                                    <div className={cx('shop-home-listing-pagination')}>
-                                        {nPages && currentPage && (
-                                            <PaginationNav nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-                                        )}
-                                    </div>
+                            <div className={cx('shop-home-listing-pagination')}>
+                                {nPages && currentPage && (
+                                    <PaginationNav nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

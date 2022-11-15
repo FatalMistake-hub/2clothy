@@ -271,3 +271,23 @@ export const Card = ({ width = '3.6rem', height = '3.6rem', className }) => (
         <path d="M21,8V6a1,1,0,0,0-1-1H4A1,1,0,0,0,3,6V8H21Z"></path>
     </svg>
 );
+export const Truck = ({ width = '3.6rem', height = '3.6rem', className }) => (
+    <svg
+        width={width}
+        height={height}
+        enable-background="new 0 0 15 15"
+        viewBox="0 0 15 15"
+        x="0"
+        y="0"
+        class="shopee-svg-icon icon-free-shipping-line"
+    >
+        <g>
+            <line fill="none" stroke-linejoin="round" stroke-miterlimit="10" x1="8.6" x2="4.2" y1="9.8" y2="9.8"></line>
+            <circle cx="3" cy="11.2" fill="none" r="2" stroke-miterlimit="10"></circle>
+            <circle cx="10" cy="11.2" fill="none" r="2" stroke-miterlimit="10"></circle>
+            <line fill="none" stroke-miterlimit="10" x1="10.5" x2="14.4" y1="7.3" y2="7.3"></line>
+            <polyline fill="none" points="1.5 9.8 .5 9.8 .5 1.8 10 1.8 10 9.1" stroke-linejoin="round" stroke-miterlimit="10"></polyline>
+            <polyline fill="none" points="9.9 3.8 14 3.8 14.5 10.2 11.9 10.2" stroke-linejoin="round" stroke-miterlimit="10"></polyline>
+        </g>
+    </svg>
+);

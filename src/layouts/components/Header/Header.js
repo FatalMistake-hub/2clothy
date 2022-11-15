@@ -35,7 +35,7 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faFileInvoice} />,
         title: 'Hoá đơn',
-        to: '/purchase',
+        to: '/purchases',
     },
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -81,7 +81,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'Tài khoản',
-            to: '/account/@:nhatquach',
+            to: '/account',
             // to: '/account',
         },
         ...MENU_ITEMS,

@@ -58,6 +58,14 @@ export const productByCategory = async (id) => {
         console.log(error);
     }
 };
+export const detailShop = async (id) => {
+    try {
+        const res = await httpRequest.get(`shop/${id}`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 export const categoriesShop = async (id) => {
     try {
         const res = await httpRequest.get(`shop/${id}/category`);
