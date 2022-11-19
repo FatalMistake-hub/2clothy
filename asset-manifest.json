@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.04cbd73e.css",
-    "main.js": "/static/js/main.74e61c21.js",
+    "main.css": "/static/css/main.fd22e2e0.css",
+    "main.js": "/static/js/main.60397a0b.js",
     "static/js/787.3116a660.chunk.js": "/static/js/787.3116a660.chunk.js",
     "static/media/NotoSansKR-Bold.otf": "/static/media/NotoSansKR-Bold.c252383c4f70753be0e7.otf",
     "static/media/Graphik-Medium-Web.woff2": "/static/media/Graphik-Medium-Web.0ba3a7c119630e63594f.woff2",
     "static/media/Graphik-Regular-Web.woff2": "/static/media/Graphik-Regular-Web.f0c8d4513620ced65173.woff2",
     "static/media/Guardian-EgypTT-Light.woff2": "/static/media/Guardian-EgypTT-Light.c54c72a87f098765cb7d.woff2",
     "index.html": "/index.html",
-    "main.04cbd73e.css.map": "/static/css/main.04cbd73e.css.map",
-    "main.74e61c21.js.map": "/static/js/main.74e61c21.js.map",
+    "main.fd22e2e0.css.map": "/static/css/main.fd22e2e0.css.map",
+    "main.60397a0b.js.map": "/static/js/main.60397a0b.js.map",
     "787.3116a660.chunk.js.map": "/static/js/787.3116a660.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.04cbd73e.css",
-    "static/js/main.74e61c21.js"
+    "static/css/main.fd22e2e0.css",
+    "static/js/main.60397a0b.js"
   ]
 }
