@@ -65,11 +65,9 @@ function Detail() {
                             <Carousel
                                 data={
                                     detailResult
-                                        ? [
-                                              {
-                                                  path: detailResult.images[0].path,
-                                              },
-                                          ]
+                                        ? 
+                                        
+                                        detailResult.images.map(detailResult=>detailResult)
                                         : [
                                               {
                                                   path: '',
@@ -77,8 +75,8 @@ function Detail() {
                                           ]
                                 }
                                 time={3000}
-                                width="1000px"
-                                height="700px"
+                                width="900px"
+                                height="600px"
                                 // captionStyle={captionStyle}
                                 radius="10px"
                                 slideNumber={false}
@@ -88,8 +86,8 @@ function Detail() {
                                 dots={false}
                                 pauseIconColor="white"
                                 pauseIconSize="40px"
-                                slideBackgroundColor="darkgrey"
-                                slideImageFit="cover"
+                                slideBackgroundColor="white"
+                                slideImageFit="contain"
                                 thumbnails={true}
                                 thumbnailWidth="100px"
                                 style={{
@@ -191,7 +189,7 @@ function Detail() {
                 </div>
                 <div className={cx('listing-info')}>
                     <div className={cx('listing-info-container')}>
-                        <h2 className={cx('listing-info-item')}>
+                        {/* <h2 className={cx('listing-info-item')}>
                             <button aria-expanded="true" className={cx('item-button')}>
                                 Điểm nổi bật :<span className={cx('item-arrow')}></span>
                             </button>
@@ -211,7 +209,7 @@ function Detail() {
                                     <div className={cx('highlight-detail-item-content')}>Materials: Cotton, Acrylic</div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> */}
                         <h2 className={cx('listing-info-item')}>
                             <button className={cx('item-button')}>
                                 Mô tả :<span className={cx('item-arrow')}></span>

@@ -21,6 +21,13 @@ function Home() {
     }
     const [itemResult, setItemResult] = useState([]);
     const [categoriesResult, setCategoriesResult] = useState([]);
+    const handleCategory = (dataCategory) => {
+        if (dataCategory.categories[0].parentId == null || dataCategory.categories[0].shopId == null) {
+            setCategoriesResult(dataCategory.categories);
+        } else {
+            setCategoriesResult([]);
+        }
+    };
     const [breadcrumb, setBreadcrumb] = useState([]);
 
     useEffect(() => {
@@ -28,12 +35,14 @@ function Home() {
             let dataCategory;
             let itemCategory;
             if (id) {
-                 dataCategory = await searchServices.categoriesById(id);
-                 itemCategory = await searchServices.productByCategory(id);
-                 setItemResult(itemCategory?.items);
-                 setRawResult(itemCategory?.items);
-                 setCategoriesResult(dataCategory);
-                 setBreadcrumb([itemCategory]);
+                dataCategory = await searchServices.categoriesById(id);
+                itemCategory = await searchServices.productByCategory(id);
+                setItemResult(itemCategory?.items);
+                setRawResult(itemCategory?.items);
+                handleCategory(dataCategory);
+                console.log(dataCategory);
+
+                setBreadcrumb([{ id: dataCategory.parentId, name: dataCategory.nameParent }, itemCategory]);
             }
         };
         fetchApiCategory(id);
@@ -46,6 +55,26 @@ function Home() {
             setRawResult(data);
             const resultCategory = await searchServices.allCategories();
             setCategoriesResult(resultCategory);
+            // let dataItem = [];
+            //     if (dataCategory.parentId==null&&dataCategory.categories[0].shopId==null) {
+            //         console.log('parent here')
+
+            //         dataCategory.categories.map((item) => {
+            //             item.categories?.map((item) => {
+            //                 item.items?.map((Item) => {
+            //                     dataItem?.push(Item);
+            //                 });
+            //             });
+            //         });
+
+            //     } else {
+            //         console.log('here')
+            //         dataCategory.categories.map((item) => {
+            //             item.items?.map((item) => {
+            //                 dataItem?.push(item);
+            //             });
+            //         });
+            //     }
         };
         fetchApi();
     }, []);
@@ -63,7 +92,8 @@ function Home() {
         const itemCategory = await searchServices.productByCategory(category.id);
         setItemResult(itemCategory.items);
         setRawResult(itemCategory.items);
-        setCategoriesResult(dataCategory);
+        handleCategory(dataCategory);
+
         breadcrumb.push(category);
     };
     const fetchApiCategoryBreadcrumb = async (category) => {
@@ -71,7 +101,8 @@ function Home() {
         const itemCategory = await searchServices.productByCategory(category.id);
         setItemResult(itemCategory.items);
         setRawResult(itemCategory.items);
-        setCategoriesResult(dataCategory);
+        handleCategory(dataCategory);
+
         const a = breadcrumb.slice(0, breadcrumb.indexOf(category) + 1);
         setBreadcrumb(a);
     };
@@ -114,9 +145,13 @@ function Home() {
 
                                 {breadcrumb?.map((breadcrumb) => (
                                     <>
-                                        <li className={cx('path-breadcrumb')}>
-                                            <span> - </span>
-                                        </li>
+                                        {breadcrumb.name ? (
+                                            <li className={cx('path-breadcrumb')}>
+                                                <span> - </span>
+                                            </li>
+                                        ) : (
+                                            ''
+                                        )}
                                         <li className={cx('path-item')}>
                                             <span className={cx('path-item-text')} onClick={() => fetchApiCategoryBreadcrumb(breadcrumb)}>
                                                 {breadcrumb?.name}

@@ -12,15 +12,14 @@ function CategoryMenu({ id }) {
     useEffect(() => {
         const fetchApi = async () => {
             const result = await searchServices.categoriesById(id);
-
-            setCategoriesResult(result);
+            setCategoriesResult(result.categories);
         };
 
         fetchApi();
     }, [id]);
     return (
         <div className={cx('wrapper')}>
-            {categoriesResult.map((result) => (
+            {categoriesResult?.map((result) => (
                 <div key={result.id} className={cx('menu-item')}>
                     {/* <Link to={`/${id}`}></Link> */}
                     <Link to={`/${result.id}`}>

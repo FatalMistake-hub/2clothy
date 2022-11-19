@@ -13,13 +13,13 @@ function Reference() {
     return ( <div className={cx('wrapper')}>
         <div className={cx('reference')}>
             <div className={cx('reference-title')}>
-                <h1 className={cx('reference-title-text')}>Name your shop</h1>
+                <h1 className={cx('reference-title-text')}>Đặt tên cho shop của bạn</h1>
             </div>
             <div className={cx('reference-content')}>
                 <div className={cx('reference-content-box')}>
-                    <div className={cx('reference-help')}>Don’t sweat it! You can just draft a name now and change it later. We find sellers often draw inspiration from what they sell, their style, pretty much anything goes.</div>
+                    <div className={cx('reference-help')}>Đừng quá bận tâm! Bạn có thể đặt tên ngay bây giờ và thay đổi sau. Chúng tôi nhận thấy những người bán hàng thường lấy cảm hứng từ những gì họ bán, phong cách của họ, hầu hết mọi thứ.</div>
                     <div className={cx('reference-inputGroup')}>
-                        <input type="text"  placeholder="Enter your shop name" className={cx('reference-input')}/>
+                        <input type="text"  placeholder="Nhập tên shop của bạn" className={cx('reference-input')}/>
                     </div>
                     <div className={cx('reference-notice')}>
                         <div className={cx('reference-notice-item')}>
@@ -38,7 +38,7 @@ function Reference() {
                 </div>
             </div>
             <div className={cx('reference-action')}>
-                <Link to ={config.routes.listings}><Button primary rounded large> Save and continue</Button></Link>
+                <Link to ={config.routes.listings}><Button primary rounded large> Lưu và tiếp tục</Button></Link>
             </div>
         </div>
     </div> );

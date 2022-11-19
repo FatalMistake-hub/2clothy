@@ -19,9 +19,9 @@ function SetupNav() {
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <Nav>
-                    <NavItem title="Name your shop" to={config.routes.reference} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
-                    <NavItem title="Stock your shop" to={config.routes.listings} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
-                    <NavItem title="Set up billing" to={config.routes.billing} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
+                    <NavItem title="Đặt tên shop" to={config.routes.reference} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
+                    <NavItem title="Thông tin shop" to={config.routes.listings} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
+                    <NavItem title="Thiết lập thanh toán" to={config.routes.billing} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
                     {/* <NavItem title="Credit Cards" to={config.routes.creditcards} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} /> */}
                     {/* <NavItem
                         title="Following"
