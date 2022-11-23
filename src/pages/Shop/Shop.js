@@ -14,26 +14,7 @@ import styles from './Shop.module.scss';
 
 const cx = classNames.bind(styles);
 function Shop() {
-    const dataImage = [
-        {
-            path: 'https://i.etsystatic.com/isbl/b08775/36148557/isbl_3360x840.36148557_fbrujjid.jpg?version=0',
-        },
-        {
-            path: 'https://i.etsystatic.com/6087155/r/il/a23943/840997306/il_794xN.840997306_4pn0.jpg',
-        },
-        {
-            path: 'https://i.etsystatic.com/6087155/r/il/72563a/840783023/il_794xN.840783023_e1ex.jpg',
-        },
-        {
-            path: 'https://i.etsystatic.com/6087155/c/1500/1191/0/33/il/f55f8d/840970050/il_794xN.840970050_aabq.jpg',
-        },
-        {
-            path: 'https://i.etsystatic.com/6087155/r/il/ef8d7a/840988070/il_794xN.840988070_mcar.jpg',
-        },
-        {
-            path: 'https://i.etsystatic.com/6087155/r/il/1453d1/2735501475/il_794xN.2735501475_350q.jpg',
-        },
-    ];
+
 
     const { id } = useParams();
     const [categoryResult, setCategoryResult] = useState();
@@ -82,17 +63,19 @@ function Shop() {
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const currentRecords = itemResult?.slice(indexOfFirstRecord, indexOfLastRecord);
     const nPages = Math.ceil(itemResult?.length / recordsPerPage);
+
+
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('shop-panel')}>
+                {console.log(detailShop?.images)}
                 <Carousel
                     data={
                         detailShop
-                            ? [
-                                  {
-                                      path: detailShop.images[0].path,
-                                  },
-                              ]
+                            ? 
+                            detailShop.images
+                            
                             : [
                                   {
                                       path: '',
@@ -114,6 +97,7 @@ function Shop() {
                     style={{
                         top: '0',
                         left: '0',
+                        overflow:'hidden'
                     }}
                 />
             </div>

@@ -29,7 +29,6 @@ function Detail() {
         fetchApi();
     }, [id]);
 
-
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(1);
     const handleQuantity = (e) => {
@@ -65,9 +64,7 @@ function Detail() {
                             <Carousel
                                 data={
                                     detailResult
-                                        ? 
-                                        
-                                        detailResult.images.map(detailResult=>detailResult)
+                                        ? detailResult.images
                                         : [
                                               {
                                                   path: '',
@@ -93,6 +90,7 @@ function Detail() {
                                 style={{
                                     top: '0',
                                     left: '0',
+                                    overflow: 'hidden',
                                 }}
                             />
                         </div>

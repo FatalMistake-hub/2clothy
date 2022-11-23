@@ -1,10 +1,14 @@
 import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from '~/routes';
-import DefaultLayout from '~/layouts';
+// import DefaultLayout from '~/layouts';
 import ScrollToTop from './ScrollToTop';
 import { useSelector } from 'react-redux';
 import { authRemainingSelector } from './redux/selector';
+import { Suspense, lazy } from 'react';
+import ThemedSuspense from './components/ThemedSuspense';
+
+const DefaultLayout = lazy(() => import('../src/layouts/DefaultLayout/DefaultLayout'));
 
 function App() {
     const user = useSelector(authRemainingSelector);
@@ -30,9 +34,11 @@ function App() {
                                     key={index}
                                     path={route.path}
                                     element={
-                                        <Layout>
-                                            <Page />
-                                        </Layout>
+                                        <Suspense fallback={<ThemedSuspense />}>
+                                            <Layout>
+                                                <Page />
+                                            </Layout>
+                                        </Suspense>
                                     }
                                 />
                             );
@@ -53,9 +59,11 @@ function App() {
                                         key={index}
                                         path={route.path}
                                         element={
-                                            <Layout>
-                                                <Page />
-                                            </Layout>
+                                            <Suspense fallback={<ThemedSuspense />}>
+                                                <Layout>
+                                                    <Page />
+                                                </Layout>
+                                            </Suspense>
                                         }
                                     />
                                 );

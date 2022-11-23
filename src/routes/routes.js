@@ -1,49 +1,51 @@
 import config from '~/config';
+import { Suspense, lazy } from 'react';
 
 // Layouts
 import { HeaderOnly } from '~/layouts';
 import { ProfileLayout } from '~/layouts';
 import { SetupShopLayout } from '~/layouts';
 
+
+// const   HeaderOnly  =lazy(()=>import( '~/layouts/DefaultLayout/DefaultLayout'));
+// const   ProfileLayout  =lazy(()=>import( '~/layouts/ProfileLayout/ProfileLayout'));
+// const   SetupShopLayout  =lazy(()=>import( '~/layouts/SetupShopLayout/SetupShopLayout'));
+
 // Pages
 
-import Cart from '~/pages/Cart';
-import Category from '~/pages/Category';
-import Profile from '~/pages/Profile';
-// import Upload from '~/pages/Upload';
-import Search from '~/pages/Search';
-import Shop from '~/pages/Shop';
-import Favorites from '~/pages/Favorites';
-import { Home, Homeid } from '~/pages/Home';
-import ForgotPassword from '~/pages/ForgotPassword';
-import ResetPassword from '~/pages/ResetPassword';
-import Detail from '~/pages/Detail';
-import Account from '~/pages/Profile/Account';
-import PublicProfile from '~/pages/Profile/PublicProfile';
-import CreditCards from '~/pages/Profile/CreditCards';
-import Addresses from '~/pages/Profile/Addresses';
-import Billing from '~/pages/SetupShop/Billing';
-import Listings from '~/pages/SetupShop/Listings';
-import Reference from '~/pages/SetupShop/Reference';
-import NotFound from '~/pages/NotFound';
-import Shipping from '~/pages/CheckOut/Shipping';
-import Payment from '~/pages/CheckOut/Payment';
-import Review from '~/pages/CheckOut/Review';
-import Purchases from '~/pages/Purchases';
+const  Cart =lazy(()=>import( '~/pages/Cart/Cart'));
+
+// const  Upload =lazy(()=>import( '~/pages/Upload'));
+const  Search =lazy(()=>import( '~/pages/Search/Search'));
+const  Shop =lazy(()=>import( '~/pages/Shop/Shop'));
+const  Home  =lazy(()=>import( '~/pages/Home/Home'));
+const  ForgotPassword =lazy(()=>import( '~/pages/ForgotPassword/ForgotPassword'));
+const  ResetPassword =lazy(()=>import( '~/pages/ResetPassword/ResetPassword'));
+const  Detail =lazy(()=>import( '~/pages/Detail/Detail'));
+const  Account =lazy(()=>import( '~/pages/Profile/Account/Account'));
+const  PublicProfile =lazy(()=>import( '~/pages/Profile/PublicProfile/PublicProfile'));
+const  CreditCards =lazy(()=>import( '~/pages/Profile/CreditCards/CreditCards'));
+const  Addresses =lazy(()=>import( '~/pages/Profile/Addresses/Addresses'));
+const  Billing =lazy(()=>import( '~/pages/SetupShop/Billing/Billing'));
+const  Listings =lazy(()=>import( '~/pages/SetupShop/Listings/Listings'));
+const  Reference =lazy(()=>import( '~/pages/SetupShop/Reference/Reference'));
+const  NotFound =lazy(()=>import( '~/pages/NotFound/NotFound'));
+const  Shipping =lazy(()=>import( '~/pages/CheckOut/Shipping/Shipping'));
+const  Payment =lazy(()=>import( '~/pages/CheckOut/Payment/Payment'));
+const  Review =lazy(()=>import( '~/pages/CheckOut/Review/Review'));
+const  Purchases =lazy(()=>import( '~/pages/Purchases/Purchases'));
 
 // Public routes
 const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.homeid, component: Home },
-    { path: config.routes.category, component: Category },
+
 
     { path: config.routes.shop, component: Shop },
     { path: config.routes.forgotpassword, component: ForgotPassword },
     { path: config.routes.resetpassword, component: ResetPassword },
     { path: config.routes.detail, component: Detail },
-    // { path: config.routes.upload, component: Upload, layout: HeaderOnly null },
     { path: config.routes.search, component: Search },
-    { path: config.routes.favorites, component: Favorites, layout: HeaderOnly },
     { path: config.routes.notfound, component: NotFound, layout: null },
 ];
 
@@ -58,7 +60,6 @@ const privateRoutes = [
 
     //
     // Profile
-    { path: config.routes.profile, component: Profile, layout: ProfileLayout },
     { path: config.routes.account, component: Account, layout: ProfileLayout },
     { path: config.routes.publicprofile, component: PublicProfile, layout: ProfileLayout },
     { path: config.routes.creditcards, component: CreditCards, layout: ProfileLayout },
