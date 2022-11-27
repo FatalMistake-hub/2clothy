@@ -10,14 +10,33 @@ const cx = classNames.bind(styles);
 
 function Purchases() {
     return (
-        // <div className={cx('wrapper')}>
+        // <div className={cx('wrapper-emty')}>
         //     <div className={cx('container')}>
         //     <h1 className={cx('emtyPurchase')}>Bạn chưa thực hiện một đơn hàng nào cả .</h1>
-
+        // <img src={'https://deo.shopeemobile.com/shopee/shopee-pcmall-…ve-sg/assets/5fafbb923393b712b96488590b8f781f.png'}/>
         //     </div>
         // </div>
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
+                <div className={cx('nav')}>
+                    
+                        <div className={cx('nav-item')}>
+                            <span className={cx('nav-item-text')}>Tất cả</span>
+                        </div>
+                        <div className={cx('nav-item')}>
+                            <span className={cx('nav-item-text')}>Chờ xác nhận</span>
+                        </div>
+                        <div className={cx('nav-item')}>
+                            <span className={cx('nav-item-text')}>Đang giao</span>
+                        </div>
+                        <div className={cx('nav-item')}>
+                            <span className={cx('nav-item-text')}>Đã giao</span>
+                        </div>
+                        <div className={cx('nav-item')}>
+                            <span className={cx('nav-item-text')}>Đã huỷ</span>
+                        </div>
+                    
+                </div>
                 <div className={cx('purchase')}>
                     <div className={cx('purchase-product')}>
                         <div className={cx('purchase-product-header')}>
@@ -40,7 +59,7 @@ function Purchases() {
                                             <Link to={`/detail/`} className={cx('purchase-product-list-item-image-link')}>
                                                 <img
                                                     src="https://cf.shopee.vn/file/d3def8ff7418925496136e0be7dc9e28_tn"
-                                                    alt=""
+                                                    loading="lazy"
                                                     className={cx('purchase-product-list-item-image-data')}
                                                 />
                                             </Link>
@@ -130,7 +149,7 @@ function Purchases() {
                                             <Link to={`/detail/`} className={cx('purchase-product-list-item-image-link')}>
                                                 <img
                                                     src="https://cf.shopee.vn/file/d3def8ff7418925496136e0be7dc9e28_tn"
-                                                    alt=""
+                                                    loading="lazy"
                                                     className={cx('purchase-product-list-item-image-data')}
                                                 />
                                             </Link>
@@ -182,7 +201,8 @@ function Purchases() {
                             <div className={cx('purchase-state-title')}>
                                 <span className={cx('purchase-state-title-text')}>
                                     {/* <Truck/> */}
-                                    Giao hàng thành công</span>
+                                    Giao hàng thành công
+                                </span>
                                 <span className={cx('purchase-state-title-status')}>ĐÃ GIAO</span>
                             </div>
                             <div className={cx('purchase-state-action')}>
@@ -222,7 +242,7 @@ function Purchases() {
                                             <Link to={`/detail/`} className={cx('purchase-product-list-item-image-link')}>
                                                 <img
                                                     src="https://cf.shopee.vn/file/d3def8ff7418925496136e0be7dc9e28_tn"
-                                                    alt=""
+                                                    loading="lazy"
                                                     className={cx('purchase-product-list-item-image-data')}
                                                 />
                                             </Link>
@@ -277,12 +297,12 @@ function Purchases() {
                             </div>
                             <div className={cx('purchase-state-action')}>
                                 <div className={cx('purchase-state-action-button')}>
-                                    <Button primary login>
+                                    <Button primary medium>
                                         Đã nhận hàng
                                     </Button>
                                 </div>
                                 <div className={cx('purchase-state-action-button')}>
-                                    <Button outline login>
+                                    <Button outline medium>
                                         Huỷ đơn hàng
                                     </Button>
                                 </div>

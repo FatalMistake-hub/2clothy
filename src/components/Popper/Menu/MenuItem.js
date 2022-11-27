@@ -24,7 +24,7 @@ function MenuItem({ data, onClick }) {
     const accessToken = currentUser?.accessToken;
 
     const dataUpdate =  [] ;
-    cartList.map((item) => {
+    cartList?.map((item) => {
         let orderDetails = {
             shopId: item.shopId,
             OrderDetails: []

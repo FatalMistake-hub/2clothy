@@ -80,7 +80,7 @@ function Cart() {
                                                             <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                                 <img
                                                                     src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
-                                                                    alt=""
+                                                                    loading="lazy"
                                                                     className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                                 />
                                                             </span>
@@ -106,7 +106,7 @@ function Cart() {
                                                             <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                                 <img
                                                                     src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-credit.svg"
-                                                                    alt=""
+                                                                    loading="lazy"
                                                                     className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                                 />
                                                             </span>

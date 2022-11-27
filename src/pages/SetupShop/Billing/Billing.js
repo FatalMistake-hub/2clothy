@@ -10,8 +10,8 @@ function Billing() {
         <div className={cx('wrapper')}>
             <div className={cx('billing')}>
                 <div className={cx('billing-title')}>
-                    <h1 className={cx('billing-title-text')}>Set up billing</h1>
-                    <div className={cx('billing-help')}>Let us know how you'd like to pay your Etsy bill.</div>
+                    <h1 className={cx('billing-title-text')}>Thiết lập thanh toán</h1>
+                    <div className={cx('billing-help')}>Hãy cho chúng tôi biết cách bạn muốn thanh toán hóa đơn 2Clothy của mình..</div>
                 </div>
                 <div className={cx('billing-container')}>
                     <div className={cx('billing-container-box')}>
@@ -51,12 +51,12 @@ function Billing() {
                         </div>
                         <div className={cx('billing-notice')}>
                             <div className={cx('billing-notice-header')}>
-                                <span className={cx('billing-notice-header-text')}>You won't be charged now.</span>
+                                <span className={cx('billing-notice-header-text')}>Bạn sẽ không bị tính phí bây giờ.</span>
                             </div>
                             <div className={cx('billing-notice-body')}>
                                 <p className={cx('billing-notice-body-content')}>
-                                    We will add <strong >4,762₫</strong>* to your Payment account for the listing in your
-                                    shop, which will be due on the first day of the next calendar month.
+                                Chúng tôi sẽ thêm <strong >4,762₫</strong>* vào tài khoản thanh toán của bạn cho danh sách trong cửa hàng của bạn, số tiền này sẽ đến hạn vào ngày đầu tiên của tháng dương lịch tiếp theo.
+                                    
                                 </p>
                             </div>
                         </div>
@@ -64,8 +64,7 @@ function Billing() {
                 </div>
                 <div className={cx('billing-action')}>
                     <Button primary rounded large>
-                        
-                        Save and continue
+                        Hoàn tất
                     </Button>
                 </div>
             </div>

@@ -116,7 +116,7 @@ function Header() {
             <div className={cx('inner')}>
                 <div className={cx('inner_header')}>
                     <a href={config.routes.home} className={cx('logo-link')}>
-                        <img src={images.logo} alt="" className={cx('logo')} />
+                        <img src={images.logo} alt="" className={cx('logo')} loading="lazy" />
                         {/* <span className={cx('logo-text')}>2Clothy</span> */}
                     </a>
 

@@ -8,7 +8,7 @@
     font-weight: 400;
     line-height: 24px;
 }
-.wrapper-emty{
+.wrapper-emty {
     width: 100%;
     background-color: #f5f5f5;
     margin-top: -23px;
@@ -24,6 +24,45 @@
     width: 100%;
     margin-top: 24px;
     background-color: #f5f5f5;
+}
+.nav {
+    width: 50%;
+    margin-bottom: 12px;
+    display: flex;
+    overflow: hidden;
+    top: 0;
+    background: #fff;
+    border-radius: 6px;
+}
+
+.nav-item.active {
+    width: 20%;
+    padding: 20px 0px;
+    text-align: center;
+    color: #faa077;
+    border-bottom: 2px solid #faa077;
+}
+.nav-item {
+    padding: 16px 0;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.8);
+    background: #fff;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.09);
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+.nav-item:hover {
+    color: #faa077;
+}
+
+.nav-item-text {
+    font-size: 16px;
+    line-height: 19px;
 }
 .purchase {
     display: flex;
@@ -43,19 +82,16 @@
     background-color: #f5f5f2;
     border: 1px solid #0000000e;
     box-shadow: 0 0 10px #0000000e;
-    display:flex;
-    justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
 }
 .purchase-product-header-title {
-    
 }
 .purchase-product-header-shopName {
     color: #ee4d2d;
-
 }
-.purchase-product-header-money{
+.purchase-product-header-money {
     color: #ee4d2d;
-
 }
 .purchase-product-body {
     background-color: #fff;
@@ -205,39 +241,36 @@
     padding-left: 18px;
     margin-top: 10px;
     background-color: #f5f5f5;
-
 }
-.purchase-state-box{
-    display:flex;
+.purchase-state-box {
+    display: flex;
     flex-direction: column;
-
 }
 .purchase-state-title {
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 .purchase-state-title-text {
     font-size: 26px;
     line-height: 32px;
     font-weight: 400;
-    color: #26aa99;
+    color: #b2e4b5;
 }
 .purchase-state-title-status {
     margin-top: 4px;
     color: #ee4d2d;
 }
 .purchase-state-action {
-    display:flex;
+    display: flex;
     flex-direction: column;
     width: 100%;
     margin-top: 10px;
-
 }
-.purchase-state-action-button{
+.purchase-state-action-button {
     width: 100%;
     margin-top: 10px;
 }
-.emtyPurchase{
+.emtyPurchase {
     text-align: center;
     font-size: 32px;
     line-height: 36px;

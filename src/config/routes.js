@@ -2,6 +2,7 @@ const routes = {
     home: '/',
     homeid: '/:id',
     cart: '/cart',
+    completedpayment: '/completedpayment',
     category: '/category',
     // Profile
     profile: '',

@@ -1,7 +1,7 @@
 import axios from 'axios';
 //instance
 const httpRequest = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL,
+    baseURL:"https://commerce-clothes.herokuapp.com/api/",
 });
 
 export const get = async (path, options = {}) => {

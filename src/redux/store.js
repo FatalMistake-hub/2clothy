@@ -13,6 +13,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import AuthSlice from './AuthSlice';
 import CartSlice from './CartSlice';
+import SetupShopSlice from './SetupShopSlice';
 
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -22,7 +23,7 @@ const persistConfig = {
     storage,
 };
 //bo nhung cai can giu nguyen khi f5
-const rootReducer = combineReducers({ cartList: CartSlice.reducer, auth: AuthSlice.reducer });
+const rootReducer = combineReducers({ cartList: CartSlice.reducer, auth: AuthSlice.reducer, shopInfo:SetupShopSlice.reducer });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

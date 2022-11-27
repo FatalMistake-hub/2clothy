@@ -55,26 +55,7 @@ function Home() {
             setRawResult(data);
             const resultCategory = await searchServices.allCategories();
             setCategoriesResult(resultCategory);
-            // let dataItem = [];
-            //     if (dataCategory.parentId==null&&dataCategory.categories[0].shopId==null) {
-            //         console.log('parent here')
-
-            //         dataCategory.categories.map((item) => {
-            //             item.categories?.map((item) => {
-            //                 item.items?.map((Item) => {
-            //                     dataItem?.push(Item);
-            //                 });
-            //             });
-            //         });
-
-            //     } else {
-            //         console.log('here')
-            //         dataCategory.categories.map((item) => {
-            //             item.items?.map((item) => {
-            //                 dataItem?.push(item);
-            //             });
-            //         });
-            //     }
+           
         };
         fetchApi();
     }, []);
@@ -165,7 +146,7 @@ function Home() {
                     <div className={cx('category-list')}>
                         {categoriesResult?.map((result) => (
                             <div key={result.id} className={cx('category-list-item')}>
-                                <img className={cx('image')} src={result.imagePath} alt="Men's" onClick={() => fetchApiCategory(result)} />
+                                <img className={cx('image')} src={result.imagePath} alt="Men's"  loading="lazy" onClick={() => fetchApiCategory(result)} />
 
                                 <p className={cx('name')}>{result.name}</p>
                             </div>

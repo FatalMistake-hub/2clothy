@@ -11,7 +11,6 @@ function ProductItem({data}) {
             <Link to={`/detail/${data.id}`} className={cx('image-link')}>
                 <div className={cx('image-box')}>
                     <img
-                        // src="https://i.etsystatic.com/8261264/c/939/746/7/307/il/caceb6/1495657007/il_340x270.1495657007_pv76.jpg"
                         src={(data.images)[0].path}
                         alt=""
                         className={cx('image-content')}
@@ -48,7 +47,6 @@ function ProductItem({data}) {
                 </p>
             </div>
             <p className={cx('shop-name')}>
-                {/* Doroteyya */}
                 {data.shopName}
                 </p>
         </div>

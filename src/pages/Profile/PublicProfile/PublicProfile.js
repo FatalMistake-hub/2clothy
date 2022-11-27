@@ -80,7 +80,7 @@ function PublicProfile() {
                                 <div className={cx('profile-section-image-box')}>
                                     <img
                                         src="https://www.etsy.com/images/avatars/default_avatar_400x400.png"
-                                        alt=""
+                                        loading="lazy"
                                         className={cx('profile-section-image-content')}
                                     />
                                 </div>

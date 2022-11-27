@@ -34,7 +34,7 @@ const  Shipping =lazy(()=>import( '~/pages/CheckOut/Shipping/Shipping'));
 const  Payment =lazy(()=>import( '~/pages/CheckOut/Payment/Payment'));
 const  Review =lazy(()=>import( '~/pages/CheckOut/Review/Review'));
 const  Purchases =lazy(()=>import( '~/pages/Purchases/Purchases'));
-
+const CompletedPayment = lazy(()=>import( '~/pages/CheckOut/CompletedPayment/CompletedPayment'))
 // Public routes
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -51,6 +51,7 @@ const publicRoutes = [
 
 const privateRoutes = [
     { path: config.routes.cart, component: Cart },
+    { path: config.routes.completedpayment, component: CompletedPayment },
 
 
     //SetupShop

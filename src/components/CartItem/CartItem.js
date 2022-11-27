@@ -46,7 +46,7 @@ function CartItem({ shopId, shopName, shopImage, orderDetails = [] }) {
                         <div className={cx('checkout-item-productItem-box')}>
                             <div className={cx('checkout-item-productItem-image')}>
                                 <Link to={`/detail/${productItem.itemId}`} className={cx('checkout-item-productItem-image-link')}>
-                                    <img src={productItem.itemImg} alt="" className={cx('checkout-item-productItem-image-data')} />
+                                    <img src={productItem.itemImg}  loading="lazy" className={cx('checkout-item-productItem-image-data')} />
                                 </Link>
                             </div>
                             <div className={cx('checkout-item-productItem-content')}>

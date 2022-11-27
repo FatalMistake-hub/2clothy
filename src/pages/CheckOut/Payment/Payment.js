@@ -25,7 +25,7 @@ function Payment() {
                                     <span className={cx('form-check-icon')}>
                                         <img
                                             src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
-                                            alt=""
+                                            loading="lazy"
                                             className={cx('form-check-icon-data')}
                                         />
                                     </span>

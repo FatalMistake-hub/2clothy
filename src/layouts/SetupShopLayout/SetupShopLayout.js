@@ -16,7 +16,7 @@ function SetupShopLayout({ children }) {
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <Link to={config.routes.home} className={cx('logo-link')}>
-                    <img src={images.logo} alt="Etsy" className={cx('logo')} />
+                    <img src={images.logo} alt="Etsy" className={cx('logo')} loading="lazy" />
                 </Link>
             </div>
             <SetupNav />

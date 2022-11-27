@@ -110,7 +110,7 @@ function Shop() {
                                     <img
                                         src="https://i.etsystatic.com/isla/0d943f/24592470/isla_500x500.24592470_8hq0chzw.jpg?version=0"
                                         className={cx('shop-home-image-data')}
-                                        alt=""
+                                         loading="lazy"
                                     />
                                 </div>
                                 <div className={cx('shop-home-info')}>
@@ -140,7 +140,7 @@ function Shop() {
                                     <a href=" " className={cx('shop-home-owner-link')}>
                                         <img
                                             src="https://i.etsystatic.com/iusa/2caca1/90655985/iusa_75x75.90655985_o05l.jpg?version=0"
-                                            alt=""
+                                             loading="lazy"
                                             className={cx('shop-home-owner-image')}
                                         />
                                         <p>{detailShop?.nameAccount}</p>
@@ -257,7 +257,7 @@ function Shop() {
                                 <div className={cx('review-item-account')}>
                                     <img
                                         src="https://i.etsystatic.com/iusa/e6bec4/8951725/iusa_75x75.8951725.jpg?version=0"
-                                        alt=""
+                                         loading="lazy"
                                         className={cx('review-item-account-image')}
                                     />
                                 </div>
@@ -285,7 +285,7 @@ function Shop() {
                                             <a href="" className={cx('review-item-product-link')}>
                                                 <img
                                                     src="https://i.etsystatic.com/1457967763/r/il/cb1066/1457967763/il_170x135.1457967763_nl2u.jpg"
-                                                    alt=""
+                                                     loading="lazy"
                                                     className={cx('review-item-product-image')}
                                                 />
                                                 <div className={cx('review-item-product-name')}>
@@ -300,7 +300,7 @@ function Shop() {
                                 <div className={cx('review-item-account')}>
                                     <img
                                         src="https://i.etsystatic.com/iusa/e6bec4/8951725/iusa_75x75.8951725.jpg?version=0"
-                                        alt=""
+                                         loading="lazy"
                                         className={cx('review-item-account-image')}
                                     />
                                 </div>
@@ -328,7 +328,7 @@ function Shop() {
                                             <a href="" className={cx('review-item-product-link')}>
                                                 <img
                                                     src="https://i.etsystatic.com/1457967763/r/il/cb1066/1457967763/il_170x135.1457967763_nl2u.jpg"
-                                                    alt=""
+                                                     loading="lazy"
                                                     className={cx('review-item-product-image')}
                                                 />
                                                 <div className={cx('review-item-product-name')}>

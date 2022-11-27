@@ -15,7 +15,7 @@ function CreditCards() {
                             <h3 className={cx('card-item-content-tittle')}>
                                 <img
                                     src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
-                                    alt=""
+                                    loading="lazy"
                                     className={cx('card-item-content-tittle-icon')}
                                 />
                                 Momo kết thúc trong 5239

@@ -18,16 +18,30 @@ const cx = classNames.bind(styles);
 function Detail() {
     const { id } = useParams();
     const [detailResult, setDetailResult] = useState();
-
+    const [shopResult, setShopResult] = useState();
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
     useEffect(() => {
         const fetchApi = async () => {
             const result = await searchServices.detailProduct(id);
-
             setDetailResult(result[0]);
         };
 
         fetchApi();
     }, [id]);
+    useEffect(() => {
+        const fetchApi = async () => {
+            const resultShop = await searchServices.allShopProducts(detailResult.shopId);
+            setShopResult(shuffleArray(resultShop[0].items).slice(0, 4));
+        };
+
+        fetchApi();
+    }, [detailResult]);
 
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(1);
@@ -54,7 +68,7 @@ function Detail() {
             }),
         );
     };
-
+    // console.log(detailResult?.images)
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -74,23 +88,23 @@ function Detail() {
                                 time={3000}
                                 width="900px"
                                 height="600px"
-                                // captionStyle={captionStyle}
                                 radius="10px"
-                                slideNumber={false}
-                                // slideNumberStyle={slideNumberStyle}
+                                slideNumber={true}
+                                slideNumberStyle={{ fontSize: '10px', fontWeight: 'bold', color: 'black' }}
                                 captionPosition="bottom"
                                 automatic={true}
-                                dots={false}
+                                dots={true}
                                 pauseIconColor="white"
                                 pauseIconSize="40px"
-                                slideBackgroundColor="white"
+                                slideBackgroundColor="rgba(170, 170, 170, 0.034)"
                                 slideImageFit="contain"
                                 thumbnails={true}
                                 thumbnailWidth="100px"
                                 style={{
-                                    top: '0',
-                                    left: '0',
+                                    // top: '0',
+                                    // left: '0',
                                     overflow: 'hidden',
+                                    zindex:'-1'
                                 }}
                             />
                         </div>
@@ -230,7 +244,7 @@ function Detail() {
                             <div className={cx('shop-detail-image')}>
                                 <img
                                     src="	https://i.etsystatic.com/isla/0d943f/24592470/isla_75x75.24592470_8hq0chzw.jpg?version=0"
-                                    alt=""
+                                    loading="lazy"
                                     className={cx('shop-detail-image-content')}
                                 />
                             </div>
@@ -286,7 +300,7 @@ function Detail() {
                                         <div className={cx('review-item-account')}>
                                             <img
                                                 src="https://i.etsystatic.com/iusa/603882/95556902/iusa_75x75.95556902_dfi7.jpg?version=0"
-                                                alt=""
+                                                loading="lazy"
                                                 className={cx('review-item-account-image')}
                                             />
                                             <p className={cx('review-item-account-name')}>
@@ -301,7 +315,7 @@ function Detail() {
                                         <button className={cx('review-item-image-button')}>
                                             <img
                                                 src="https://i.etsystatic.com/iap/ae7c2f/4165938259/iap_300x300.4165938259_cdpll1pf.jpg?version=0"
-                                                alt=""
+                                                loading="lazy"
                                                 className={cx('review-item-image-data')}
                                             />
                                         </button>
@@ -319,16 +333,15 @@ function Detail() {
                             <Button rounded>Theo dõi</Button>
                         </div>
                         <Button rounded>
-                            <a href="" className={cx('other-info-more')}>
+                            <Link to={`/shop/${detailResult?.shopId}`} className={cx('other-info-more')}>
                                 Xem thêm
-                            </a>
+                            </Link>
                         </Button>
                     </div>
                     <div className={cx('other-info-container')}>
-                        {/* <ProductItem />
-                        <ProductItem />
-                        <ProductItem />
-                        <ProductItem /> */}
+                        {shopResult?.map((result) => (
+                            <ProductItem key={result.id} data={result} />
+                        ))}
                     </div>
                 </div>
             </div>

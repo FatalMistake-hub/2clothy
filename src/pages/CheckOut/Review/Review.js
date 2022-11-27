@@ -62,7 +62,7 @@ function Review() {
                                     <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                         <img
                                             src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
-                                            alt=""
+                                             loading="lazy"
                                             className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                         />
                                     </span>
@@ -100,7 +100,7 @@ function Review() {
                                                     <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                         <img
                                                             src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
-                                                            alt=""
+                                                             loading="lazy"
                                                             className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                         />
                                                     </span>
@@ -116,7 +116,7 @@ function Review() {
                                                     <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                         <img
                                                             src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-credit.svg"
-                                                            alt=""
+                                                             loading="lazy"
                                                             className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                         />
                                                     </span>
@@ -169,13 +169,13 @@ function Review() {
                     </div>
                 </div>
                 <div className={cx('cartListitem')}>
-                    {cartList.map((item) => (
+                    {cartList.map((item,i) => (
                         <CartItem
-                            key={item.id}
-                            idShop={item.idShop}
-                            shopName={item.shopName}
-                            shopImage={item.shopImage}
-                            productItem={item.productItem}
+                        key={i}
+                        shopId={item.shopId}
+                        shopName={item.shopName}
+                        shopImage={item.shopImage}
+                        orderDetails={item.orderDetails}
                         />
                     ))}
                 </div>
