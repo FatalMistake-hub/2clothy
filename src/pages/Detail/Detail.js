@@ -36,7 +36,7 @@ function Detail() {
     }, [id]);
     useEffect(() => {
         const fetchApi = async () => {
-            const resultShop = await searchServices.allShopProducts(detailResult.shopId);
+            const resultShop = await searchServices.allShopProducts(detailResult?.shopId);
             setShopResult(shuffleArray(resultShop[0].items).slice(0, 4));
         };
 
@@ -78,7 +78,7 @@ function Detail() {
                             <Carousel
                                 data={
                                     detailResult
-                                        ? detailResult.images
+                                        ? detailResult?.images
                                         : [
                                               {
                                                   path: '',
