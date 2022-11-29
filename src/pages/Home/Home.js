@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import images from '~/assets/images';
 import PaginationNav from '~/components/PaginationNav/PaginationNav';
 import ProductItem from '~/components/ProductItem';
 import SelectSort from '~/components/SelectSort';
@@ -155,6 +156,8 @@ function Home() {
                 </div>
                 <div className={cx('body')}>
                     <div className={cx('header')}>
+
+
                         <h2 className={cx('header-text')}>Tìm thứ gì đó bạn yêu thích</h2>
                     </div>
                     <div className={cx('actions')}>

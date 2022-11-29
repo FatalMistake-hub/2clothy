@@ -23,7 +23,7 @@ function Purchases() {
                         <div className={cx('nav-item')}>
                             <span className={cx('nav-item-text')}>Tất cả</span>
                         </div>
-                        <div className={cx('nav-item')}>
+                        <div className={cx('nav-item','active')}>
                             <span className={cx('nav-item-text')}>Chờ xác nhận</span>
                         </div>
                         <div className={cx('nav-item')}>

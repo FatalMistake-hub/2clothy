@@ -77,18 +77,13 @@ function Detail() {
                         <div>
                             <Carousel
                                 data={
-                                    // detailResult
-                                    //     ? detailResult?.images
-                                    //     : [
-                                    //           {
-                                    //               path: '',
-                                    //           },
-                                    //       ]
-                                    [
-                                        {
-                                            path: 'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/0a34e6ce70fb4deabd47ae71017aaa73_9366/áo-khoác-khóa-kéo-rain.rdy.jpg',
-                                        },
-                                    ]
+                                    detailResult
+                                        ? detailResult?.images
+                                        : [
+                                              {
+                                                  path: '',
+                                              },
+                                          ]
                                 }
                                 time={3000}
                                 width="900px"

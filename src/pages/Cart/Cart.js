@@ -77,20 +77,20 @@ function Cart() {
                                                             htmlFor="radio"
                                                             className={cx('checkout-cardPayment-section-channelItem-iconList')}
                                                         >
-                                                            <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
+                                                            {/* <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                                 <img
                                                                     src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
                                                                     loading="lazy"
                                                                     className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                                 />
-                                                            </span>
-                                                            {/* <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
+                                                            </span> */}
+                                                            <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                                     <img
-                                                                        src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-zalo-pay.svg"
+                                                                        src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-vnpay.png"
                                                                         alt=""
                                                                         className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                                     />
-                                                                </span> */}
+                                                                </span>
                                                         </label>
                                                     </li>
                                                     <li className={cx('checkout-cardPayment-section-channelItem')}>
