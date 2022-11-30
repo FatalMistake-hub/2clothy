@@ -1,11 +1,11 @@
 import classNames from 'classnames/bind';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import CartItem from '~/components/CartItem/CartItem';
 
 import { authRemainingSelector, cartsRemainingSelector } from '~/redux/selector';
-
 
 import styles from './Cart.module.scss';
 // import cartSlice from './cartSlice';
@@ -26,7 +26,7 @@ function Cart() {
         });
         return { totalPrice, totalQuantity };
     };
-    
+
     const handlePaymnet = () => {
         // dispatch(CartSlice.actions.handleCart([]));
     };
@@ -85,12 +85,12 @@ function Cart() {
                                                                 />
                                                             </span> */}
                                                             <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
-                                                                    <img
-                                                                        src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-vnpay.png"
-                                                                        alt=""
-                                                                        className={cx('checkout-cardPayment-section-channelItem-icon-data')}
-                                                                    />
-                                                                </span>
+                                                                <img
+                                                                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-vnpay.png"
+                                                                    alt=""
+                                                                    className={cx('checkout-cardPayment-section-channelItem-icon-data')}
+                                                                />
+                                                            </span>
                                                         </label>
                                                     </li>
                                                     <li className={cx('checkout-cardPayment-section-channelItem')}>
@@ -175,9 +175,11 @@ function Cart() {
                                                     </tbody>
                                                 </table>
                                                 <div className={cx('checkout-cardPayment-section-priceSummary-submit')}>
-                                                    <Button onClick={handlePaymnet} primary login rounded>
-                                                        Thanh toán
-                                                    </Button>
+                                                    <Link to={'/shipping'} className={cx('checkout-cardPayment-section-priceSummary-submit')}>
+                                                        <Button onClick={handlePaymnet} primary login rounded>
+                                                            Thanh toán
+                                                        </Button>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>

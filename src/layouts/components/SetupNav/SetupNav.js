@@ -14,7 +14,7 @@ import config from '~/config';
 
 const cx = classNames.bind(styles);
 
-function SetupNav() {
+function SetupNav({data}) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>

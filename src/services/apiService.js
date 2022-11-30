@@ -82,6 +82,24 @@ export const allShopProducts = async (id) => {
         console.log(error);
     }
 };
+export const ForgotPassword = async (data) => {
+    try {
+        const res = await httpRequest.post('user/forgot-password', {
+            email: data,
+        });
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const ResetPassword = async (data) => {
+    try {
+        const res = await httpRequest.post('user/reset-password', data);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 
 export const post = async (keyword,data={}) => {
