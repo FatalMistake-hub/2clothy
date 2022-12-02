@@ -4,41 +4,44 @@ export default createSlice({
     name: 'checkOut',
     initialState: {
         shipping: {
-            address: '',
-            country: '',
-            city: '',
-            phone: '',
+            Address: '',
+            Country: '',
+            City: '',
+            PhoneNumber: '',
         },
         payment: [
             {
-                name: '',
                 type: '',
                 info: {
-                    number: '',
-                    owner: '',
-                    dateCreated: '',
+                    BankName: '',
+                    NumberCard: '',
+                    Owner: '',
+                    DateExpired: '',
                 },
             },
         ],
         review: {
             orderDetails: [
                 {
-                  id: '',
-                  shopName: '',
-                  shopImage: '',
-                  orderDetails: [
-                    {
-                      id: '',
-                      itemName: '',
-                      size: '',
-                      productImage: '',
-                      quantity: '',
-                      price: ''
-                    }
-                  ],
+                    id: '',
+                    shopName: '',
+                    shopImage: '',
+                    orderDetails: [
+                        {
+                            id: '',
+                            itemName: '',
+                            size: '',
+                            productImage: '',
+                            quantity: '',
+                            price: '',
+                        },
+                    ],
                 },
             ],
         },
+        isFetching: false,
+        error: false,
+        success: false,
     },
     reducers: {
         // IMMER
@@ -51,7 +54,18 @@ export default createSlice({
         handleReview: (state, action) => {
             state.billing = action.payload;
         },
-
+        checkOutStart: (state) => {
+            state.isFetching = true;
+        },
+        checkOutSuccess: (state, action) => {
+            state.isFetching = false;
+            state.review = action.payload;
+            state.error = false;
+        },
+        checkOutFailed: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
         // action creators
     },
 });

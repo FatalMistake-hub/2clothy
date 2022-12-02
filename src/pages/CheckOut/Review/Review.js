@@ -1,15 +1,76 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '~/components/Button';
 import CartItem from '~/components/CartItem';
 import { Edit } from '~/components/Icons';
-import { cartsRemainingSelector } from '~/redux/selector';
+import { cartsRemainingSelector, authRemainingSelector, checkOutRemainingSelector } from '~/redux/selector';
 import styles from './Review.module.scss';
+import { useNavigate } from 'react-router-dom';
+import AuthSlice from '~/redux/AuthSlice';
+import CartSlice from '~/redux/CartSlice';
+import { createAxios } from '~/services/createInstance';
+import { checkOutOrder } from '~/services/authService';
+
 const cx = classNames.bind(styles);
 
 function Review() {
     const cartList = useSelector(cartsRemainingSelector);
+    const checkOut = useSelector(checkOutRemainingSelector);
+    const user = useSelector(authRemainingSelector);
+    const getTotal = () => {
+        let totalQuantity = 0;
+        let totalPrice = 0;
+        cartList.forEach((item) => {
+            item.orderDetails.forEach((product) => {
+                totalQuantity += product.quantity;
+                totalPrice += product.price * product.quantity;
+            });
+            //   totalQuantity += item.quantity
+            //   totalPrice += item.price * item.quantity
+        });
+        return { totalPrice, totalQuantity };
+    };
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const currentUser = user?.login.currentUser;
+    const accessToken = currentUser?.accessToken;
 
+    const dataOrder = [];
+    if (cartList) {
+        cartList?.map((item) => {
+            let orderDetails = {
+                ShopId: item.shopId,
+                OrderDetails: [],
+            };
+            item.orderDetails.map((product) => {
+                orderDetails.OrderDetails.push({
+                    ItemId: product.itemId,
+                    Quantity: product.quantity,
+                });
+            });
+
+            dataOrder.push(orderDetails);
+        });
+    }
+    const dataCheckOut = {
+        Address: checkOut.shipping.Address,
+        City: checkOut.shipping.City,
+        Country: checkOut.shipping.Country,
+        PaymentId: 2,
+        PhoneNumber: checkOut.shipping.PhoneNumber,
+        Total: getTotal().totalPrice.toString(),
+        Details: dataOrder,
+    };
+    const handleCheckOut = async () => {
+        let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.loginSuccess);
+        const res = await checkOutOrder(dataCheckOut, dispatch,  accessToken, axiosJWT);
+        console.log(res);
+        if (res.status == 200) {
+            window.location.href =res.data
+        }
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('body')}>
@@ -22,28 +83,14 @@ function Review() {
                                 <div className={cx('checkout-address-item-address')}>
                                     <span className={cx('checkout-address-item-address-name')}>Quach Nhat</span>
                                     <br></br>
-                                    <span  className={cx('checkout-address-item-address-info')}>
-                                        64 ong ich khiem
-                                    </span>
+                                    <span className={cx('checkout-address-item-address-info')}>{checkOut.shipping.Address}</span>
                                     <br></br>
-                                    <span  className={cx('checkout-address-item-address-info')}>
-                                        HCM
-                                    </span>
+                                    <span className={cx('checkout-address-item-address-info')}>{checkOut.shipping.City}</span>
                                     <br></br>
-                                    <span  className={cx('checkout-address-item-address-info')}>
-                                        Da Nang
-                                    </span>
-                                    <span  className={cx('checkout-address-item-address-info')}>
-                                        550000
-                                    </span>
+                                    <span className={cx('checkout-address-item-address-info')}>{checkOut.shipping.Country}</span>
                                     <br></br>
-                                    <span  className={cx('checkout-address-item-address-info')}>
-                                        Vietnam
-                                    </span>
-                                    <br></br>
-                                    <span  className={cx('checkout-address-item-address-info')}>
-                                        0123456
-                                    </span>
+
+                                    <span className={cx('checkout-address-item-address-info')}>{checkOut.shipping.PhoneNumber}</span>
                                 </div>
                                 <div className={cx('checkout-address-item-action')}>
                                     <button className={cx('checkout-address-item-button')}>
@@ -61,17 +108,18 @@ function Review() {
                                 <div className={cx('checkout-payment-method-icon')}>
                                     <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                         <img
-                                            src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
-                                             loading="lazy"
+                                            src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-vnpay.png"
+                                            loading="lazy"
                                             className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                         />
                                     </span>
                                 </div>
                                 <div className={cx('checkout-payment-method-content')}>
                                     <p className={cx('checkout-payment-method-content-text')}>
-                                        Momo …5239
+                                        {checkOut.payment.type}
+                                        …5239
                                         <br />
-                                        Exp: 08 / 2026
+                                        Exp: {checkOut.payment.info.DateExpired}
                                     </p>
                                 </div>
                             </div>
@@ -85,7 +133,7 @@ function Review() {
                             </div>
                         </div>
                         <div className={cx('checkout-cardPayment')}>
-                            <form action="" className={cx('checkout-form')}>
+                            <div action="" className={cx('checkout-form')}>
                                 <div className={cx('checkout-cardPayment-section')}>
                                     <fieldset className={cx('checkout-cardPayment-section-field')}>
                                         <legend className={cx('checkout-cardPayment-section-tittle')}>Tổng đơn hàng</legend>
@@ -99,8 +147,8 @@ function Review() {
                                                 <label htmlFor="radio" className={cx('checkout-cardPayment-section-channelItem-iconList')}>
                                                     <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                         <img
-                                                            src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
-                                                             loading="lazy"
+                                                            src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-vnpay.png"
+                                                            loading="lazy"
                                                             className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                         />
                                                     </span>
@@ -116,7 +164,7 @@ function Review() {
                                                     <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                         <img
                                                             src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-credit.svg"
-                                                             loading="lazy"
+                                                            loading="lazy"
                                                             className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                         />
                                                     </span>
@@ -133,7 +181,7 @@ function Review() {
                                                     </th>
                                                     <td className={cx('checkout-cardPayment-section-priceSummary-rowcontent')}>
                                                         <span className={cx('checkout-cardPayment-section-priceSummary-rowcontent-text')}>
-                                                            {/* {getTotal().totalPrice.toLocaleString('es-ES')}₫ */}
+                                                            {getTotal().totalPrice.toLocaleString('es-ES')}₫
                                                         </span>
                                                     </td>
                                                 </tr>
@@ -146,36 +194,48 @@ function Review() {
                                                 <tr>
                                                     <th className={cx('checkout-cardPayment-section-priceSummary-sumTittle')}>
                                                         <h1 className={cx('checkout-cardPayment-section-priceSummary-sumTittle-text')}>
-                                                            {/* Tổng ({getTotal().totalQuantity}) */}
+                                                            Tổng ({getTotal().totalQuantity})
                                                         </h1>
                                                     </th>
                                                     <td className={cx('checkout-cardPayment-section-priceSummary-sumContent')}>
                                                         <h1 className={cx('checkout-cardPayment-section-priceSummary-sumContent-text')}>
-                                                            {/* {getTotal().totalPrice.toLocaleString('es-ES')}₫ */}
+                                                            {getTotal().totalPrice.toLocaleString('es-ES')}₫
                                                         </h1>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <div className={cx('checkout-cardPayment-section-priceSummary-submit')}>
-                                            <Button primary login rounded>
-                                                Thanh toán
+                                            <Button
+                                                primary
+                                                login
+                                                rounded
+                                                // rightIcon={
+                                                //     <img
+                                                //         src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-vnpay.png"
+                                                //         loading="lazy"
+                                                //         className={cx('checkout-cardPayment-section-channelItem-icon-data')}
+                                                //     />
+                                                // }
+                                                onClick={handleCheckOut}
+                                            >
+                                                Thanh toán với
                                             </Button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className={cx('cartListitem')}>
-                    {cartList.map((item,i) => (
+                    {cartList.map((item, i) => (
                         <CartItem
-                        key={i}
-                        shopId={item.shopId}
-                        shopName={item.shopName}
-                        shopImage={item.shopImage}
-                        orderDetails={item.orderDetails}
+                            key={i}
+                            shopId={item.shopId}
+                            shopName={item.shopName}
+                            shopImage={item.shopImage}
+                            orderDetails={item.orderDetails}
                         />
                     ))}
                 </div>

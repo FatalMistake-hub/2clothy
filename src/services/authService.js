@@ -108,3 +108,67 @@ export const updateCart = async (data, accessToken, axiosJWT) => {
         return error.response.data;
     }
 };
+export const checkOutOrder = async (data, dispatch, accessToken, axiosJWT) => {
+    try {
+        const res = await axiosJWT.post('payment', data, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        if (res.status == 200) {
+            dispatch(CartSlice.actions.handleCart([]));
+        }
+        return res;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};
+export const getOrder = async (accessToken, axiosJWT) => {
+    try {
+        const res = await axiosJWT.get('user/order', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};
+export const updateOrder = async (id, data, accessToken, axiosJWT) => {
+    try {
+        let res = '';
+        res = await axiosJWT.put(`order/${id}`, data, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        if (res.status == 200) {
+            res = await getOrder(accessToken, axiosJWT);
+            console.log(res);
+            return res;
+        }
+        // history.push('/all-products');
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};
+export const cancelOrder = async (id, accessToken, axiosJWT) => {
+    try {
+        let res = '';
+        res = await axiosJWT.put(`order/status/${id}`,0,{
+            headers: { Authorization: `Bearer ${accessToken}`},
+        });
+        if (res.status == 200) {
+            res = await getOrder(accessToken, axiosJWT);
+            console.log(res);
+            return res;
+        }
+        // history.push('/all-products');
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};

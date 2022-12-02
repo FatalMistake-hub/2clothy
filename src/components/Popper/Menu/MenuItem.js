@@ -35,8 +35,8 @@ function MenuItem({ data, onClick }) {
                     ItemId: product.itemId,
                     Quantity: product.quantity,
                 });
-                dataUpdate.push(orderDetails);
             });
+            dataUpdate.push(orderDetails);
         });
     }
 

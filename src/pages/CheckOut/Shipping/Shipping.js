@@ -5,10 +5,13 @@ import styles from './Shipping.module.scss';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import CheckOutSlice from '~/redux/CheckOutSlice';
 const cx = classNames.bind(styles);
 
 function Shipping() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const CheckoutAddress = useFormik({
         initialValues: {},
         validationSchema: Yup.object({
@@ -20,14 +23,13 @@ function Shipping() {
         onSubmit: (values) => {
             console.log(values);
             const data = {
-                Name: values.name,
+                Country: values.country,
                 Address: values.address,
-                PhoneNumber: values.phoneNumber,
+                PhoneNumber: values.phone,
+                City: values.city,
             };
-            console.log(data);
-            navigate('/payment')
-            const fetchApi = async () => {};
-            fetchApi();
+            dispatch(CheckOutSlice.actions.handleShipping(data));
+            navigate('/payment');
         },
     });
     return (
