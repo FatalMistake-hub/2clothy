@@ -197,9 +197,9 @@ function Purchases() {
                                         ))}
                                     </ul>
                                     <div className={cx('purchase-product-list')}>
-                                        <span className={cx('purchase-product-header-title')}>Địa Chỉ Nhận Hàng</span>
+                                        <span className={cx('purchase-product-list-title')}>Địa Chỉ Nhận Hàng</span>
                                         <br />
-                                        <span className={cx('purchase-product-header-title')}>
+                                        <span className={cx('purchase-product-list-text')}>
                                             {purchase.phoneNumber}
                                             <br />
                                             {purchase.address}, {purchase.city}, {purchase.country}

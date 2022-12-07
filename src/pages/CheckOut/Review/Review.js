@@ -32,8 +32,8 @@ function Review() {
         });
         return { totalPrice, totalQuantity };
     };
-    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const currentUser = user?.login.currentUser;
     const accessToken = currentUser?.accessToken;
 
