@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 
 import { authRemainingSelector, cartsRemainingSelector } from '~/redux/selector';
@@ -30,10 +31,10 @@ function CompletedPayment() {
                         <p className={cx('container-body-favourite-tittle')}>Tiếp tục trải nghiệm thời trang của bạn tại 2Clothy.</p>
                         <div href="" className={cx('container-body-favourite-link')}>
                             <Button rounded large>
-                                Tiếp tục mua sắm
+                                <Link to='/'>Tiếp tục mua sắm</Link>
                             </Button>
                             <Button rounded large>
-                                Xem đơn hàng
+                                <Link to='/purchases'>Xem đơn hàng</Link>
                             </Button>
                         </div>
                     </div>

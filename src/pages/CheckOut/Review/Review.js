@@ -57,6 +57,8 @@ function Review() {
     const dataCheckOut = {
         Address: checkOut.shipping.Address,
         City: checkOut.shipping.City,
+        BankCode: checkOut.payment.info.BankName,
+        Bank: checkOut.payment.info.BankName,
         Country: checkOut.shipping.Country,
         PaymentId: 2,
         PhoneNumber: checkOut.shipping.PhoneNumber,
@@ -65,10 +67,10 @@ function Review() {
     };
     const handleCheckOut = async () => {
         let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.loginSuccess);
-        const res = await checkOutOrder(dataCheckOut, dispatch,  accessToken, axiosJWT);
+        const res = await checkOutOrder(dataCheckOut, dispatch, accessToken, axiosJWT);
         console.log(res);
         if (res.status == 200) {
-            window.location.href =res.data
+            window.location.href = res.data;
         }
     };
     return (

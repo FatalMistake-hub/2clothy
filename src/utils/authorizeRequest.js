@@ -1,7 +1,7 @@
 import axios from 'axios';
 //instance
 const authorizeRequest = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL,
+    baseURL: "https://commerce-2clothy.azurewebsites.net/api/",
 });
 
 

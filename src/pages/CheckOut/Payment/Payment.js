@@ -75,6 +75,7 @@ function Payment() {
                                     onChange={CheckoutPayment.handleChange}
                                     className={cx('form-group-item-input')}
                                     type="text"
+                                    placeholder="Nhập tên ngân hàng"
                                 />
                             </div>
                             <div className={cx('form-group-item')}>
@@ -88,6 +89,7 @@ function Payment() {
                                     onChange={CheckoutPayment.handleChange}
                                     className={cx('form-group-item-input')}
                                     type="text"
+                                    placeholder="Nhập tên chủ thẻ"
                                 />
                             </div>
                             <div className={cx('form-group-item')}>
@@ -101,12 +103,15 @@ function Payment() {
                                     </span>
                                 </div>
                                 <input
+                                    type="digits"
+                                    placeholder="Nhập số thẻ"
+                                    maxlength="19"
+                                    minlength="14"
                                     id="numberCard"
                                     name="numberCard"
                                     value={CheckoutPayment.values.numberCard}
                                     onChange={CheckoutPayment.handleChange}
                                     className={cx('form-group-item-input', 'number')}
-                                    type="text"
                                 />
                             </div>
                             <div className={cx('form-group-item')}>

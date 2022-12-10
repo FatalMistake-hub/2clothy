@@ -72,6 +72,17 @@ export const getUser = async (accessToken, axiosJWT) => {
         return error.response.data;
     }
 };
+export const getUserBanks = async (accessToken, axiosJWT) => {
+    try {
+        const res = await axiosJWT.get('user/bank', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+
+        return res.data;
+    } catch (error) {
+        return error.response.data;
+    }
+};
 export const updateUser = async (data, accessToken, axiosJWT) => {
     try {
         const res = await axiosJWT.put('user', data, {
