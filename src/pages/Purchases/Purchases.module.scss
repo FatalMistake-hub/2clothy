@@ -101,7 +101,7 @@
 }
 .purchase-product-list {
     list-style: none;
-    padding: 24px 36px;
+    padding: 20px 32px;
     border-bottom: 1px solid rgba(34, 34, 34, 0.15);
 }
 .purchase-product-list-item {
@@ -116,11 +116,11 @@
 }
 
 .purchase-product-list-item-box {
-    margin-top: 24px;
+    margin-top: 12px;
     display: flex;
 }
 .purchase-product-list-item-image {
-    flex: 1 1 0% !important;
+    flex: 1/2 1 0% !important;
 }
 .purchase-product-list-item-image-link {
 }
@@ -128,8 +128,8 @@
     border-radius: 6px;
     width: 100%;
     box-sizing: inherit;
-    object-fit: inherit;
-    max-height: 200px;
+    object-fit: contain;
+    max-height: 100px;
 }
 .purchase-product-list-item-content {
     flex: 3 1 0%;

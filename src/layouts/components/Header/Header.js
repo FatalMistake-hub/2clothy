@@ -127,11 +127,11 @@ function Header() {
                     <div className={cx('actions')}>
                         {currentUser ? (
                             <>
-                                <Tippy delay={[0, 50]} content="Yêu thích" placement="bottom">
+                                {/* <Tippy delay={[0, 50]} content="Yêu thích" placement="bottom">
                                     <button className={cx('action-btn')}>
                                         <FavoritesIcon />
                                     </button>
-                                </Tippy>
+                                </Tippy> */}
                                 <Tippy delay={[0, 50]} content="Bán hàng" placement="bottom">
                                     <Link className={cx('action-btn')} to={config.routes.reference}>
                                         <ShopManagerIcon />

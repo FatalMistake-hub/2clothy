@@ -72,6 +72,9 @@ function Purchases() {
                 return { status: 'ĐÃ GIAO', statusCaption: 'Đơn hàng đã giao thành công' };
             case 4:
                 return { status: 'ĐÃ HUỶ', statusCaption: '' };
+                default:
+                    return { status: 'Sai', statusCaption: '' };
+
         }
     };
     const handleOrderStatus = (purchaseId, status) => {
@@ -240,7 +243,7 @@ function Purchases() {
                     {nPages && currentPage && <PaginationNav nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                 </div>
             </div>
-            // ) : ( //{' '}
+            {/* // ) : ( //{' '}
             <div className={cx('wrapper-emty')}>
                 //{' '}
                 <div className={cx('container')}>
@@ -250,7 +253,7 @@ function Purchases() {
                 </div>
                 //{' '}
             </div>
-            // )}
+            // )} */}
         </>
     );
 }
