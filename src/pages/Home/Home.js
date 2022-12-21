@@ -9,7 +9,8 @@ import SelectSort from '~/components/SelectSort';
 import config from '~/config';
 import * as searchServices from '~/services/apiService';
 import styles from './Home.module.scss';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const cx = classNames.bind(styles);
 function Home() {
     const { id } = useParams();
@@ -56,7 +57,6 @@ function Home() {
             setRawResult(data);
             const resultCategory = await searchServices.allCategories();
             setCategoriesResult(resultCategory);
-           
         };
         fetchApi();
     }, []);
@@ -99,6 +99,11 @@ function Home() {
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const currentRecords = itemResult?.slice(indexOfFirstRecord, indexOfLastRecord);
     const nPages = Math.ceil(itemResult?.length / recordsPerPage);
+
+    useEffect(() => {
+        AOS.init({ delay: 800 });
+        AOS.refresh();
+    }, []);
 
     return (
         <div className={cx('wrapper')}>
@@ -144,35 +149,44 @@ function Home() {
                             </ul>
                         </div>
                     </div>
-                    <div className={cx('category-list')}>
-                        {categoriesResult?.map((result) => (
-                            <div key={result.id} className={cx('category-list-item')}>
-                                <img className={cx('image')} src={result.imagePath} alt="Men's"  loading="lazy" onClick={() => fetchApiCategory(result)} />
+                    <div data-aos="fade-right">
+                        <div className={cx('category-list')}>
+                            {categoriesResult?.map((result) => (
+                                <div key={result.id} className={cx('category-list-item')}>
+                                    <img
+                                        className={cx('image')}
+                                        src={result.imagePath}
+                                        alt="Men's"
+                                        loading="lazy"
+                                        onClick={() => fetchApiCategory(result)}
+                                    />
 
-                                <p className={cx('name')}>{result.name}</p>
-                            </div>
-                        ))}
+                                    <p className={cx('name')}>{result.name}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <div className={cx('body')}>
-                    <div className={cx('header')}>
+                <div data-aos="fade-up">
+                    <div className={cx('body')}>
+                        <div className={cx('header')}>
+                            <h2 className={cx('header-text')}>Tìm thứ gì đó bạn yêu thích</h2>
+                        </div>
+                        <div className={cx('actions')}>
+                            <SelectSort rawItem={rawItem} itemResult={itemResult} setItemResult={setItemResult} />
+                        </div>
+                        <div className={cx('product-results')}>
+                            {currentRecords?.map((result) => (
+                                <ProductItem key={result.id} data={result} />
+                            ))}
+                        </div>
 
-
-                        <h2 className={cx('header-text')}>Tìm thứ gì đó bạn yêu thích</h2>
-                    </div>
-                    <div className={cx('actions')}>
-                        <SelectSort rawItem={rawItem} itemResult={itemResult} setItemResult={setItemResult} />
-                    </div>
-                    <div className={cx('product-results')}>
-                        {currentRecords?.map((result) => (
-                            <ProductItem key={result.id} data={result} />
-                        ))}
-                    </div>
-                    <div className={cx('search-pagination')}>
-                        <h2 className={cx('search-pagination-text')}>Còn rất nhiều điều để bạn khám phá</h2>
-                        {nPages && currentPage && (
-                            <PaginationNav nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-                        )}
+                        <div className={cx('search-pagination')}>
+                            <h2 className={cx('search-pagination-text')}>Còn rất nhiều điều để bạn khám phá</h2>
+                            {nPages && currentPage && (
+                                <PaginationNav nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -39,8 +39,9 @@ function Detail() {
             const resultShop = await searchServices.allShopProducts(detailResult?.shopId);
             setShopResult(shuffleArray(resultShop[0].items).slice(0, 4));
         };
-
-        fetchApi();
+        if (detailResult) {
+            fetchApi();
+        }
     }, [detailResult]);
 
     const dispatch = useDispatch();
@@ -117,20 +118,20 @@ function Detail() {
                                 <Link to={`/shop/${detailResult?.shopId}`} className={cx('follow-shop-content')}>
                                     {detailResult ? detailResult.shopName : ''}
                                 </Link>
-                                <Button rounded outline small>
+                                {/* <Button rounded outline small>
                                     Theo dõi
-                                </Button>
-                            </div>
-                            <div className={cx('rateAndsold')}>
-                                <span className={cx('sold-content')}>
-                                    Đã Bán {detailResult ? detailResult.quantity.toLocaleString('es-ES') : ''}
-                                </span>
-                                <span className={cx('septum')}>|</span>
-                                <span className={cx('rate')}>
-                                    <a href="" className={cx('rate-page')}>
-                                        <span className={cx('rate-content')}></span>
-                                    </a>
-                                </span>
+                                </Button> */}
+                                <div className={cx('rateAndsold')}>
+                                    <span className={cx('septum')}>|</span>
+                                    <span className={cx('sold-content')}>
+                                        Đã Bán {detailResult ? detailResult.quantity.toLocaleString('es-ES') : ''}
+                                    </span>
+                                    <span className={cx('rate')}>
+                                        <a href="" className={cx('rate-page')}>
+                                            <span className={cx('rate-content')}></span>
+                                        </a>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div className={cx('product-name')}>
@@ -263,12 +264,12 @@ function Detail() {
                 <div className={cx('review')}>
                     <div className={cx('review-container')}>
                         <div className={cx('review-header')}>
-                            <h2 className={cx('review-count')}>7,970 đánh giá</h2>
+                            {/* <h2 className={cx('review-count')}>7,970 đánh giá</h2> */}
                             <span className={cx('review-rate')}></span>
                         </div>
 
                         <div className={cx('review-listing')}>
-                            <div className={cx('review-listing-nav')}>
+                            {/* <div className={cx('review-listing-nav')}>
                                 <button className={cx('review-listing-nav-button')}>
                                     Đánh giá của sản phẩm
                                     <span className={cx('review-listing-nav-button-content')}>1,051</span>
@@ -321,7 +322,7 @@ function Detail() {
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className={cx('review-pagination')}>{/* <PaginationNav /> */}</div>
                     </div>
@@ -330,7 +331,7 @@ function Detail() {
                     <div className={cx('other-info-header')}>
                         <div className={cx('other-info-header-box')}>
                             <div className={cx('other-info-header-content')}>Các sản phẩm khác của shop</div>
-                            <Button rounded>Theo dõi</Button>
+                            {/* <Button rounded>Theo dõi</Button> */}
                         </div>
                         <Button rounded>
                             <Link to={`/shop/${detailResult?.shopId}`} className={cx('other-info-more')}>

@@ -67,19 +67,21 @@
 .follow-shop {
     margin-bottom: 6px;
     display: flex;
+    align-items: center;
 }
 .follow-shop-content {
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: 700;
+    font-size: 19px;
     line-height: 28px;
     margin-right: 12px;
+    color: #f1641e;
 }
 .follow-shop-content:hover{
     text-decoration: underline;
 }
 .rateAndsold {
     align-items: center;
-    margin-bottom: 12px;
+    // margin-bottom: 12px;
     display: flex;
 }
 .sold-content {
@@ -89,8 +91,9 @@
 }
 .septum {
     color: #e1e3df;
-    margin-left: 6px;
-    margin-right: 6px;
+    // margin-left: 6px;
+    // margin-right: 6px;
+    margin-right: 10px;
 }
 .rate {
 }
@@ -551,6 +554,7 @@
 .other-info-header {
     padding-bottom: 18px;
     height: 100%;
+    width: 100%;
     align-items: center;
     display: flex;
     justify-content: space-between;

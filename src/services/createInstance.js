@@ -7,6 +7,9 @@ const refreshToken = async (token) => {
         const res = await httpRequest.post('user/refresh-token', {
             Token: token,
         });
+        // , {
+        //     withCredentials: true,
+        //   });
         return res.data;
     } catch (err) {
         console.log('refresh', err);

@@ -9,6 +9,7 @@ import ProductItem from '~/components/ProductItem';
 import SelectSort from '~/components/SelectSort';
 import Search from '~/layouts/components/Search';
 import * as searchServices from '~/services/apiService';
+import moment from 'moment/moment';
 
 import styles from './Shop.module.scss';
 
@@ -108,7 +109,7 @@ function Shop() {
                             <div className={cx('shop-home-header-banner-content')}>
                                 <div className={cx('shop-home-image')}>
                                     <img
-                                        src="https://i.etsystatic.com/isla/0d943f/24592470/isla_500x500.24592470_8hq0chzw.jpg?version=0"
+                                        src={detailShop?.images[0]?.path}
                                         className={cx('shop-home-image-data')}
                                          loading="lazy"
                                     />
@@ -153,9 +154,9 @@ function Shop() {
                 <div className={cx('shop-home-follow')}>
                     <div className={cx('shop-home-follow-box')}>
                         <div className={cx('shop-home-follow-button')}>
-                            <Button rounded large>
+                            {/* <Button rounded large>
                                 Theo dõi
-                            </Button>
+                            </Button> */}
                         </div>
                     </div>
                 </div>
@@ -166,7 +167,7 @@ function Shop() {
                                 <div className={cx('shop-home-announcement-title')}>
                                     <h2 className={cx('shop-home-announcement-title-text')}>Mô tả cửa hàng</h2>
                                 </div>
-                                <div className={cx('shop-home-announcement-update')}>Cập nhật vào : Sep 14, 2022</div>
+                                <div className={cx('shop-home-announcement-update')}>Cập nhật vào : {moment(detailShop?.dateCreated).format('ll')}</div>
                             </div>
                             <div className={cx('shop-home-announcement-content')}>
                                 <p className={cx('announcement-content-short')}>
@@ -238,7 +239,7 @@ function Shop() {
                         </div>
                     </div>
                 </div>
-                <div className={cx('shop-home-review')}>
+                {/* <div className={cx('shop-home-review')}>
                     <div className={cx('shop-home-review-box')}>
                         <div className={cx('shop-home-review-tittle')}>Đánh giá</div>
                         <div className={cx('shop-home-review-container')}>
@@ -341,7 +342,7 @@ function Shop() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );
