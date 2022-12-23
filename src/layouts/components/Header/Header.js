@@ -10,6 +10,7 @@ import {
     faKeyboard,
     faSignOut,
     faUser,
+    faWallet,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
@@ -31,36 +32,40 @@ import { authRemainingSelector, cartsRemainingSelector } from '~/redux/selector'
 
 const cx = classNames.bind(styles);
 
-const MENU_ITEMS = [
-    {
-        icon: <FontAwesomeIcon icon={faFileInvoice} />,
-        title: 'Hoá đơn',
-        to: '/purchases',
-    },
-    {
-        icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        title: 'Ngôn ngữ',
-        children: {
-            title: 'Ngôn ngữ',
-            data: [
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-            ],
-        },
-    },
-];
-
 function Header() {
     const user = useSelector(authRemainingSelector);
     const currentUser = user?.login.currentUser;
+    const MENU_ITEMS = [
+        {
+            icon: <FontAwesomeIcon icon={faFileInvoice} />,
+            title: 'Hoá đơn',
+            to: '/purchases',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faWallet} />,
+            title: 'Số dư tài khoản',
+            to: '/wallet',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faEarthAsia} />,
+            title: 'Ngôn ngữ',
+            children: {
+                title: 'Ngôn ngữ',
+                data: [
+                    {
+                        type: 'language',
+                        code: 'en',
+                        title: 'English',
+                    },
+                    {
+                        type: 'language',
+                        code: 'vi',
+                        title: 'Tiếng Việt',
+                    },
+                ],
+            },
+        },
+    ];
 
     const [isLogin, setIsLogin] = useState(false);
     const togglePopup = () => {
@@ -119,11 +124,10 @@ function Header() {
                         <img src={images.logo} alt="" className={cx('logo')} loading="lazy" />
                         {/* <span className={cx('logo-text')}>2Clothy</span> */}
                     </a>
-
+{console.log(currentUser?.shopId>= 1,currentUser?.shopId)}
                     <div className={cx('inner-search')}>
                         <Search />
                     </div>
-
                     <div className={cx('actions')}>
                         {currentUser ? (
                             <>
@@ -133,9 +137,15 @@ function Header() {
                                     </button>
                                 </Tippy> */}
                                 <Tippy delay={[0, 50]} content="Bán hàng" placement="bottom">
-                                    <Link className={cx('action-btn')} to={config.routes.reference}>
-                                        <ShopManagerIcon />
-                                    </Link>
+                                    {!(currentUser?.shopId>=1) ? (
+                                        <Link className={cx('action-btn')} to={config.routes.reference}>
+                                            <ShopManagerIcon />
+                                        </Link>
+                                    ) : (
+                                        <a className={cx('action-btn')} href="https://www.sellercenter2clothy.software/">
+                                            <ShopManagerIcon />
+                                        </a>
+                                    )}
                                 </Tippy>
                                 <Tippy delay={[0, 50]} content="Giỏ hàng" placement="bottom">
                                     <Link className={cx('action-btn')} to={config.routes.cart}>

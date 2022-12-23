@@ -83,6 +83,45 @@ export const getUserBanks = async (accessToken, axiosJWT) => {
         return error.response.data;
     }
 };
+export const getTypeBanks = async (accessToken, axiosJWT) => {
+    try {
+        const res = await axiosJWT.get('bank/banktype', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+
+        return res.data;
+    } catch (error) {
+        return error.response.data;
+    }
+};
+export const addBank = async (data, accessToken, axiosJWT) => {
+    try {
+        const res = await axiosJWT.post('user/bank', data, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        return res;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};
+export const updateBank = async (data, accessToken, axiosJWT) => {
+    try {
+        let res = '';
+        res = await axiosJWT.put(`user/bank`, data, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        // if (res.status == 200) {
+        //     // res = await getUserBanks(accessToken, axiosJWT);
+        //     // console.log(res);
+        //     // return res;
+        // }
+        return res;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};
 export const updateUser = async (data, accessToken, axiosJWT) => {
     try {
         const res = await axiosJWT.put('user', data, {
@@ -119,9 +158,9 @@ export const updateCart = async (data, accessToken, axiosJWT) => {
         return error.response.data;
     }
 };
-export const checkOutOrder = async (data, dispatch, accessToken, axiosJWT) => {
+export const checkOutOrderVnPay = async (data, dispatch, accessToken, axiosJWT) => {
     try {
-        const res = await axiosJWT.post('payment', data, {
+        const res = await axiosJWT.post('payment/vnpay', data, {
             headers: { Authorization: `Bearer ${accessToken}` },
         });
         if (res.status == 200) {
@@ -167,8 +206,8 @@ export const updateOrder = async (id, data, accessToken, axiosJWT) => {
 export const cancelOrder = async (id, accessToken, axiosJWT) => {
     try {
         let res = '';
-        res = await axiosJWT.put(`order/status/${id}`,0,{
-            headers: { Authorization: `Bearer ${accessToken}`},
+        res = await axiosJWT.put(`order/status/${id}`, 0, {
+            headers: { Authorization: `Bearer ${accessToken}` },
         });
         if (res.status == 200) {
             res = await getOrder(accessToken, axiosJWT);
@@ -178,6 +217,41 @@ export const cancelOrder = async (id, accessToken, axiosJWT) => {
         // history.push('/all-products');
 
         return res.data;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};
+export const getTransaction = async (accessToken, axiosJWT) => {
+    try {
+        const res = await axiosJWT.get('user/transaction', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};
+export const getWallet = async (accessToken, axiosJWT) => {
+    try {
+        const res = await axiosJWT.get('user/wallet', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};
+export const addShop = async (data, accessToken, axiosJWT) => {
+    try {
+        const res = await axiosJWT.post('shop', data, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        return res;
     } catch (error) {
         console.log(error);
         return error.response.data;

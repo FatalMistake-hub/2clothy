@@ -33,6 +33,7 @@ const  NotFound =lazy(()=>import( '~/pages/NotFound/NotFound'));
 const  Shipping =lazy(()=>import( '~/pages/CheckOut/Shipping/Shipping'));
 const  Payment =lazy(()=>import( '~/pages/CheckOut/Payment/Payment'));
 const  Review =lazy(()=>import( '~/pages/CheckOut/Review/Review'));
+const  Wallet =lazy(()=>import( '~/pages/Wallet/Wallet'));
 const  Purchases =lazy(()=>import( '~/pages/Purchases/Purchases'));
 const CompletedPayment = lazy(()=>import( '~/pages/CheckOut/CompletedPayment/CompletedPayment'))
 // Public routes
@@ -74,6 +75,7 @@ const privateRoutes = [
     { path: config.routes.review, component: Review, layout: SetupShopLayout },
     //
     { path: config.routes.purchases, component: Purchases },
+    { path: config.routes.wallet, component: Wallet },
 
 
 ];

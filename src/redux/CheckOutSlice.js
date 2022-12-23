@@ -13,10 +13,13 @@ export default createSlice({
             {
                 type: '',
                 info: {
+                    Id: '',
                     BankName: '',
-                    NumberCard: '',
-                    Owner: '',
+                    BankNumber: '',
+                    AccountName: '',
                     DateExpired: '',
+                    DateStarted: '',
+                    BankTypeId: 2,
                 },
             },
         ],

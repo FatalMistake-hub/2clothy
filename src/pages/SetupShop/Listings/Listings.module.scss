@@ -1,98 +1,125 @@
-.wrapper{
+.wrapper {
     padding: 30px 36px 12px 36px;
-    width: 100%;
+    width: 80%;
     float: left;
     position: relative;
+    left: 9%;
 }
-.billing{
-
+.listing {
 }
-.billing-title{
+.listing-title {
 }
-.billing-title-text{
-    margin-bottom: 6px;    text-align: center;font-size: 32px;
-    line-height: 36px;font-weight: 300;
+.listing-title-text {
+    margin-bottom: 6px;
+    text-align: center;
+    font-size: 32px;
+    line-height: 36px;
+    font-weight: 300;
     letter-spacing: 0.5px;
-
 }
-.billing-help{
-    margin-bottom: 12px;    font-weight: 400;
+.listing-help {
+    margin-bottom: 12px;
+    font-weight: 400;
     font-size: 16px;
-    line-height: 28px; text-align: center;
+    line-height: 28px;
+    text-align: center;
 }
-.billing-container{
-
+.listing-container {
     margin-left: -36px;
-    margin-right: -36px;padding-left: 18px;
-    padding-right: 18px;float: none;
+    margin-right: -36px;
+    padding-left: 18px;
+    padding-right: 18px;
+    float: none;
     position: relative;
     margin-top: 35px;
 }
-.billing-container-box{
+.listing-container-box {
     min-height: 292px;
+    display: flex;
+    justify-content: center;
 }
-.billing-form{
+.listing-form {
     position: relative;
-    width: 66.66667%;
+    width: 80%;
     padding-left: 18px;
-    padding-right: 18px;float: left;
+    padding-right: 18px;
+    float: left;
 }
-.billing-form-body{
+.listing-form-body {
     border-radius: 3px;
-    background-color: #FFF;
-    border: 1px solid #E1E3DF;
-    border-bottom-color: #CBCCC9;
+    background-color: #fff;
+    border: 1px solid #e1e3df;
+    border-bottom-color: #cbccc9;
     padding: 36px;
 }
-.billing-form-creditcard{
-
+.listing-form-creditcard {
 }
-.billing-form-creditcard-title{
-    margin-bottom: 18px;font-weight: 500;    font-size: 20px;
-    line-height: 24px;    
+.listing-form-creditcard-title {
+    margin-bottom: 18px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
 }
-.billing-form-creditcard-item{
-margin-bottom: 18px;
-display: flex;
+.listing-form-creditcard-item {
+    margin-bottom: 18px;
+    display: flex;
 }
-.billing-form-creditcard-item-porperties{
+.listing-form-creditcard-item-porperties {
     display: flex;
     align-items: center;
-    width: 33.33333%;
-    height: 38px;font-weight: 500;
+    width: 20%;
+    height: 38px;
+    font-weight: 500;
 }
-.billing-form-creditcard-item-input{
-    width: 66.66667%;
-    align-items: flex-start;    border-radius: 3px;
-    border-color: rgba(0, 0, 0, 0.15);
-    border-top-color: rgba(0, 0, 0, 0.2);
+.listing-form-creditcard-item-input {
+    width: 50%;
+    font-size: 18px;
+    height: 48px;
     border-style: solid;
     border-width: 1px;
-    color: #222;
+    border-radius: 6px;
+    color: #222222;
+    border-color: #e1e3df;
     display: block;
-    font-size: 14px;
-    height: 38px;
-
-    padding:9px 12px;
-    width: 100%;
+    line-height: 28px;
+    padding: 9px 12px;
+    box-shadow: 0 1px 4px 0 rgb(34 34 34 / 10%) inset;
 }
-.billing-form-address{
-
+.listing-form-creditcard-item-input:hover {
+    border-color: #222222;
 }
-.billing-form-address-title{
-    margin-bottom: 18px;font-weight: 500;    font-size: 20px;
-    line-height: 24px;    
+.listing-form-creditcard-item-area {
+    width: 70%;
+    font-size: 18px;
+    height: 100px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    color: #222222;
+    border-color: #e1e3df;
+    display: block;
+    line-height: 28px;
+    padding: 9px 12px;
+    
+    box-shadow: 0 1px 4px 0 rgb(34 34 34 / 10%) inset;
 }
-.billing-form-address-item{
-    margin-bottom: 12px;    
-    width: 100%;
+.listing-form-image {
 }
-.billing-form-address-item-porperties{
+.listing-form-image-title {
+    margin-bottom: 18px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 20px;
+    line-height: 24px;
+}
+.listing-form-image-item {
+    margin-bottom: 12px;
+    width: 100%;
+}
+.listing-form-image-item-porperties {
+    font-weight: 500;
     line-height: 19.6px;
 }
-.billing-form-address-item-input{
+.listing-form-image-item-input {
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) 0 inset;
 
@@ -103,49 +130,116 @@ display: flex;
     border-width: 1px;
     color: #222;
     display: block;
-    font-size: 14px;
     height: 38px;
-    padding:9px 12px;
+    padding: 9px 12px;
     width: 100%;
 }
-.billing-notice{
-    top :0;
-        margin-left: 68%;
-        margin-bottom: 18px;border-radius: 3px;
-        background-color: #FFF;
-        border: 1px solid #E1E3DF;
-        border-bottom-color: #CBCCC9;width: 30%;
+.listing-notice {
+    top: 0;
+    margin-left: 68%;
+    margin-bottom: 18px;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #e1e3df;
+    border-bottom-color: #cbccc9;
+    width: 30%;
 }
-.billing-notice-header{
-    background-color: #E4F3D9;
-    border-color: rgba(0, 0, 0, 0.05);border-top-right-radius: 2px;
+.listing-notice-header {
+    background-color: #e4f3d9;
+    border-color: rgba(0, 0, 0, 0.05);
+    border-top-right-radius: 2px;
     border-top-left-radius: 2px;
 
-    border-bottom: 1px solid #E1E3DF;
+    border-bottom: 1px solid #e1e3df;
     font-weight: bold;
     padding: 12px 18px;
     font-size: inherit;
     line-height: inherit;
 }
-.billing-notice-header-text{
- font-style: 14px;
- font-weight: 500;
- line-height: 19.6px;
+.listing-notice-header-text {
+    font-style: 14px;
+    font-weight: 500;
+    line-height: 19.6px;
 }
-.billing-notice-body{
-
+.listing-notice-body {
     padding: 18px;
 }
-.billing-notice-body-content{
+.listing-notice-body-content {
     margin: 0 0 12px;
     font-style: 14px;
     line-height: 24px;
 }
 
-.billing-action{
+.listing-action {
     margin-bottom: -90px;
     right: 10%;
     position: absolute;
 
-    bottom:0;
+    bottom: 0;
+}
+.listing-form-bannel-content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 10px;
+    align-items: center;
+}
+.listing-form-bannel-image {
+    margin-right: 16px;
+    margin-bottom: 16px;
+    width: 384px;
+    height: 160px;
+    border-radius: 4px;
+}
+.listing-form-bannel-image-box {
+    width: 100%;
+    height: 100%;
+}
+.listing-form-bannel-image-data {
+    width: 384px;
+    height: 160px;
+    border-radius: 4px;
+    border-width: 1px;
+}
+.listing-form-bannel-path {
+    display: flex;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+}
+.listing-form-bannel-path-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: dashed;
+}
+.listing-form-bannel-path-box:hover {
+    background-color: #f1641e44;
+}
+.listing-form-bannel-path-input {
+    display: none;
+}
+.listing-form-bannel-icon {
+    display: flex;
+    flex-direction: column;
+    color: #f1641e;
+}
+.listing-form-bannel-icon-box {
+    height: 24px;
+}
+.listing-form-bannel-icon-data {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+.listing-form-bannel-text {
+    font-size: 12px;
+    line-height: 16px;
 }

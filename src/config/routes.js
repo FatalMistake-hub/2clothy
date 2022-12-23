@@ -34,6 +34,7 @@ const routes = {
     detail: '/detail/:id',
 
     purchases: '/purchases',
+    wallet: '/wallet',
     notfound: '*',
 };
 

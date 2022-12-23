@@ -30,7 +30,7 @@ function CreditCards() {
                 <div className={cx('card-notice')}>
                     <p className={cx('card-notice-text')}>Bạn chỉ có thể thêm thẻ tín dụng mới khi thanh toán.</p>
                 </div>
-                <div className={cx('card-container')}>
+                {dataUserBank && <div className={cx('card-container')}>
                     <div className={cx('card-item')}>
                         <div className={cx('card-item-content')}>
                             <h3 className={cx('card-item-content-tittle')}>
@@ -76,7 +76,7 @@ function CreditCards() {
                             </label>
                         </div>
                     </div>
-                </div>
+                </div>}
             </div>
         </div>
     );

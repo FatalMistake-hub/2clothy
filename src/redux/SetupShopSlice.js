@@ -7,7 +7,7 @@ export default createSlice({
             name: '',
         },
         info: {
-            
+            Paths:[]
         },
         billing: {
 

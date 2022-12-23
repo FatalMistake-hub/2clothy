@@ -51,9 +51,9 @@ function Reference() {
                                 <input
                                     id="name"
                                     name="name"
-                                    className={cx('reference-input')}
                                     value={NameShop.values.name}
                                     onChange={NameShop.handleChange}
+                                    className={cx('reference-input')}
                                     type="text"
                                     placeholder="Nhập tên shop của bạn"
                                 />

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import config from '~/config';
-import {  loginUser, registerUser } from '~/services/authService';
+import { loginUser, registerUser } from '~/services/authService';
 import styles from './PopupForm.module.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -45,7 +45,6 @@ function PopupForm({ handleClose }) {
                 setErrorResponse(res);
             };
             fetchApi();
-            
         },
     });
     const Register = useFormik({
@@ -53,6 +52,7 @@ function PopupForm({ handleClose }) {
             email: '',
             password: '',
             confirmPassword: '',
+            name: '',
         },
         validationSchema: Yup.object({
             email: Yup.string()
@@ -64,6 +64,10 @@ function PopupForm({ handleClose }) {
                     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/,
                     'Mật khẩu phải có 7-19 ký tự và chứa ít nhất một chữ cái, một số và một ký tự đặc biệt!',
                 ),
+            name: Yup.string()
+                .required('Bắt buộc!')
+                .matches(/^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi, 'Không sử dụng kí tự đặc biệt.')
+                .matches(/^([a-zA-Z0-9_-]){4,20}$/gms, 'Nhập tên từ 4-20 kí tự.'),
             confirmPassword: Yup.string()
                 .required('Bắt buộc!')
                 .oneOf([Yup.ref('password'), null], 'Mật khẩu nhập lại không trùng khớp!'),
@@ -73,6 +77,7 @@ function PopupForm({ handleClose }) {
                 Email: values.email,
                 Password: values.password,
                 ConfirmPassword: values.confirmPassword,
+                Name:values.name,
             };
             const fetchApi = async () => {
                 const res = await registerUser(newUser, dispatch, navigate);
@@ -196,6 +201,22 @@ function PopupForm({ handleClose }) {
                                 {Register.errors.email && (
                                     <div className={cx('errorBox')}>
                                         <p className={cx('errorMsg')}>* {Register.errors.email} </p>
+                                    </div>
+                                )}
+                            </div>
+                            <div className={cx('email')}>
+                                <span className={cx('content')}>Đặt tên tài khoản</span>
+                                <input
+                                    id="name"
+                                    name="name"
+                                    value={Register.values.name}
+                                    onChange={Register.handleChange}
+                                    className={cx('input_login')}
+                                    type="text"
+                                />
+                                {Register.errors.name && (
+                                    <div className={cx('errorBox')}>
+                                        <p className={cx('errorMsg')}>* {Register.errors.name} </p>
                                     </div>
                                 )}
                             </div>

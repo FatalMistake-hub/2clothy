@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthSlice from '~/redux/AuthSlice';
 import CartSlice from '~/redux/CartSlice';
 import { createAxios } from '~/services/createInstance';
-import { checkOutOrder } from '~/services/authService';
+import { checkOutOrderVnPay, updateBank } from '~/services/authService';
 
 const cx = classNames.bind(styles);
 
@@ -57,8 +57,8 @@ function Review() {
     const dataCheckOut = {
         Address: checkOut.shipping.Address,
         City: checkOut.shipping.City,
-        BankCode: checkOut.payment.info.BankName,
-        Bank: checkOut.payment.info.BankName,
+        BankCode: checkOut.payment.info.BankCode,
+        // Bank: checkOut.payment.info.BankName,
         Country: checkOut.shipping.Country,
         PaymentId: 2,
         PhoneNumber: checkOut.shipping.PhoneNumber,
@@ -67,7 +67,8 @@ function Review() {
     };
     const handleCheckOut = async () => {
         let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.loginSuccess);
-        const res = await checkOutOrder(dataCheckOut, dispatch, accessToken, axiosJWT);
+        const res = await checkOutOrderVnPay(dataCheckOut, dispatch, accessToken, axiosJWT);
+        
         console.log(res);
         if (res.status == 200) {
             window.location.href = res.data;

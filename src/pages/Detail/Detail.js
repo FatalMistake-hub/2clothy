@@ -29,7 +29,7 @@ function Detail() {
     useEffect(() => {
         const fetchApi = async () => {
             const result = await searchServices.detailProduct(id);
-            setDetailResult(result[0]);
+            setDetailResult(result);
         };
 
         fetchApi();
@@ -187,11 +187,11 @@ function Detail() {
                                     </div>
                                 </div>
                             </div>
-                            <div className={cx('buybox-button-box')}>
+                            {/* <div className={cx('buybox-button-box')}>
                                 <Button rounded login className={cx('buybox-button')}>
                                     Mua Ngay
                                 </Button>
-                            </div>
+                            </div> */}
                             <div className={cx('buybox-button-box')}>
                                 <Button onClick={handleAddtoCart} primary rounded login className={cx('buybox-button', 'add')}>
                                     Thêm Vào Giỏ Hàng

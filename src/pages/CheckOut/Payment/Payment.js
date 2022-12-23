@@ -6,11 +6,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CheckOutSlice from '~/redux/CheckOutSlice';
+import { useEffect } from 'react';
+import * as authServices from '~/services/authService';
+import { authRemainingSelector } from '~/redux/selector';
+import AuthSlice from '~/redux/AuthSlice';
+import { createAxios } from '~/services/createInstance';
 const cx = classNames.bind(styles);
 
 function Payment() {
+    const user = useSelector(authRemainingSelector);
+    const currentUser = user?.login.currentUser;
+    const accessToken = currentUser?.accessToken;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const CheckoutPayment = useFormik({
@@ -23,19 +31,67 @@ function Payment() {
         }),
         onSubmit: (values) => {
             console.log(values);
+            const bank = dataBankType.find((item) => {
+                if (item.bankName == values.bankname) {
+                    return item.id;
+                }
+            });
             const data = {
                 type: 'VNPAY',
                 info: {
+                    Id: userBank?.id,
                     BankName: values.bankname,
-                    NumberCard: values.numberCard,
-                    Owner: values.owner,
-                    DateExpired: values.dateExpired,
+                    BankNumber: values.numberCard,
+                    BankCode: bank.bankCode,
+                    AccountName: values.owner,
+                    ExpiredDate: values.dateExpired,
+                    StartedDate: values.dateStarted,
+                    BankTypeId: bank.id,
                 },
             };
+            console.log(data);
+
             dispatch(CheckOutSlice.actions.handlePayment(data));
-            navigate('/review');
+            const fetchApi = async () => {
+                let { BankName, ...dataUpdateAPi } = data.info;
+                let { Id, ...dataAddAPi } = data.info;
+
+                if (!userBank) {
+                    const res = await authServices.addBank(dataAddAPi, accessToken, axiosJWT);
+                    setResBank(res);
+                } else {
+                    const res = await authServices.updateBank(dataUpdateAPi, accessToken, axiosJWT);
+                    setResBank(res);
+                }
+            };
+            fetchApi();
         },
     });
+    const [resBank, setResBank] = useState([]);
+    useEffect(() => {
+        console.log(resBank);
+        if (resBank.status == 200) {
+            navigate('/review');
+        }
+    }, [resBank]);
+
+    const [dataBankType, setDataBankType] = useState([]);
+    const [userBank, setUserBank] = useState([]);
+    let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.loginSuccess);
+    useEffect(() => {
+        const fetchApi = async () => {
+            const dataItem = await authServices.getTypeBanks(accessToken, axiosJWT);
+            const dataUserBank = await authServices.getUserBanks(accessToken, axiosJWT);
+            setDataBankType(dataItem);
+            CheckoutPayment.values.bankname = dataUserBank[0]?.bankName;
+            CheckoutPayment.values.numberCard = dataUserBank[0]?.bankNumber;
+            CheckoutPayment.values.owner = dataUserBank[0]?.accountName;
+            CheckoutPayment.values.dateExpired = dataUserBank[0]?.expiredDate;
+            CheckoutPayment.values.dateStarted = dataUserBank[0]?.startedDate;
+            setUserBank(dataUserBank[0]);
+        };
+        fetchApi();
+    }, []);
     return (
         <div className={cx('wrapper')}>
             <form onSubmit={CheckoutPayment.handleSubmit}>
@@ -68,15 +124,26 @@ function Payment() {
                                 <label className={cx('form-group-item-label')} htmlFor="">
                                     Ngân hàng
                                 </label>
-                                <input
+
+                                <select
                                     id="bankname"
                                     name="bankname"
-                                    value={CheckoutPayment.values.bankname}
+                                    // value={CheckoutPayment.values.bankname}
                                     onChange={CheckoutPayment.handleChange}
                                     className={cx('form-group-item-input')}
                                     type="text"
                                     placeholder="Nhập tên ngân hàng"
-                                />
+                                >
+                                    {!userBank && <option value="" label="- - - - Chọn ngân hàng thanh toán - - - -" selected />}
+                                    {dataBankType?.map((data, i) => (
+                                        <option
+                                            key={i}
+                                            value={data.bankName}
+                                            label={data.bankName}
+                                            selected={data.bankCode === userBank?.bankCode}
+                                        ></option>
+                                    ))}
+                                </select>
                             </div>
                             <div className={cx('form-group-item')}>
                                 <label className={cx('form-group-item-label')} htmlFor="">
@@ -115,18 +182,33 @@ function Payment() {
                                 />
                             </div>
                             <div className={cx('form-group-item')}>
-                                <label className={cx('form-group-item-label')} htmlFor="">
-                                    Ngày hết hạn
-                                </label>
                                 <div className={cx('form-group-item-datetime')}>
-                                    <input
-                                        id="dateExpired"
-                                        name="dateExpired"
-                                        value={CheckoutPayment.values.dateExpired}
-                                        onChange={CheckoutPayment.handleChange}
-                                        className={cx('form-group-item-input')}
-                                        type="date"
-                                    />
+                                    <p>
+                                        <label className={cx('form-group-item-label')} htmlFor="">
+                                            Ngày bắt đầu:
+                                        </label>
+                                        <label className={cx('form-group-item-label')} htmlFor="">
+                                            Ngày hết hạn:
+                                        </label>
+                                    </p>
+                                    <div className={cx('form-group-item-datetime-box')}>
+                                        <input
+                                            id="dateStarted"
+                                            name="dateStarted"
+                                            value={CheckoutPayment.values.dateStarted}
+                                            onChange={CheckoutPayment.handleChange}
+                                            className={cx('form-group-item-input')}
+                                            type="date"
+                                        />
+                                        <input
+                                            id="dateExpired"
+                                            name="dateExpired"
+                                            value={CheckoutPayment.values.dateExpired}
+                                            onChange={CheckoutPayment.handleChange}
+                                            className={cx('form-group-item-input')}
+                                            type="date"
+                                        />
+                                    </div>
                                     {/* <select className={cx('form-group-item-input')}></select> */}
                                 </div>
                             </div>
