@@ -74,7 +74,7 @@ function Billing() {
                     Name: shopInfo.reference.name,
                     Address: shopInfo.info.Address,
                     PhoneNumber: shopInfo.info.PhoneNumber,
-                   p Description: shopInfo.info.Description,
+                    Description: shopInfo.info.Description,
                     Paths: shopInfo.info.Paths,
                     // "BankNumber": 560100018989,
                     // "BankName":"BIDV"
@@ -91,7 +91,7 @@ function Billing() {
     const [resShop, setResShop] = useState([]);
     useEffect(() => {
         console.log(resBank);
-        if (resBank.status == 200&&resShop.status==200) {
+        if (resBank.status == 200 && resShop.status == 200) {
             navigate('/completedpayment');
         }
     }, [resBank]);
