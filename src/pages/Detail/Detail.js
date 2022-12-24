@@ -17,11 +17,13 @@ const cx = classNames.bind(styles);
 
 function Detail() {
     const { id } = useParams();
-    const [detailResult, setDetailResult] = useState([
-        {
-            images: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fapkpure.com%2Fvn%2Fwhite-screen%2Fhu.bkalman.android.app.whitescreen&psig=AOvVaw3eqnTPdWFEshflIuWF7832&ust=1671978107200000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIiWy_i5kvwCFQAAAAAdAAAAABAE',
-        },
-    ]);
+    const [detailResult, setDetailResult] = useState({
+        images: [
+            {
+                path: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fapkpure.com%2Fvn%2Fwhite-screen%2Fhu.bkalman.android.app.whitescreen&psig=AOvVaw3eqnTPdWFEshflIuWF7832&ust=1671978107200000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIiWy_i5kvwCFQAAAAAdAAAAABAE',
+            },
+        ],
+    });
     const [shopResult, setShopResult] = useState();
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -120,7 +122,7 @@ function Detail() {
                         <div className={cx('odercard-listing-header')}>
                             <div className={cx('follow-shop')}>
                                 <Link to={`/shop/${detailResult?.shopId}`} className={cx('follow-shop-content')}>
-                                    {detailResult ? detailResult.shopName : ''}
+                                    {detailResult ? detailResult?.shopName : ''}
                                 </Link>
                                 {/* <Button rounded outline small>
                                     Theo dõi
@@ -128,7 +130,7 @@ function Detail() {
                                 <div className={cx('rateAndsold')}>
                                     <span className={cx('septum')}>|</span>
                                     <span className={cx('sold-content')}>
-                                        Đã Bán {detailResult ? detailResult.quantity.toLocaleString('es-ES') : ''}
+                                        Đã Bán {detailResult ? detailResult?.quantity?.toLocaleString('es-ES') : ''}
                                     </span>
                                     <span className={cx('rate')}>
                                         <a href="" className={cx('rate-page')}>
@@ -139,14 +141,14 @@ function Detail() {
                             </div>
                         </div>
                         <div className={cx('product-name')}>
-                            <h1 className={cx('product-name-content')}> {detailResult ? detailResult.name : ''}</h1>
+                            <h1 className={cx('product-name-content')}> {detailResult ? detailResult?.name : ''}</h1>
                         </div>
                         <div className={cx('buybox')}>
                             <div className={cx('buybox-info')}>
                                 <div className={cx('buybox-data')}>
                                     <div className={cx('buybox-data-price')}>
                                         <p className={cx('buybox-data-price-content')}>
-                                            {detailResult ? detailResult.price.toLocaleString('es-ES') : ''}₫
+                                            {detailResult ? detailResult?.price?.toLocaleString('es-ES') : ''}₫
                                         </p>
                                     </div>
                                     <div className={cx('buybox-data-caption')}>Đã bao gồm thuế địa phương (nếu có)</div>
@@ -161,7 +163,7 @@ function Detail() {
                                     <div className={cx('selection-box')}>
                                         <select defaultValue={'Default'} className={cx('selection-input')}>
                                             {/* <option value="Default">Size</option> */}
-                                            <option value="">{detailResult ? detailResult.size : ''}</option>
+                                            <option value="">{detailResult ? detailResult?.size : ''}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -174,7 +176,7 @@ function Detail() {
                                         <select defaultValue={'Default'} className={cx('selection-input')}>
                                             
                                             {detailResult &&
-                                                [...Array(detailResult.quantity + 1).keys()].slice(1).map((result) => (
+                                                [...Array(detailResult?.quantity + 1).keys()].slice(1).map((result) => (
                                                     <option key={result} value="">{result}</option>
                                                 ))}
                                         </select>
@@ -234,7 +236,7 @@ function Detail() {
                         </h2>
                         <div className={cx('description-detail')}>
                             <div className={cx('description-detail-box')}>
-                                <p className={cx('description-detail-text')}>{detailResult ? detailResult.description : ''}</p>
+                                <p className={cx('description-detail-text')}>{detailResult ? detailResult?.description : ''}</p>
                             </div>
                             {/* <div className={cx('description-button')}>
                                 <button className={cx('description-button-data')}>Learn more about this item</button>
@@ -258,7 +260,7 @@ function Detail() {
                                 <p className={cx('shop-detail-owner')}>
                                     Chủ sở hữu{' '}
                                     <Link to={`/shop/${detailResult?.shopId}`} className={cx('shop-detail-owner-link')}>
-                                        {detailResult ? detailResult.shopName : ''}
+                                        {detailResult ? detailResult?.shopName : ''}
                                     </Link>
                                 </p>
                             </div>
