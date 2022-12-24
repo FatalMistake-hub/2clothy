@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState, useRef } from 'react';
-import { Carousel } from 'react-carousel-minimal';
 import { NavLink, useParams } from 'react-router-dom';
 import Button from '~/components/Button';
 import { SearchIcon } from '~/components/Icons';
@@ -12,11 +11,10 @@ import * as searchServices from '~/services/apiService';
 import moment from 'moment/moment';
 
 import styles from './Shop.module.scss';
+import { Carousel } from 'react-responsive-carousel';
 
 const cx = classNames.bind(styles);
 function Shop() {
-
-
     const { id } = useParams();
     const [categoryResult, setCategoryResult] = useState();
     const [itemResult, setItemResult] = useState();
@@ -65,13 +63,11 @@ function Shop() {
     const currentRecords = itemResult?.slice(indexOfFirstRecord, indexOfLastRecord);
     const nPages = Math.ceil(itemResult?.length / recordsPerPage);
 
-
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('shop-panel')}>
-                {console.log(detailShop?.images)}
-                <Carousel
+                {/* {console.log(detailShop?.images)} */}
+                {/* <Carousel
                     data={
                         detailShop
                             ? 
@@ -100,7 +96,19 @@ function Shop() {
                         left: '0',
                         overflow:'hidden'
                     }}
-                />
+                /> */}
+
+                <div>
+                    <Carousel thumbWidth={100} showStatus={false} showThumbs={false}>
+                        {/* {console.log(detailResult?.images)} */}
+                        {detailShop?.images?.map((item, i) => (
+                            <div key={i}>
+                                <img src={item.path} className={cx('shop-panel-box')} />
+                                {/* <p className="legend">Legend 1</p> */}
+                            </div>
+                        ))}
+                    </Carousel>
+                </div>
             </div>
             <div className={cx('shop-home')}>
                 <div className={cx('shop-home-header')}>
@@ -108,11 +116,7 @@ function Shop() {
                         <div className={cx('shop-home-header-banner')}>
                             <div className={cx('shop-home-header-banner-content')}>
                                 <div className={cx('shop-home-image')}>
-                                    <img
-                                        src={detailShop?.images[0]?.path}
-                                        className={cx('shop-home-image-data')}
-                                         loading="lazy"
-                                    />
+                                    <img src={detailShop?.images[0]?.path} className={cx('shop-home-image-data')} loading="lazy" />
                                 </div>
                                 <div className={cx('shop-home-info')}>
                                     <div className={cx('shop-home-info-title')}>
@@ -141,7 +145,7 @@ function Shop() {
                                     <a href=" " className={cx('shop-home-owner-link')}>
                                         <img
                                             src="https://i.etsystatic.com/iusa/2caca1/90655985/iusa_75x75.90655985_o05l.jpg?version=0"
-                                             loading="lazy"
+                                            loading="lazy"
                                             className={cx('shop-home-owner-image')}
                                         />
                                         <p>{detailShop?.nameAccount}</p>
@@ -167,7 +171,9 @@ function Shop() {
                                 <div className={cx('shop-home-announcement-title')}>
                                     <h2 className={cx('shop-home-announcement-title-text')}>Mô tả cửa hàng</h2>
                                 </div>
-                                <div className={cx('shop-home-announcement-update')}>Cập nhật vào : {moment(detailShop?.dateCreated).format('ll')}</div>
+                                <div className={cx('shop-home-announcement-update')}>
+                                    Cập nhật vào : {moment(detailShop?.dateCreated).format('ll')}
+                                </div>
                             </div>
                             <div className={cx('shop-home-announcement-content')}>
                                 <p className={cx('announcement-content-short')}>

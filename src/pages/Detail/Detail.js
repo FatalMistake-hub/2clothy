@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-// import { Carousel } from 'react-carousel-minimal';
 import Button from '~/components/Button';
 import { HandMade, Materials } from '~/components/Icons';
 import PaginationNav from '~/components/PaginationNav/PaginationNav';
@@ -109,12 +108,12 @@ function Detail() {
                                     zindex: '-1',
                                 }}
                             /> */}
-                            <Carousel>
+                            <Carousel thumbWidth={100} showStatus={false} centerSlidePercentage>
                                 {/* {console.log(detailResult?.images)} */}
-                                {detailResult?.images?.map((item,i) => (
-                                    <div key={i}>
-                                        <img src={item.path} />
-                                        <p className="legend">Legend 1</p>
+                                {detailResult?.images?.map((item, i) => (
+                                    <div key={i} className={cx('image-wrapper-box')}>
+                                        <img src={item.path} className={cx('image-wrapper-data')} />
+                                        {/* <p className="legend">Legend 1</p> */}
                                     </div>
                                 ))}
                             </Carousel>

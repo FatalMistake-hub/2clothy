@@ -6,7 +6,6 @@
     margin: 0 auto;
 }
 .image {
-    margin-bottom: 36px;
     padding-left: 30px;
     padding-right: 12px;
     width: 67%;
@@ -14,11 +13,20 @@
     float: left;
     color: rgba(170, 170, 170, 0.034);
 }
-.image-wrapper{
-    
-    position: relative ;
-    padding-right: 12px;
-    margin-right: 18px;
+.image-wrapper {
+    position: relative;
+    margin-right: 30px;
+}
+.image-wrapper-box {
+    // object-fit:contain ;
+    // border-radius: 20px !important;
+    padding: 0px 100px 0px 100px;
+    height: 700px ;
+}
+.image-wrapper-data {
+    object-fit: fill ;
+    border-radius: 8px !important;
+    // height: 700px;
 }
 // .image-listing{
 
@@ -76,7 +84,7 @@
     margin-right: 12px;
     color: #f1641e;
 }
-.follow-shop-content:hover{
+.follow-shop-content:hover {
     text-decoration: underline;
 }
 .rateAndsold {
@@ -110,7 +118,7 @@
     font-size: 32px;
     font-weight: 300;
     letter-spacing: 0.35px;
-    font-family: "Guardian-EgypTT";
+    font-family: 'Guardian-EgypTT';
 }
 .buybox {
 }
@@ -228,7 +236,6 @@
     justify-content: space-between;
     text-align: left;
     vertical-align: middle;
-
 }
 .item-button:hover {
     background-color: #efefef;
@@ -577,21 +584,20 @@
     flex-wrap: wrap;
     padding-bottom: 48px;
     width: 100%;
-
 }
-.buybox-button-box{
+.buybox-button-box {
     width: 100%;
     margin-bottom: 12px;
     margin-top: 24px;
 }
-.buybox-button{
+.buybox-button {
     width: 100%;
 }
-.add{
+.add {
     border-color: #222222;
     background-color: #222222;
 }
-.add:hover{
+.add:hover {
     border-color: #222222;
-        background-color: #2f2f2f;
+    background-color: #2f2f2f;
 }
