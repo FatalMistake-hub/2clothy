@@ -74,7 +74,7 @@ function Billing() {
                     Name: shopInfo.reference.name,
                     Address: shopInfo.info.Address,
                     PhoneNumber: shopInfo.info.PhoneNumber,
-                    Description: shopInfo.info.Description,
+                   p Description: shopInfo.info.Description,
                     Paths: shopInfo.info.Paths,
                     // "BankNumber": 560100018989,
                     // "BankName":"BIDV"

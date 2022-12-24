@@ -17,7 +17,11 @@ const cx = classNames.bind(styles);
 
 function Detail() {
     const { id } = useParams();
-    const [detailResult, setDetailResult] = useState();
+    const [detailResult, setDetailResult] = useState([
+        {
+            images: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fapkpure.com%2Fvn%2Fwhite-screen%2Fhu.bkalman.android.app.whitescreen&psig=AOvVaw3eqnTPdWFEshflIuWF7832&ust=1671978107200000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIiWy_i5kvwCFQAAAAAdAAAAABAE',
+        },
+    ]);
     const [shopResult, setShopResult] = useState();
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
