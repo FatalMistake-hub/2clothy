@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { Carousel } from 'react-carousel-minimal';
+// import { Carousel } from 'react-carousel-minimal';
 import Button from '~/components/Button';
 import { HandMade, Materials } from '~/components/Icons';
 import PaginationNav from '~/components/PaginationNav/PaginationNav';
@@ -12,18 +12,13 @@ import * as searchServices from '~/services/apiService';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import CartSlice from '../../redux/CartSlice';
-
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 const cx = classNames.bind(styles);
 
 function Detail() {
     const { id } = useParams();
-    const [detailResult, setDetailResult] = useState({
-        images: [
-            {
-                path: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fapkpure.com%2Fvn%2Fwhite-screen%2Fhu.bkalman.android.app.whitescreen&psig=AOvVaw3eqnTPdWFEshflIuWF7832&ust=1671978107200000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIiWy_i5kvwCFQAAAAAdAAAAABAE',
-            },
-        ],
-    });
+    const [detailResult, setDetailResult] = useState([]);
     const [shopResult, setShopResult] = useState();
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -82,7 +77,7 @@ function Detail() {
                 <div className={cx('image')}>
                     <div className={cx('image-wrapper')}>
                         <div>
-                            <Carousel
+                            {/* <Carousel
                                 data={
                                     detailResult
                                         ? detailResult?.images
@@ -113,7 +108,16 @@ function Detail() {
                                     overflow: 'hidden',
                                     zindex: '-1',
                                 }}
-                            />
+                            /> */}
+                            <Carousel>
+                                {/* {console.log(detailResult?.images)} */}
+                                {detailResult?.images?.map((item,i) => (
+                                    <div key={i}>
+                                        <img src={item.path} />
+                                        <p className="legend">Legend 1</p>
+                                    </div>
+                                ))}
+                            </Carousel>
                         </div>
                     </div>
                 </div>
