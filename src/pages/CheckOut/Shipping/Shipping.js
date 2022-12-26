@@ -5,15 +5,23 @@ import styles from './Shipping.module.scss';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CheckOutSlice from '~/redux/CheckOutSlice';
+import { checkOutRemainingSelector } from '~/redux/selector';
 const cx = classNames.bind(styles);
 
 function Shipping() {
+    const checkOut = useSelector(checkOutRemainingSelector);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const CheckoutAddress = useFormik({
-        initialValues: {},
+        initialValues: {
+            address: checkOut.shipping.Address,
+            country: checkOut.shipping.Country,
+            city: checkOut.shipping.City,
+            phone: checkOut.shipping.PhoneNumber,
+        },
         validationSchema: Yup.object({
             address: Yup.string().required('Bắt buộc!'),
             country: Yup.string().required('Bắt buộc!'),
@@ -29,7 +37,11 @@ function Shipping() {
                 City: values.city,
             };
             dispatch(CheckOutSlice.actions.handleShipping(data));
-            navigate('/payment');
+            if (checkOut.paymentType == 'vnpay') {
+                navigate('/payment');
+            } else {
+                navigate('/review');
+            }
         },
     });
     return (

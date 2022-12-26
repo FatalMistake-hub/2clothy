@@ -108,7 +108,7 @@ function Detail() {
                                     zindex: '-1',
                                 }}
                             /> */}
-                            <Carousel thumbWidth={100} showStatus={false} centerSlidePercentage>
+                            <Carousel thumbWidth={100} showStatus={false} swipeable={true}>
                                 {/* {console.log(detailResult?.images)} */}
                                 {detailResult?.images?.map((item, i) => (
                                     <div key={i} className={cx('image-wrapper-box')}>
@@ -188,6 +188,7 @@ function Detail() {
                                         <input
                                             type="number"
                                             min="1"
+                                            max={quantity}
                                             step="1"
                                             className={cx('selection-input')}
                                             value={quantity}

@@ -83,6 +83,9 @@
     background-color: #f5f5f2;
     border: 1px solid #0000000e;
     box-shadow: 0 0 10px #0000000e;
+    
+}
+.purchase-product-header-item{
     display: flex;
     justify-content: space-between;
 }
@@ -293,4 +296,8 @@
     letter-spacing: 0.5px;
     padding-bottom: 12px;
     padding-top: 12px;
+}
+.purchase-product-header-id{
+    color:#f1641e;
+    font-weight: 700;
 }

@@ -172,6 +172,20 @@ export const checkOutOrderVnPay = async (data, dispatch, accessToken, axiosJWT) 
         return error.response.data;
     }
 };
+export const checkOutOrderCod = async (data, dispatch, accessToken, axiosJWT) => {
+    try {
+        const res = await axiosJWT.post('payment/cod', data, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        if (res.status == 200) {
+            dispatch(CartSlice.actions.handleCart([]));
+        }
+        return res;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};
 export const getOrder = async (accessToken, axiosJWT) => {
     try {
         const res = await axiosJWT.get('user/order', {

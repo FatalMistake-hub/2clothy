@@ -40,14 +40,14 @@ function Wallet() {
     const currentRecords = filterTransaction?.slice(indexOfFirstRecord, indexOfLastRecord);
     const nPages = Math.ceil(filterTransaction?.length / recordsPerPage);
 
-    const [isactive, setIsActive] = useState('0');
+    const [isactive, setIsActive] = useState('Tất cả');
     const handleTransaction = async (id) => {
-        if (id == 0) {
+        if (id == 'Tất cả') {
             setFilterTransaction(dataTransaction);
             setIsActive(id);
             // console.log(dataTransaction);
         } else {
-            const data = dataTransaction.filter((p) => p.statusId == id);
+            const data = dataTransaction.filter((p) => p.status == id);
             setFilterTransaction(data);
             setIsActive(id);
         }
@@ -74,19 +74,19 @@ function Wallet() {
             <div className={cx('wrapper')}>
                 <div className={cx('container')}>
                     <div className={cx('nav')}>
-                        <div onClick={() => handleTransaction(0)} className={cx('nav-item', `${isactive == 0 ? 'active' : ''}`)}>
+                        <div onClick={() => handleTransaction('Tất cả')} className={cx('nav-item', `${isactive =='Tất cả' ? 'active' : ''}`)}>
                             <span className={cx('nav-item-text')}>Tất cả</span>
                         </div>
-                        <div onClick={() => handleTransaction(1)} className={cx('nav-item', `${isactive == 1 ? 'active' : ''}`)}>
+                        <div onClick={() => handleTransaction('Chờ xác nhận')} className={cx('nav-item', `${isactive == 'Chờ xác nhận' ? 'active' : ''}`)}>
                             <span className={cx('nav-item-text')}>Chờ xác nhận</span>
                         </div>
-                        <div onClick={() => handleTransaction(2)} className={cx('nav-item', `${isactive == 2 ? 'active' : ''}`)}>
+                        <div onClick={() => handleTransaction('Đang Giao')} className={cx('nav-item', `${isactive == 'Đang Giao' ? 'active' : ''}`)}>
                             <span className={cx('nav-item-text')}>Đang giao</span>
                         </div>
-                        <div onClick={() => handleTransaction(3)} className={cx('nav-item', `${isactive == 3 ? 'active' : ''}`)}>
+                        <div onClick={() => handleTransaction('Đã Giao')} className={cx('nav-item', `${isactive =='Đã Giao' ? 'active' : ''}`)}>
                             <span className={cx('nav-item-text')}>Đã giao</span>
                         </div>
-                        <div onClick={() => handleTransaction(4)} className={cx('nav-item', `${isactive == 4 ? 'active' : ''}`)}>
+                        <div onClick={() => handleTransaction('Đã Hủy')} className={cx('nav-item', `${isactive == 'Đã Hủy' ? 'active' : ''}`)}>
                             <span className={cx('nav-item-text')}>Đã huỷ</span>
                         </div>
                     </div>
@@ -94,8 +94,8 @@ function Wallet() {
                         <div className={cx('transaction-header')}>
                             <div className={cx('transaction-header-box')}>
                                 <span className={cx('transaction-header-content')}>
-                                    Số dư tài khoản: <p className={cx('transaction-header-money')}>{dataWallet.toLocaleString('es-ES')} </p>{' '}
-                                    ₫{' '}
+                                   $ Số dư tài khoản: <p className={cx('transaction-header-money')}>{dataWallet.toLocaleString('es-ES')}₫{' '}</p>{' '}
+                                    
                                 </span>
                             </div>
                         </div>
@@ -134,22 +134,35 @@ function Wallet() {
                                                     <td className={cx('transaction-content-tbody-cell')}>
                                                         <div className={cx('transaction-content-tbody-box')}>
                                                             <div className={cx('transaction-content-tbody-box-img')}>
-                                                                <img
-                                                                    alt="Annette Black"
-                                                                    src="https://api-dev-minimal-v4.vercel.app/assets/images/avatars/avatar_9.jpg"
-                                                                    className={cx('transaction-content-tbody-box-img-data')}
-                                                                />
+                                                                {transaction.status == 'Đã Hủy' ? (
+                                                                    <img
+                                                                        alt="Annette Black"
+                                                                        src="https://cdn-icons-png.flaticon.com/512/4505/4505064.png"
+                                                                        className={cx('transaction-content-tbody-box-img-data')}
+                                                                    />
+                                                                ) : (
+                                                                    <img
+                                                                        alt="Annette Black"
+                                                                        src="https://cdn-icons-png.flaticon.com/512/5949/5949747.png"
+                                                                        className={cx('transaction-content-tbody-box-img-data')}
+                                                                    />
+                                                                )}
                                                             </div>
 
                                                             <div className={cx('transaction-content-tbody-box-content')}>
-                                                                <p className={cx('transaction-content-textp')}>Receive money from</p>
+                                                                <p className={cx('transaction-content-textp')}>{transaction.status == 'Đã Hủy' ? `Hoàn tiền cho đơn hàng ${transaction.billId}` : `Thanh toán cho đơn hàng ${transaction.billId}`}</p>
                                                                 <h6 className={cx('transaction-content-text')}> {transaction.shopName}</h6>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td className={cx('transaction-content-tbody-cell')}>
-                                                        <span className={cx('transaction-content-text')}>
-                                                            {transaction.money.toLocaleString('es-ES')} ₫
+                                                        <span
+                                                            className={cx(
+                                                                'transaction-content-text',
+                                                                `${transaction.status == 'Đã Hủy' ? 'success' : 'failed'}`,
+                                                            )}
+                                                        >
+                                                            {(transaction.money).toLocaleString('es-ES')} ₫
                                                         </span>
                                                     </td>
                                                     <td className={cx('transaction-content-tbody-cell')}>

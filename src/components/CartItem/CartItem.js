@@ -99,7 +99,7 @@ function CartItem({ shopId, shopName, shopImage, orderDetails = [] }) {
                                         <input
                                             type="number"
                                             min="1"
-                                            max="100"
+                                            max={productItem.quantity}
                                             value={productItem.quantity}
                                             onChange={(e) => handleQuantity(e, productItem.itemId)}
                                             step="1"

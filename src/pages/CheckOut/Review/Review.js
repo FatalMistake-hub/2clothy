@@ -11,7 +11,8 @@ import { useNavigate } from 'react-router-dom';
 import AuthSlice from '~/redux/AuthSlice';
 import CartSlice from '~/redux/CartSlice';
 import { createAxios } from '~/services/createInstance';
-import { checkOutOrderVnPay, updateBank } from '~/services/authService';
+import { checkOutOrderCod, checkOutOrderVnPay, updateBank } from '~/services/authService';
+import CheckOutSlice from '~/redux/CheckOutSlice';
 
 const cx = classNames.bind(styles);
 
@@ -67,13 +68,21 @@ function Review() {
     };
     const handleCheckOut = async () => {
         let axiosJWT = createAxios(currentUser, dispatch, AuthSlice.actions.loginSuccess);
-        const res = await checkOutOrderVnPay(dataCheckOut, dispatch, accessToken, axiosJWT);
-        
+        let res;
+        if (checkOut.paymentType !== 'cod') {
+            res = await checkOutOrderVnPay(dataCheckOut, dispatch, accessToken, axiosJWT);
+        } else {
+            const { BankCode, ...dataCOD } = dataCheckOut;
+            res = await checkOutOrderCod(dataCOD, dispatch, accessToken, axiosJWT);
+        }
         console.log(res);
-        if (res.status == 200) {
+        if (res.status == 200 && checkOut.paymentType !== 'cod') {
             window.location.href = res.data;
+        } else {
+            navigate('/completedpayment');
         }
     };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('body')}>
@@ -96,43 +105,62 @@ function Review() {
                                     <span className={cx('checkout-address-item-address-info')}>{checkOut.shipping.PhoneNumber}</span>
                                 </div>
                                 <div className={cx('checkout-address-item-action')}>
-                                    <button className={cx('checkout-address-item-button')}>
+                                    {/* <button className={cx('checkout-address-item-button')}>
                                         <span className={cx('checkout-address-item-button-icon')}>
                                             <Edit />
                                         </span>
                                         Edit
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                         </div>
                         <div className={cx('checkout-payment')}>
                             <h2 className={cx('checkout-payment-title')}>Phương thức thanh toán</h2>
                             <div className={cx('checkout-payment-method')}>
-                                <div className={cx('checkout-payment-method-icon')}>
-                                    <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
-                                        <img
-                                            src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-vnpay.png"
-                                            loading="lazy"
-                                            className={cx('checkout-cardPayment-section-channelItem-icon-data')}
-                                        />
-                                    </span>
-                                </div>
-                                <div className={cx('checkout-payment-method-content')}>
-                                    <p className={cx('checkout-payment-method-content-text')}>
-                                        {checkOut.payment.type}
-                                        …5239
-                                        <br />
-                                        Exp: {checkOut.payment.info.DateExpired}
-                                    </p>
-                                </div>
+                                {checkOut.paymentType !== 'cod' ? (
+                                    <>
+                                        <div className={cx('checkout-payment-method-icon')}>
+                                            <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
+                                                <img
+                                                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-vnpay.png"
+                                                    loading="lazy"
+                                                    className={cx('checkout-cardPayment-section-channelItem-icon-data')}
+                                                />
+                                            </span>
+                                        </div>
+                                        <div className={cx('checkout-payment-method-content')}>
+                                            <p className={cx('checkout-payment-method-content-text')}>
+                                                {checkOut.payment.type}
+                                                …5239
+                                                <br />
+                                                Exp: {checkOut.payment.info.DateExpired}
+                                            </p>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className={cx('checkout-payment-method-icon')}>
+                                            <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
+                                                <img
+                                                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-credit.svg"
+                                                    loading="lazy"
+                                                    className={cx('checkout-cardPayment-section-channelItem-icon-data')}
+                                                />
+                                            </span>
+                                        </div>
+                                        <div className={cx('checkout-payment-method-content')}>
+                                            <p className={cx('checkout-payment-method-content-text')}>Thanh toán khi nhận hàng</p>
+                                        </div>
+                                    </>
+                                )}
                             </div>
                             <div className={cx('checkout-address-item-action')}>
-                                <button className={cx('checkout-address-item-button')}>
+                                {/* <button className={cx('checkout-address-item-button')}>
                                     <span className={cx('checkout-address-item-button-icon')}>
                                         <Edit />
                                     </span>
                                     Edit
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                         <div className={cx('checkout-cardPayment')}>
@@ -144,14 +172,15 @@ function Review() {
                                             <li className={cx('checkout-cardPayment-section-channelItem')}>
                                                 <input
                                                     type="radio"
-                                                    id="radio"
+                                                    id="vnpay"
+                                                    checked={checkOut.paymentType == 'vnpay'}
                                                     className={cx('checkout-cardPayment-section-channelItem-radio')}
                                                 />
-                                                <label htmlFor="radio" className={cx('checkout-cardPayment-section-channelItem-iconList')}>
+                                                <label htmlFor="vnpay" className={cx('checkout-cardPayment-section-channelItem-iconList')}>
                                                     <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                         <img
                                                             src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-vnpay.png"
-                                                            loading="lazy"
+                                                            alt=""
                                                             className={cx('checkout-cardPayment-section-channelItem-icon-data')}
                                                         />
                                                     </span>
@@ -160,10 +189,11 @@ function Review() {
                                             <li className={cx('checkout-cardPayment-section-channelItem')}>
                                                 <input
                                                     type="radio"
-                                                    id="radio"
+                                                    id="cod"
+                                                    checked={checkOut.paymentType == 'cod'}
                                                     className={cx('checkout-cardPayment-section-channelItem-radio')}
                                                 />
-                                                <label htmlFor="radio" className={cx('checkout-cardPayment-section-channelItem-iconList')}>
+                                                <label htmlFor="cod" className={cx('checkout-cardPayment-section-channelItem-iconList')}>
                                                     <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                         <img
                                                             src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-credit.svg"
@@ -222,7 +252,7 @@ function Review() {
                                                 // }
                                                 onClick={handleCheckOut}
                                             >
-                                                Thanh toán với
+                                                Thanh toán
                                             </Button>
                                         </div>
                                     </div>

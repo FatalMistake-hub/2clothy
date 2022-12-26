@@ -1,18 +1,21 @@
 import classNames from 'classnames/bind';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import CartItem from '~/components/CartItem/CartItem';
+import CheckOutSlice from '~/redux/CheckOutSlice';
 
-import { authRemainingSelector, cartsRemainingSelector } from '~/redux/selector';
+import { authRemainingSelector, cartsRemainingSelector, checkOutRemainingSelector } from '~/redux/selector';
 
 import styles from './Cart.module.scss';
 // import cartSlice from './cartSlice';
 const cx = classNames.bind(styles);
 function Cart() {
+    
+    const type = useSelector(checkOutRemainingSelector);
     const cartList = useSelector(cartsRemainingSelector);
-
+    const dispatch = useDispatch();
     const getTotal = () => {
         let totalQuantity = 0;
         let totalPrice = 0;
@@ -27,8 +30,8 @@ function Cart() {
         return { totalPrice, totalQuantity };
     };
 
-    const handlePaymnet = () => {
-        // dispatch(CartSlice.actions.handleCart([]));
+    const handleCheck = (e) => {
+        dispatch(CheckOutSlice.actions.handlePaymentType(e));
     };
     return (
         <>
@@ -70,20 +73,15 @@ function Cart() {
                                                     <li className={cx('checkout-cardPayment-section-channelItem')}>
                                                         <input
                                                             type="radio"
-                                                            id="radio"
+                                                            id="vnpay"
+                                                            checked={type.paymentType=='vnpay'}
                                                             className={cx('checkout-cardPayment-section-channelItem-radio')}
+                                                            onChange={()=>handleCheck('vnpay')}
                                                         />
                                                         <label
-                                                            htmlFor="radio"
+                                                            htmlFor="vnpay"
                                                             className={cx('checkout-cardPayment-section-channelItem-iconList')}
                                                         >
-                                                            {/* <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
-                                                                <img
-                                                                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg"
-                                                                    loading="lazy"
-                                                                    className={cx('checkout-cardPayment-section-channelItem-icon-data')}
-                                                                />
-                                                            </span> */}
                                                             <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
                                                                 <img
                                                                     src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-vnpay.png"
@@ -96,11 +94,13 @@ function Cart() {
                                                     <li className={cx('checkout-cardPayment-section-channelItem')}>
                                                         <input
                                                             type="radio"
-                                                            id="radio"
+                                                            id="cod"
+                                                            checked={type.paymentType=='cod'}
                                                             className={cx('checkout-cardPayment-section-channelItem-radio')}
+                                                            onChange={()=>handleCheck('cod')}
                                                         />
                                                         <label
-                                                            htmlFor="radio"
+                                                            htmlFor="cod"
                                                             className={cx('checkout-cardPayment-section-channelItem-iconList')}
                                                         >
                                                             <span className={cx('checkout-cardPayment-section-channelItem-icon')}>
@@ -175,8 +175,11 @@ function Cart() {
                                                     </tbody>
                                                 </table>
                                                 <div className={cx('checkout-cardPayment-section-priceSummary-submit')}>
-                                                    <Link to={'/shipping'} className={cx('checkout-cardPayment-section-priceSummary-submit')}>
-                                                        <Button onClick={handlePaymnet} primary login rounded>
+                                                    <Link
+                                                        to={'/shipping'}
+                                                        className={cx('checkout-cardPayment-section-priceSummary-submit')}
+                                                    >
+                                                        <Button primary login rounded>
                                                             Thanh toán
                                                         </Button>
                                                     </Link>

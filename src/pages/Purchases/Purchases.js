@@ -72,9 +72,8 @@ function Purchases() {
                 return { status: 'ĐÃ GIAO', statusCaption: 'Đơn hàng đã giao thành công' };
             case 4:
                 return { status: 'ĐÃ HUỶ', statusCaption: '' };
-                default:
-                    return { status: 'Sai', statusCaption: '' };
-
+            default:
+                return { status: 'Sai', statusCaption: '' };
         }
     };
     const handleOrderStatus = (purchaseId, status) => {
@@ -126,20 +125,25 @@ function Purchases() {
                         <div key={i} className={cx('purchase')}>
                             <div className={cx('purchase-product')}>
                                 <div className={cx('purchase-product-header')}>
-                                    <span className={cx('purchase-product-header-title')}>
-                                        Đơn hàng đặt từ{' '}
-                                        <Link to={routes.home} className={cx('purchase-product-header-shopName')}>
-                                            DSimple{' '}
-                                        </Link>
-                                        vào ngày {moment(purchase.dateCreated).format('L')}
-                                    </span>
-                                    <span className={cx('purchase-product-header-title')}>
-                                        Tổng ({getTotal(purchase).totalQuantity}) :
-                                        <span className={cx('purchase-product-header-money')}>
-                                            {' '}
-                                            {getTotal(purchase).totalPrice.toLocaleString('es-ES')}₫
+                                    <div className={cx('purchase-product-header-item')}>
+                                        <span className={cx('purchase-product-header-id')}> {purchase.billId}</span>
+                                    </div>
+                                    <div className={cx('purchase-product-header-item')}>
+                                        <span className={cx('purchase-product-header-title')}>
+                                            Đơn hàng đặt từ{' '}
+                                            <Link to={routes.home} className={cx('purchase-product-header-shopName')}>
+                                                {purchase.shopName}{' '}
+                                            </Link>
+                                            vào ngày {moment(purchase.dateCreated).format('L')}
                                         </span>
-                                    </span>
+                                        <span className={cx('purchase-product-header-title')}>
+                                            Tổng ({getTotal(purchase).totalQuantity}) :
+                                            <span className={cx('purchase-product-header-money')}>
+                                                {' '}
+                                                {getTotal(purchase).totalPrice.toLocaleString('es-ES')}₫
+                                            </span>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div className={cx('purchase-product-body')}>
                                     <ul className={cx('purchase-product-list')}>
@@ -205,7 +209,7 @@ function Purchases() {
                                         <span className={cx('purchase-product-list-text')}>
                                             {purchase.phoneNumber}
                                             <br />
-                                            {purchase.address}, {purchase.city}, {purchase.country}
+                                            {purchase.address}.
                                         </span>
                                     </div>
                                 </div>

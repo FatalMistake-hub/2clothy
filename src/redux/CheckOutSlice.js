@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export default createSlice({
     name: 'checkOut',
     initialState: {
+        paymentType: '',
         shipping: {
             Address: '',
             Country: '',
@@ -48,6 +49,9 @@ export default createSlice({
     },
     reducers: {
         // IMMER
+        handlePaymentType: (state, action) => {
+            state.paymentType = action.payload;
+        },
         handleShipping: (state, action) => {
             state.shipping = action.payload;
         },

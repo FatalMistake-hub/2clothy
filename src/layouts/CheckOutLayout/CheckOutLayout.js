@@ -19,7 +19,7 @@ function SetupShopLayout({ children }) {
                     <img src={images.logo} alt="Etsy" className={cx('logo')} loading="lazy" />
                 </Link>
             </div>
-            <SetupNav />
+            <SetupNav data={'checkOut'} />
             <div className={cx('container')}>
                 <div className={cx('content')}>{children}</div>
             </div>
