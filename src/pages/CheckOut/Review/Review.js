@@ -58,7 +58,7 @@ function Review() {
     const dataCheckOut = {
         Address: checkOut.shipping.Address,
         City: checkOut.shipping.City,
-        BankCode: checkOut.payment.info.BankCode,
+        BankCode: checkOut.payment.info?.BankCode,
         // Bank: checkOut.payment.info.BankName,
         Country: checkOut.shipping.Country,
         PaymentId: 2,

@@ -80,6 +80,7 @@ function PopupForm({ handleClose }) {
                 Name:values.name,
             };
             const fetchApi = async () => {
+                console.log(newUser)
                 const res = await registerUser(newUser, dispatch, navigate);
                 setErrorResponse(res);
             };

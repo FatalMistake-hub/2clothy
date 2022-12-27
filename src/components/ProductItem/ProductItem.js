@@ -11,7 +11,7 @@ function ProductItem({data}) {
             <Link to={`/detail/${data.id}`} className={cx('image-link')}>
                 <div className={cx('image-box')}>
                     <img
-                        src={(data.images)[0].path}
+                        src={(data?.images)[0]?.path}
                         alt=""
                         className={cx('image-content')}
                         loading="lazy"

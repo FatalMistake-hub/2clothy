@@ -29,6 +29,7 @@ export const registerUser = async (user, dispatch, navigate) => {
             Email: user.Email,
             Password: user.Password,
             ConfirmPassword: user.ConfirmPassword,
+            Name: user.Name,
         });
         dispatch(AuthSlice.actions.registerSuccess(res.data));
         navigate('/');

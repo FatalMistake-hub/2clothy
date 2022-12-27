@@ -94,7 +94,7 @@ function Billing() {
         if (resBank.status == 200 && resShop.status == 200) {
             navigate('/completedsetup');
         }
-    }, [resBank]);
+    }, [resBank,resShop]);
 
     const [dataBankType, setDataBankType] = useState([]);
     const [userBank, setUserBank] = useState([]);
