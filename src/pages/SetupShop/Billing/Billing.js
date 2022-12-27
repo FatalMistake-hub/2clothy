@@ -92,7 +92,7 @@ function Billing() {
     useEffect(() => {
         console.log(resBank);
         if (resBank.status == 200 && resShop.status == 200) {
-            navigate('/completedpayment');
+            navigate('/completedsetup');
         }
     }, [resBank]);
 

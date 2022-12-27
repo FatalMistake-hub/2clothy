@@ -3,6 +3,7 @@ const routes = {
     homeid: '/:id',
     cart: '/cart',
     completedpayment: '/completedpayment',
+    completedsetup: '/completedsetup',
     category: '/category',
     // Profile
     profile: '',

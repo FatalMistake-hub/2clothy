@@ -66,40 +66,8 @@ function Shop() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('shop-panel')}>
-                {/* {console.log(detailShop?.images)} */}
-                {/* <Carousel
-                    data={
-                        detailShop
-                            ? 
-                            detailShop.images
-                            
-                            : [
-                                  {
-                                      path: '',
-                                  },
-                              ]
-                    }
-                    time={3000}
-                    width="100%"
-                    height="45vh"
-                    // radius="10px"
-                    slideNumber={false}
-                    captionPosition="bottom"
-                    automatic={true}
-                    dots={false}
-                    pauseIconColor="darkgray"
-                    pauseIconSize="40px"
-                    slideBackgroundColor="darkgrey"
-                    slideImageFit="cover"
-                    style={{
-                        top: '0',
-                        left: '0',
-                        overflow:'hidden'
-                    }}
-                /> */}
-
                 <div>
-                    <Carousel thumbWidth={100} showStatus={false} showThumbs={false}>
+                    <Carousel  showStatus={false} showThumbs={false}>
                         {/* {console.log(detailResult?.images)} */}
                         {detailShop?.images?.map((item, i) => (
                             <div key={i}>

@@ -14,7 +14,7 @@ const refreshToken = async (token, dispatch) => {
         //   });
         if (res.status == 400) {
             dispatch(AuthSlice.actions.logOutSuccess());
-            alert('Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại!')
+            alert('Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại!');
         }
         return res.data;
     } catch (err) {
@@ -45,3 +45,68 @@ export const createAxios = (user, dispatch, stateSuccess) => {
     );
     return newInstance;
 };
+
+// import axios from 'axios';
+// import jwt_decode from 'jwt-decode';
+// import { useNavigate } from 'react-router-dom';
+// import AuthSlice from '~/redux/AuthSlice';
+// import httpRequest from '../utils/httpRequest';
+
+// const refreshToken = async (token, dispatch) => {
+//     const refreshInstance = axios.create({ baseURL: process.env.REACT_APP_BASE_URL });
+//     refreshInstance.interceptors.response.use(
+//         function (response) {
+//             return response;
+//         },
+//         function (error) {
+//             localStorage.clear();
+//             window.location.href = '/';
+//             alert('Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại!');
+//         },
+//     );
+//     try {
+//         const res = await refreshInstance.post('user/refresh-token', {
+//             Token: token,
+//         });
+//         // , {
+//         //     withCredentials: true,
+//         //   });
+//         return res.data;
+//     } catch (err) {
+//         console.log('refresh', err);
+//     }
+// };
+// export const createAxios = (user, dispatch, stateSuccess) => {
+//     const newInstance = axios.create({ baseURL: process.env.REACT_APP_BASE_URL });
+//     newInstance.interceptors.request.use(
+//         async (config) => {
+//             let date = new Date();
+//             const decodedToken = jwt_decode(user?.accessToken);
+//             if (decodedToken.exp < date.getTime() / 1000) {
+//                 const data = await refreshToken(user?.refreshToken, dispatch);
+//                 const refreshUser = {
+//                     ...user,
+//                     accessToken: data.accessToken,
+//                     refreshToken: data.refreshToken,
+//                 };
+//                 dispatch(stateSuccess(refreshUser));
+//                 config.headers['Authorization'] = 'Bearer ' + data.accessToken;
+//             }
+//             return config;
+//         },
+//         (err) => {
+//             return Promise.reject(err);
+//         },
+//     );
+//     newInstance.interceptors.response.use(
+//         function (response) {
+//             return response;
+//         },
+//         function (error) {
+//             localStorage.clear();
+//             window.location.href = '/';
+//             alert('Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại!');
+//         },
+//     );
+//     return newInstance;
+// };

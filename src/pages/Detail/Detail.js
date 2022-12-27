@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import CartSlice from '../../redux/CartSlice';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import ErrorMsg from '~/components/ErrorMsg';
 const cx = classNames.bind(styles);
 
 function Detail() {
@@ -43,11 +44,19 @@ function Detail() {
             fetchApi();
         }
     }, [detailResult]);
+    const min = 1;
 
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(1);
+    const [errQuantity, setErrQuantity] = useState();
     const handleQuantity = (e) => {
-        setQuantity(e.target.value);
+        if (Number(e.target.value) > detailResult?.quantity) {
+            setErrQuantity(`Không thể mua nhiều hơn số sản phẩm có sẵn `);
+        } else {
+            setErrQuantity('');
+        }
+        const value = Math.max(min, Math.min(detailResult?.quantity, Number(e.target.value)));
+        setQuantity(value);
     };
     const handleAddtoCart = () => {
         dispatch(
@@ -76,38 +85,6 @@ function Detail() {
                 <div className={cx('image')}>
                     <div className={cx('image-wrapper')}>
                         <div>
-                            {/* <Carousel
-                                data={
-                                    detailResult
-                                        ? detailResult?.images
-                                        : [
-                                              {
-                                                  path: '',
-                                              },
-                                          ]
-                                }
-                                time={3000}
-                                width="900px"
-                                height="600px"
-                                radius="10px"
-                                slideNumber={true}
-                                slideNumberStyle={{ fontSize: '10px', fontWeight: 'bold', color: 'black' }}
-                                captionPosition="bottom"
-                                automatic={true}
-                                dots={true}
-                                pauseIconColor="white"
-                                pauseIconSize="40px"
-                                slideBackgroundColor="rgba(170, 170, 170, 0.034)"
-                                slideImageFit="contain"
-                                thumbnails={true}
-                                thumbnailWidth="100px"
-                                style={{
-                                    // top: '0',
-                                    // left: '0',
-                                    overflow: 'hidden',
-                                    zindex: '-1',
-                                }}
-                            /> */}
                             <Carousel thumbWidth={100} showStatus={false} swipeable={true}>
                                 {/* {console.log(detailResult?.images)} */}
                                 {detailResult?.images?.map((item, i) => (
@@ -133,7 +110,7 @@ function Detail() {
                                 <div className={cx('rateAndsold')}>
                                     <span className={cx('septum')}>|</span>
                                     <span className={cx('sold-content')}>
-                                        Đã Bán {detailResult ? detailResult?.quantity?.toLocaleString('es-ES') : ''}
+                                       {detailResult ? detailResult?.quantity?.toLocaleString('es-ES') : ''} sản phẩm có sẵn
                                     </span>
                                     <span className={cx('rate')}>
                                         <a href="" className={cx('rate-page')}>
@@ -174,6 +151,7 @@ function Detail() {
                                     <label htmlFor="selection-box" className={cx('optionbox-item-name')}>
                                         Số lượng
                                         <span className={cx('optionbox-required')}></span>
+                                    {errQuantity && <ErrorMsg data={errQuantity} />}
                                     </label>
                                     {/* <div className={cx('selection-box')}>
                                         <select defaultValue={'Default'} className={cx('selection-input')}>
@@ -187,11 +165,11 @@ function Detail() {
                                     <div className={cx('selection-box')}>
                                         <input
                                             type="number"
-                                            min="1"
-                                            max={quantity}
+                                            // min="1"
+                                            // max={detailResult?.quantity}
                                             step="1"
                                             className={cx('selection-input')}
-                                            value={quantity}
+                                            // value={detailResult?.quantity}
                                             onChange={handleQuantity}
                                         ></input>
                                     </div>
