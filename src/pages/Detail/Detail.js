@@ -169,7 +169,7 @@ function Detail() {
                                             // max={detailResult?.quantity}
                                             step="1"
                                             className={cx('selection-input')}
-                                            // value={detailResult?.quantity}
+                                            value={quantity}
                                             onChange={handleQuantity}
                                         ></input>
                                     </div>
