@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export default createSlice({
     name: 'checkOut',
     initialState: {
-        paymentType: '',
+        paymentType: 'vnpay',
         shipping: {
             Address: '',
             Country: '',
