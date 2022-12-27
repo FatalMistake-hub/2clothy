@@ -46,7 +46,7 @@ function CartItem({ shopId, shopName, shopImage, orderDetails = [] }) {
                         <div className={cx('checkout-item-productItem-box')}>
                             <div className={cx('checkout-item-productItem-image')}>
                                 <Link to={`/detail/${productItem.itemId}`} className={cx('checkout-item-productItem-image-link')}>
-                                    <img src={productItem.itemImg}  loading="lazy" className={cx('checkout-item-productItem-image-data')} />
+                                    <img src={productItem.itemImg} loading="lazy" className={cx('checkout-item-productItem-image-data')} />
                                 </Link>
                             </div>
                             <div className={cx('checkout-item-productItem-content')}>
@@ -98,11 +98,11 @@ function CartItem({ shopId, shopName, shopImage, orderDetails = [] }) {
                                         </select> */}
                                         <input
                                             type="number"
-                                            min="1"
-                                            max={productItem.quantity}
+                                            // max={productItem.quantity}
                                             value={productItem.quantity}
-                                            onChange={(e) => handleQuantity(e, productItem.itemId)}
+                                            // onChange={(e) => handleQuantity(e, productItem.itemId)}
                                             step="1"
+                                            disabled
                                             className={cx('productItem-content-quantity-select')}
                                         />
                                     </div>
