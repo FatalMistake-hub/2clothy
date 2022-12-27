@@ -73,6 +73,7 @@ function Review() {
             res = await checkOutOrderVnPay(dataCheckOut, dispatch, accessToken, axiosJWT);
         } else {
             const { BankCode, ...dataCOD } = dataCheckOut;
+            dataCOD.PaymentId=1
             res = await checkOutOrderCod(dataCOD, dispatch, accessToken, axiosJWT);
         }
         console.log(res);
